@@ -72,7 +72,11 @@ tokens = (
     'ILLAVE',
     'COMA',
     'DCORCHETE',
-    'ICORCHETE'
+    'ICORCHETE',
+    'AND',
+    'OR',
+    'NEGACION',
+    'MASIGUAL'
 
 
 
@@ -97,7 +101,12 @@ t_ILLAVE= r'\}'
 t_COMA=r'\,'
 t_DCORCHETE= r'\['
 t_ICORCHETE= r'\]'
-
+#Yonkani Cedeño
+t_AND = r'&{2}'
+t_OR = r'\|{2}'
+t_NEGACION = r'!'
+t_MASIGUAL = r'\+='
+t_PUNTOCOMA = r';'
 
 
 
@@ -107,7 +116,7 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
+#Yonkani Cedeño
 def t_VARIABLE(t):
     r'[a-zA-Z_$][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, 'VARIABLE')
@@ -131,8 +140,9 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''estoesunComentario $hola = == = temp99 $2_2 if for this 4sas class await != >=
-22121-2 null==={}[],'''
+data = '''if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Estos es un string" 
+hola = 1 return o1
+var; '''
 
 # Give the lexer some input
 lexer.input(data)
