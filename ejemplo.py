@@ -84,8 +84,9 @@ tokens = (
     'PORIGUAL',
     'DIVISIONIGUAL',
     'COMMENT',
-    'METODO',
-    'MENORIGUAL'
+    'MENORIGUAL',
+    'METODO_POP_ARRAY',
+    'METODO_PUSH_ARRAY'
 
          ) + tuple(reserved.values())
 
@@ -119,7 +120,9 @@ t_MODULO = r'\%'
 t_MENOSIGUAL = r'\-='
 t_PORIGUAL = r'\*='
 t_DIVISIONIGUAL = r'\/='
-t_METODO = r'\.[a-zA-Z]+[A-Za-z0-9]*'
+#t_METODO = r'\.[a-zA-Z]+[A-Za-z0-9]*'
+t_METODO_POP_ARRAY=r'\.pop'
+t_METODO_PUSH_ARRAY=r'\.push'
 
 
 # Define a rule so we can track line numbers
@@ -168,6 +171,7 @@ function (o1,o2,o3) {
    let res *= resultado;
    return res; 
    resultado.lower.get();
+   resultado.pop();
 }'''
 
 # Give the lexer some input
