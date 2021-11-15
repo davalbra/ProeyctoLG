@@ -86,7 +86,9 @@ tokens = (
     'COMMENT',
     'MENORIGUAL',
     'METODO_POP_ARRAY',
-    'METODO_PUSH_ARRAY'
+    'METODO_PUSH_ARRAY',
+    'METODO_ADD_SET',
+    'METODO_SIZE_SET'
 
          ) + tuple(reserved.values())
 
@@ -123,6 +125,8 @@ t_DIVISIONIGUAL = r'\/='
 #t_METODO = r'\.[a-zA-Z]+[A-Za-z0-9]*'
 t_METODO_POP_ARRAY=r'\.pop'
 t_METODO_PUSH_ARRAY=r'\.push'
+t_METODO_ADD_SET= r'\.Add'
+t_METODO_SIZE_SET= r'\.Size'
 
 
 # Define a rule so we can track line numbers
@@ -172,6 +176,8 @@ function (o1,o2,o3) {
    return res; 
    resultado.lower.get();
    resultado.pop();
+   resultado.Size();
+   resultado.Add();
 }'''
 
 # Give the lexer some input
