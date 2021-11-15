@@ -1,0 +1,9 @@
+var variableNumerica=12.273;
+cons string1="comillas dobles";
+let miVariable;
+var Variable2 = 16;
+var booleano1=true;
+5=== 2+6;
+array.push(elemento1,elemento2);
+function nombre_funcion(){}
+
