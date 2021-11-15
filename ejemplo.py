@@ -83,7 +83,8 @@ tokens = (
     'MENOSIGUAL',
     'PORIGUAL',
     'DIVISIONIGUAL',
-    'MENORIGUAL'
+    'COMMENT',
+    'METODO'
 
          ) + tuple(reserved.values())
 
@@ -117,6 +118,7 @@ t_MODULO = r'\%'
 t_MENOSIGUAL = r'\-='
 t_PORIGUAL = r'\*='
 t_DIVISIONIGUAL = r'\/='
+t_METODO = r'\.[a-zA-Z]+[A-Za-z0-9]*'
 
 
 
@@ -141,8 +143,12 @@ def t_STRING(t):
 #Fin Genesis Baquerizo
 #David Bravo
 
-
-
+#Yonkani Cedeño
+def t_COMMENT(t):
+    r'\/{2}.{1,30}'
+    t.type = reserved.get(t.value, 'COMMENT')
+    return t
+#Fin Yonkani CEdeño 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -157,9 +163,15 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = ''' <=% -=  *= /= if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Esto es un string"  
-hola = 1 return o1
-var 3233.2 23'''
+data = '''let var1 = "HOla Mundo"; 
+//estoesun comentario de 30 cara
+const _Mi_variable = 14.2;
+function (o1,o2,o3) {
+   let resultado = var1 * var2;
+   let res *= resultado;
+   return res; 
+   resultado.lower.get();
+}'''
 
 # Give the lexer some input
 lexer.input(data)
