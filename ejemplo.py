@@ -1,5 +1,6 @@
 import ply.lex as lex
 #Javascript
+#Genesis Baquerizo
 reserved = {
     'default': 'DEFAULT',
     'delete' : 'DELETE',
@@ -52,9 +53,11 @@ reserved = {
     'if': 'IF',
     'null' : 'NULL'
 }
+#Fin Genesis Baquerizo
 
 # List of token names.   This is always required
 tokens = (
+    'STRING',
     'NUMBER',
     'MAS',
     'MINUS',
@@ -76,8 +79,9 @@ tokens = (
     'AND',
     'OR',
     'NEGACION',
-    'MASIGUAL'
-
+    'MASIGUAL',
+    'PUNTOCOMA',
+    'BOOLEANO'
 
 
          ) + tuple(reserved.values())
@@ -122,7 +126,12 @@ def t_VARIABLE(t):
     t.type = reserved.get(t.value, 'VARIABLE')
     return t
 
-
+#Genesis Baquerizo
+def t_STRING(t):
+    r'\".*\"'
+    t.value = t.value[1:-1]  # remuevo las comillas
+    return t
+#Fin Genesis Baquerizo
 
 
 
@@ -140,7 +149,7 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Estos es un string" 
+data = '''if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Esto es un string" 
 hola = 1 return o1
 var; '''
 
