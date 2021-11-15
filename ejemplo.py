@@ -84,7 +84,8 @@ tokens = (
     'PORIGUAL',
     'DIVISIONIGUAL',
     'COMMENT',
-    'METODO'
+    'METODO',
+    'MENORIGUAL'
 
          ) + tuple(reserved.values())
 
@@ -121,9 +122,6 @@ t_DIVISIONIGUAL = r'\/='
 t_METODO = r'\.[a-zA-Z]+[A-Za-z0-9]*'
 
 
-
-
-
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
@@ -141,7 +139,6 @@ def t_STRING(t):
     t.value = t.value[1:-1]  # remuevo las comillas
     return t
 #Fin Genesis Baquerizo
-#David Bravo
 
 #Yonkani Cedeño
 def t_COMMENT(t):
