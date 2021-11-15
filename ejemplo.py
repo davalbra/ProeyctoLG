@@ -82,7 +82,8 @@ tokens = (
     'MODULO',
     'MENOSIGUAL',
     'PORIGUAL',
-    'DIVISIONIGUAL'
+    'DIVISIONIGUAL',
+    'MENORIGUAL'
 
          ) + tuple(reserved.values())
 
@@ -93,7 +94,7 @@ t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_NUMBER = r'\d+'
+t_NUMBER = r'\d+\.?\d*'
 t_FLOTANTE = r'\d+\.\d+'
 t_NOESIGUAL = r'!\='
 t_MAYORIGUAL = r'>='
@@ -105,6 +106,7 @@ t_ILLAVE= r'\}'
 t_COMA=r'\,'
 t_DCORCHETE= r'\['
 t_ICORCHETE= r'\]'
+t_MENORIGUAL= r'<='
 #Yonkani Cedeño
 t_AND = r'&{2}'
 t_OR = r'\|{2}'
@@ -115,6 +117,7 @@ t_MODULO = r'\%'
 t_MENOSIGUAL = r'\-='
 t_PORIGUAL = r'\*='
 t_DIVISIONIGUAL = r'\/='
+
 
 
 
@@ -136,6 +139,7 @@ def t_STRING(t):
     t.value = t.value[1:-1]  # remuevo las comillas
     return t
 #Fin Genesis Baquerizo
+#David Bravo
 
 
 
@@ -153,9 +157,9 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''% -=  *= /= if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Esto es un string"  
+data = ''' <=% -=  *= /= if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Esto es un string"  
 hola = 1 return o1
-var '''
+var 3233.2 23'''
 
 # Give the lexer some input
 lexer.input(data)
