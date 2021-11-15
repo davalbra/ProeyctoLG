@@ -88,7 +88,9 @@ tokens = (
     'METODO_POP_ARRAY',
     'METODO_PUSH_ARRAY',
     'METODO_ADD_SET',
-    'METODO_SIZE_SET'
+    'METODO_SIZE_SET',
+    'METODO_SET',
+    'METODO_HAS'
 
          ) + tuple(reserved.values())
 
@@ -112,6 +114,8 @@ t_COMA=r'\,'
 t_DCORCHETE= r'\['
 t_ICORCHETE= r'\]'
 t_MENORIGUAL= r'<='
+t_METODO_SET= r'\.set'
+t_METODO_HAS= r'\.has'
 #Yonkani Cedeño
 t_AND = r'&{2}'
 t_OR = r'\|{2}'
@@ -127,6 +131,7 @@ t_METODO_POP_ARRAY=r'\.pop'
 t_METODO_PUSH_ARRAY=r'\.push'
 t_METODO_ADD_SET= r'\.Add'
 t_METODO_SIZE_SET= r'\.Size'
+
 
 
 # Define a rule so we can track line numbers
@@ -177,7 +182,7 @@ function (o1,o2,o3) {
    resultado.lower.get();
    resultado.pop();
    resultado.Size();
-   resultado.Add();
+   resultado.Add() .has() .set();
 }'''
 
 # Give the lexer some input
