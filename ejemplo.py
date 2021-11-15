@@ -21,12 +21,9 @@ reserved = {
     'function' : 'FUNCTION',
     'else' : 'ELSE',
     'do' : 'DO',
-    'case' : 'CASE',
-    'catch' : 'CATCH',
     'continue' : 'CONTINUE',
     'in' : 'IN',
     'return' : 'RETURN',
-    'switch' : 'SWITCH',
     'throw' : 'THROW',
     'await' : 'AWAIT',
     'class' : 'CLASS',
@@ -81,8 +78,11 @@ tokens = (
     'NEGACION',
     'MASIGUAL',
     'PUNTOCOMA',
-    'BOOLEANO'
-
+    'BOOLEANO',
+    'MODULO',
+    'MENOSIGUAL',
+    'PORIGUAL',
+    'DIVISIONIGUAL'
 
          ) + tuple(reserved.values())
 
@@ -111,6 +111,10 @@ t_OR = r'\|{2}'
 t_NEGACION = r'!'
 t_MASIGUAL = r'\+='
 t_PUNTOCOMA = r';'
+t_MODULO = r'\%'
+t_MENOSIGUAL = r'\-='
+t_PORIGUAL = r'\*='
+t_DIVISIONIGUAL = r'\/='
 
 
 
@@ -149,9 +153,9 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Esto es un string" 
+data = '''% -=  *= /= if(o1,o2) {  o1 === o2 && || ! += 2.4 0.000 3.3213124124 "Esto es un string"  
 hola = 1 return o1
-var; '''
+var '''
 
 # Give the lexer some input
 lexer.input(data)
