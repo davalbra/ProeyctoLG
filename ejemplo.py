@@ -55,18 +55,27 @@ reserved = {
 
 # List of token names.   This is always required
 tokens = (
-             'NUMBER',
-             'MAS',
-             'MINUS',
-             'TIMES',
-             'DIVIDE',
-             'LPAREN',
-             'RPAREN',
-             'FLOTANTE',
-             'VARIABLE',
-             'NOESIGUAL',
-             'MAYORIGUAL',
-             'ASIGNAR'
+    'NUMBER',
+    'MAS',
+    'MINUS',
+    'TIMES',
+    'DIVIDE',
+    'LPAREN',
+    'RPAREN',
+    'FLOTANTE',
+    'VARIABLE',
+    'NOESIGUAL',
+    'MAYORIGUAL',
+    'ASIGNAR',
+    'IGUALDADESTRICTA',
+    'DLLAVE',
+    'ILLAVE',
+    'COMA',
+    'DCORCHETE',
+    'ICORCHETE'
+
+
+
          ) + tuple(reserved.values())
 
 # Regular expression rules for simple tokens
@@ -81,7 +90,12 @@ t_FLOTANTE = r'\d+\.\d+'
 t_NOESIGUAL = r'!\='
 t_MAYORIGUAL = r'>='
 t_ASIGNAR = r'='
-t_IGUALDADESTRICTA = r'a{3}'
+t_IGUALDADESTRICTA = r'==='
+t_DLLAVE= r'\{'
+t_ILLAVE= r'\}'
+t_COMA=r'\,'
+t_DCORCHETE= r'\['
+t_ICORCHETE= r'\]'
 
 
 
@@ -117,7 +131,7 @@ lexer = lex.lex()
 
 # Test it out
 data = '''estoesunComentario $hola = == = temp99 $2_2 if for this 4sas class await != >=
-22121-2 null'''
+22121-2 null==={}[],'''
 
 # Give the lexer some input
 lexer.input(data)
