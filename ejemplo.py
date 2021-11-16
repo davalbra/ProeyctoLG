@@ -75,11 +75,14 @@ tokens = (
     'ICORCHETE',
     'AND',
     'OR',
+    'MAYOR_QUE',
+    'MENOR_QUE',
     'NEGACION',
     'MASIGUAL',
     'PUNTOCOMA',
     'BOOLEANO',
     'MODULO',
+    'DOSPUNTOS',
     'MENOSIGUAL',
     'PORIGUAL',
     'DIVISIONIGUAL',
@@ -106,6 +109,9 @@ t_FLOTANTE = r'\d+\.\d+'
 t_NOESIGUAL = r'!\='
 t_MAYORIGUAL = r'>='
 t_ASIGNAR = r'='
+t_MAYOR_QUE = r'>'
+t_MENOR_QUE = r'<'
+t_DOSPUNTOS = r':'
 t_IGUALDADESTRICTA = r'==='
 #"cambios David Bravo"
 t_DLLAVE= r'\{'
@@ -131,6 +137,7 @@ t_METODO_POP_ARRAY=r'\.pop'
 t_METODO_PUSH_ARRAY=r'\.push'
 t_METODO_ADD_SET= r'\.Add'
 t_METODO_SIZE_SET= r'\.Size'
+
 
 
 
@@ -171,20 +178,50 @@ def t_error(t):
 # Build the lexer
 lexer = lex.lex()
 
+#Yonkani, Genesis
 # Test it out
 data = '''let var1 = "HOla Mundo"; 
 //estoesun comentario de 30 cara
 const _Mi_variable = 14.2;
-function (o1,o2,o3) {
+let mapa1 = new Map();
+const cj1 = new Set();
+let arr1 = [1,2,3,4,54,1];
+let arr2 = ["HOla", "minuto", "segundos"]
+function nombre(o1,o2,o3) {
    let resultado = var1 * var2;
    let res *= resultado;
    return res; 
-   resultado.lower.get();
-   resultado.pop();
-   resultado.Size();
-   resultado.Add() .has() .set();
-}'''
+   cj1.pop();
+   arr1.Size();
+   resultado.Add() 
+   mapa1.has(); 
+   cj1.set();
+   const variable_2 = true;
+   if( variable_2 != _Mi_variable){
+        variable_2 === cj1;
+   }
+   else if( variable_2 <= var1){
+        while(!variable_2){
+            res + variable_2;
+            res - variable_2;
+            _Mi_variable * 32;
+        }
+   }
+   switch(variable){
+        case "a":
+        case "b":
+        default:
+   }
+   do{}while(true);
+   try {
+        nonExistentFunction();
+   } catch (error) {
+    for(int i = 0; i< 2; i++){
+    }
 
+}
+}'''
+#Fin Yonkani, Genesis
 # Give the lexer some input
 lexer.input(data)
 
