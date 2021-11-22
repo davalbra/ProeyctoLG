@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CADENA CASE CATCH CLASS COMA COMENTARIO CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDIR DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOS MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MODULO MULTIPLICAR NEGACION NEW NOESIGUAL NULL NUMERO OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTO PUNTOCOMA RETURN RPAREN STATIC SUPER SWITCH THIS THROW TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpresion : asignar_variable\n                | grupo_datos\n                | FUNCTIONS\n                | declarar_variablegrupo_datos : tipos_datos\n                    | tipos_datos COMA grupo_datosasignar_variable : declarar_variable ASIGNAR tipos_datos PUNTOCOMA\n                        | VARIABLE ASIGNAR VARIABLE PUNTOCOMA\n                        | VARIABLE ASIGNAR tipos_datos PUNTOCOMA\n                        | declarar_variable ASIGNAR iniciar_estructuras\n                        declarar_variable : tipo_variable VARIABLE PUNTOCOMA\n                        | tipo_variable VARIABLE\n                        tipos_datos : booleano_tipo\n                    | NUMERO\n                    | CADENA\n                    | FLOTANTE\n                    | NULLiniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA tipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : CADENA FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE\n    MASPARAMETROS : PARAMETROS\n                    | PARAMETROS COMA MASPARAMETROS\n    PARAMETROS :  tipos_datos\n                    | VARIABLE\n    '
+_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CADENA CASE CATCH CLASS COMA COMENTARIO CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDIR DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOS MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MODULO MULTIPLICAR NEGACION NEW NOESIGUAL NULL NUMERO OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTO PUNTOCOMA RETURN RPAREN STATIC SUPER SWITCH THIS THROW TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELD STATEMENT : EXPRESSION\n    OPERATOR_MAT : MAS\n                    | MENOS\n                    | MULTIPLICAR\n                    | DIVIDIR\n    EXPRESSION : asignar_variable\n                | grupo_datos\n                | FUNCTIONS\n                | declarar_variable\n                | NUMERO\n                | FLOTANTE\n                | EXPRESSION_MAT\n                | EXPRESSION_CONDICION_BOOLEANA\n     EXPRESSION_MAT : EXPRESSION_MAT_OPTIONS\n\n        EXPRESSION_MAT_OPTIONS : EXPRESSION_MAT_NUMERO\n                      | EXPRESSION_MAT_FLOTANTE\n\n        EXPRESSION_MAT_NUMERO : EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO\n                      | EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO\n                      | LPAREN EXPRESSION_MAT_NUMERO RPAREN\n                      | NUMERO OPERATOR_MAT NUMERO\n                      | VARIABLE OPERATOR_MAT VARIABLE\n                      | VARIABLE OPERATOR_MAT NUMERO\n                      | NUMERO OPERATOR_MAT VARIABLE\n\n        EXPRESSION_MAT_FLOTANTE : EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE\n                      | EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE\n                      | FLOTANTE OPERATOR_MAT FLOTANTE\n                      | LPAREN EXPRESSION_MAT_FLOTANTE RPAREN\n                      | VARIABLE OPERATOR_MAT VARIABLE\n                      | VARIABLE OPERATOR_MAT FLOTANTE\n                      | FLOTANTE OPERATOR_MAT VARIABLE\n     EXPRESSION_CONDICION_BOOLEANA : COMPARACION OPERATOR_COMP_MAT COMPARACION\n\n\n    COMPARACION : VARIABLE\n                    | NUMERO\n                    | BOOLEANO\n    OPERATOR_COMP_MAT : IGUALDADESTRICTA\n                    | MAYORIGUAL\n                    | MENORIGUAL\n                    | MENOR_QUE\n                    | MAYOR_QUE\n                    | AND\n                    | OR\n                    | NOESIGUAL\n    grupo_datos : tipos_datos\n                    | tipos_datos COMA grupo_datosasignar_variable : declarar_variable ASIGNAR tipos_datos PUNTOCOMA\n                        | VARIABLE ASIGNAR VARIABLE PUNTOCOMA\n                        | VARIABLE ASIGNAR tipos_datos PUNTOCOMA\n                        | declarar_variable ASIGNAR iniciar_estructuras\n                        declarar_variable : tipo_variable VARIABLE PUNTOCOMA\n                        | tipo_variable VARIABLE\n                        tipos_datos : booleano_tipo\n                    | NUMERO\n                    | CADENA\n                    | FLOTANTE\n                    | NULLiniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA tipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : CADENA FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE\n    MASPARAMETROS : PARAMETROS\n                    | PARAMETROS COMA MASPARAMETROS\n    PARAMETROS :  tipos_datos\n                    | VARIABLE\n    '
     
-_lr_action_items = {'VARIABLE':([0,8,9,15,16,17,22,27,31,43,],[7,23,24,-19,-20,-21,29,34,37,37,]),'FUNCTION':([0,],[8,]),'NUMERO':([0,20,21,22,31,43,],[11,11,11,11,11,11,]),'CADENA':([0,20,21,22,31,43,],[12,12,12,12,12,12,]),'FLOTANTE':([0,20,21,22,31,43,],[13,13,13,13,13,13,]),'NULL':([0,20,21,22,31,43,],[14,14,14,14,14,14,]),'VAR':([0,],[15,]),'LET':([0,],[16,]),'CONST':([0,],[17,]),'TRUE':([0,20,21,22,31,43,],[18,18,18,18,18,18,]),'FALSE':([0,20,21,22,31,43,],[19,19,19,19,19,19,]),'$end':([1,2,3,4,5,6,10,11,12,13,14,18,19,24,26,28,32,33,35,36,47,48,],[0,-1,-2,-3,-4,-5,-13,-14,-15,-16,-17,-22,-23,-12,-10,-6,-11,-7,-8,-9,-18,-25,]),'ASIGNAR':([5,7,24,32,],[20,22,-12,-11,]),'COMA':([6,10,11,12,13,14,18,19,37,39,40,],[21,-13,-14,-15,-16,-17,-22,-23,-29,43,-28,]),'PUNTOCOMA':([10,11,12,13,14,18,19,24,25,29,30,44,],[-13,-14,-15,-16,-17,-22,-23,32,33,35,36,47,]),'RPAREN':([10,11,12,13,14,18,19,37,38,39,40,41,46,],[-13,-14,-15,-16,-17,-22,-23,-29,42,-26,-28,44,-27,]),'NEW':([20,],[27,]),'LPAREN':([23,34,],[31,41,]),'ILLAVE':([42,],[45,]),'DLLAVE':([45,],[48,]),}
+_lr_action_items = {'NUMERO':([0,14,29,30,31,32,33,34,36,37,38,46,47,48,49,50,51,52,53,54,55,72,81,95,99,],[7,42,59,62,-2,-3,-4,-5,59,59,70,78,-35,-36,-37,-38,-39,-40,-41,-42,80,59,42,70,59,]),'FLOTANTE':([0,14,29,31,32,33,34,35,36,37,38,56,72,85,96,99,],[8,44,60,-2,-3,-4,-5,64,60,60,71,84,60,44,71,60,]),'VARIABLE':([0,13,14,15,21,22,23,30,31,32,33,34,35,37,38,46,47,48,49,50,51,52,53,54,55,56,61,72,81,85,95,96,99,],[12,39,43,45,-57,-58,-59,63,-2,-3,-4,-5,65,67,69,77,-35,-36,-37,-38,-39,-40,-41,-42,82,86,88,91,82,86,100,101,91,]),'FUNCTION':([0,],[13,]),'CADENA':([0,29,36,37,72,99,],[19,19,19,19,19,19,]),'NULL':([0,29,36,37,72,99,],[20,20,20,20,20,20,]),'VAR':([0,],[21,]),'LET':([0,],[22,]),'CONST':([0,],[23,]),'BOOLEANO':([0,46,47,48,49,50,51,52,53,54,],[26,26,-35,-36,-37,-38,-39,-40,-41,-42,]),'TRUE':([0,29,36,37,72,99,],[27,27,27,27,27,27,]),'FALSE':([0,29,36,37,72,99,],[28,28,28,28,28,28,]),'LPAREN':([0,14,31,32,33,34,39,55,56,81,85,88,],[14,14,-2,-3,-4,-5,72,81,85,81,85,97,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,16,18,19,20,24,25,26,27,28,45,58,59,60,62,63,64,65,66,69,70,71,73,74,75,76,77,78,79,80,83,84,87,89,90,100,101,105,106,],[0,-1,-6,-7,-8,-9,-10,-11,-12,-13,-43,-14,-51,-53,-55,-15,-16,-34,-60,-61,-50,-48,-52,-54,-20,-23,-26,-30,-44,-21,-22,-29,-19,-27,-49,-31,-32,-33,-17,-18,-24,-25,-45,-46,-47,-21,-28,-56,-63,]),'ASIGNAR':([6,12,45,75,],[29,37,-50,-49,]),'COMA':([7,8,11,18,19,20,27,28,59,60,91,93,94,],[-52,-54,36,-51,-53,-55,-60,-61,-52,-54,-67,99,-66,]),'IGUALDADESTRICTA':([7,12,17,26,],[-33,-32,47,-34,]),'MAYORIGUAL':([7,12,17,26,],[-33,-32,48,-34,]),'MENORIGUAL':([7,12,17,26,],[-33,-32,49,-34,]),'MENOR_QUE':([7,12,17,26,],[-33,-32,50,-34,]),'MAYOR_QUE':([7,12,17,26,],[-33,-32,51,-34,]),'AND':([7,12,17,26,],[-33,-32,52,-34,]),'OR':([7,12,17,26,],[-33,-32,53,-34,]),'NOESIGUAL':([7,12,17,26,],[-33,-32,54,-34,]),'MAS':([7,8,12,24,25,40,41,42,43,44,62,63,64,65,69,70,71,73,74,79,80,82,83,84,86,100,101,],[31,31,31,31,31,31,31,31,31,31,-20,-23,-26,-30,-21,-22,-29,-19,-27,31,31,31,31,31,31,-21,-28,]),'MENOS':([7,8,12,24,25,40,41,42,43,44,62,63,64,65,69,70,71,73,74,79,80,82,83,84,86,100,101,],[32,32,32,32,32,32,32,32,32,32,-20,-23,-26,-30,-21,-22,-29,-19,-27,32,32,32,32,32,32,-21,-28,]),'MULTIPLICAR':([7,8,12,24,25,40,41,42,43,44,62,63,64,65,69,70,71,73,74,79,80,82,83,84,86,100,101,],[33,33,33,33,33,33,33,33,33,33,-20,-23,-26,-30,-21,-22,-29,-19,-27,33,33,33,33,33,33,-21,-28,]),'DIVIDIR':([7,8,12,24,25,40,41,42,43,44,62,63,64,65,69,70,71,73,74,79,80,82,83,84,86,100,101,],[34,34,34,34,34,34,34,34,34,34,-20,-23,-26,-30,-21,-22,-29,-19,-27,34,34,34,34,34,34,-21,-28,]),'PUNTOCOMA':([18,19,20,27,28,45,57,59,60,67,68,102,],[-51,-53,-55,-60,-61,75,87,-52,-54,89,90,105,]),'RPAREN':([18,19,20,27,28,40,41,59,60,62,63,64,65,69,70,71,73,74,79,80,83,84,91,92,93,94,97,100,101,104,],[-51,-53,-55,-60,-61,73,74,-52,-54,-20,-23,-26,-30,-21,-22,-29,-19,-27,-17,-18,-24,-25,-67,98,-64,-66,102,-21,-28,-65,]),'NEW':([29,],[61,]),'ILLAVE':([98,],[103,]),'DLLAVE':([103,],[106,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expresion':([0,],[1,]),'asignar_variable':([0,],[2,]),'grupo_datos':([0,21,],[3,28,]),'FUNCTIONS':([0,],[4,]),'declarar_variable':([0,],[5,]),'tipos_datos':([0,20,21,22,31,43,],[6,25,6,30,40,40,]),'tipo_variable':([0,],[9,]),'booleano_tipo':([0,20,21,22,31,43,],[10,10,10,10,10,10,]),'iniciar_estructuras':([20,],[26,]),'MASPARAMETROS':([31,43,],[38,46,]),'PARAMETROS':([31,43,],[39,39,]),}
+_lr_goto_items = {'STATEMENT':([0,],[1,]),'EXPRESSION':([0,],[2,]),'asignar_variable':([0,],[3,]),'grupo_datos':([0,36,],[4,66,]),'FUNCTIONS':([0,],[5,]),'declarar_variable':([0,],[6,]),'EXPRESSION_MAT':([0,],[9,]),'EXPRESSION_CONDICION_BOOLEANA':([0,],[10,]),'tipos_datos':([0,29,36,37,72,99,],[11,57,11,68,94,94,]),'tipo_variable':([0,],[15,]),'EXPRESSION_MAT_OPTIONS':([0,],[16,]),'COMPARACION':([0,46,],[17,76,]),'booleano_tipo':([0,29,36,37,72,99,],[18,18,18,18,18,18,]),'EXPRESSION_MAT_NUMERO':([0,14,55,81,],[24,40,79,40,]),'EXPRESSION_MAT_FLOTANTE':([0,14,56,85,],[25,41,83,41,]),'OPERATOR_MAT':([7,8,12,24,25,40,41,42,43,44,79,80,82,83,84,86,],[30,35,38,55,56,55,56,30,38,35,55,30,95,56,35,96,]),'OPERATOR_COMP_MAT':([17,],[46,]),'iniciar_estructuras':([29,],[58,]),'MASPARAMETROS':([72,99,],[92,104,]),'PARAMETROS':([72,99,],[93,93,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,34 +26,72 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> expresion","S'",1,None,None,None),
-  ('expresion -> asignar_variable','expresion',1,'p_expresion','sictactico_javascript.py',9),
-  ('expresion -> grupo_datos','expresion',1,'p_expresion','sictactico_javascript.py',10),
-  ('expresion -> FUNCTIONS','expresion',1,'p_expresion','sictactico_javascript.py',11),
-  ('expresion -> declarar_variable','expresion',1,'p_expresion','sictactico_javascript.py',12),
-  ('grupo_datos -> tipos_datos','grupo_datos',1,'p_grupo_datos','sictactico_javascript.py',16),
-  ('grupo_datos -> tipos_datos COMA grupo_datos','grupo_datos',3,'p_grupo_datos','sictactico_javascript.py',17),
-  ('asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',25),
-  ('asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',26),
-  ('asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',27),
-  ('asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras','asignar_variable',3,'p_asignar_variable','sictactico_javascript.py',28),
-  ('declarar_variable -> tipo_variable VARIABLE PUNTOCOMA','declarar_variable',3,'p_declarar_variable','sictactico_javascript.py',33),
-  ('declarar_variable -> tipo_variable VARIABLE','declarar_variable',2,'p_declarar_variable','sictactico_javascript.py',34),
-  ('tipos_datos -> booleano_tipo','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',40),
-  ('tipos_datos -> NUMERO','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',41),
-  ('tipos_datos -> CADENA','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',42),
-  ('tipos_datos -> FLOTANTE','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',43),
-  ('tipos_datos -> NULL','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',44),
-  ('iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA','iniciar_estructuras',5,'p_iniciar_estructuras','sictactico_javascript.py',48),
-  ('tipo_variable -> VAR','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',54),
-  ('tipo_variable -> LET','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',55),
-  ('tipo_variable -> CONST','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',56),
-  ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',59),
-  ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',60),
-  ('cadenas_caracteres -> CADENA','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',64),
-  ('FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE','FUNCTIONS',7,'p_FUNCTIONS','sictactico_javascript.py',70),
-  ('MASPARAMETROS -> PARAMETROS','MASPARAMETROS',1,'p_MASPARAMETROS','sictactico_javascript.py',76),
-  ('MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS','MASPARAMETROS',3,'p_MASPARAMETROS','sictactico_javascript.py',77),
-  ('PARAMETROS -> tipos_datos','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',82),
-  ('PARAMETROS -> VARIABLE','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',83),
+  ("S' -> STATEMENT","S'",1,None,None,None),
+  ('STATEMENT -> EXPRESSION','STATEMENT',1,'p_STATEMENT','sictactico_javascript.py',8),
+  ('OPERATOR_MAT -> MAS','OPERATOR_MAT',1,'p_OPERATOR_MAT','sictactico_javascript.py',13),
+  ('OPERATOR_MAT -> MENOS','OPERATOR_MAT',1,'p_OPERATOR_MAT','sictactico_javascript.py',14),
+  ('OPERATOR_MAT -> MULTIPLICAR','OPERATOR_MAT',1,'p_OPERATOR_MAT','sictactico_javascript.py',15),
+  ('OPERATOR_MAT -> DIVIDIR','OPERATOR_MAT',1,'p_OPERATOR_MAT','sictactico_javascript.py',16),
+  ('EXPRESSION -> asignar_variable','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',21),
+  ('EXPRESSION -> grupo_datos','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',22),
+  ('EXPRESSION -> FUNCTIONS','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',23),
+  ('EXPRESSION -> declarar_variable','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',24),
+  ('EXPRESSION -> NUMERO','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',25),
+  ('EXPRESSION -> FLOTANTE','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',26),
+  ('EXPRESSION -> EXPRESSION_MAT','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',27),
+  ('EXPRESSION -> EXPRESSION_CONDICION_BOOLEANA','EXPRESSION',1,'p_EXPRESSION','sictactico_javascript.py',28),
+  ('EXPRESSION_MAT -> EXPRESSION_MAT_OPTIONS','EXPRESSION_MAT',1,'p_EXPRESSION_MAT','sictactico_javascript.py',33),
+  ('EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_NUMERO','EXPRESSION_MAT_OPTIONS',1,'p_EXPRESSION_MAT','sictactico_javascript.py',35),
+  ('EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_FLOTANTE','EXPRESSION_MAT_OPTIONS',1,'p_EXPRESSION_MAT','sictactico_javascript.py',36),
+  ('EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',38),
+  ('EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',39),
+  ('EXPRESSION_MAT_NUMERO -> LPAREN EXPRESSION_MAT_NUMERO RPAREN','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',40),
+  ('EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT NUMERO','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',41),
+  ('EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT VARIABLE','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',42),
+  ('EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT NUMERO','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',43),
+  ('EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT VARIABLE','EXPRESSION_MAT_NUMERO',3,'p_EXPRESSION_MAT','sictactico_javascript.py',44),
+  ('EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',46),
+  ('EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',47),
+  ('EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT FLOTANTE','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',48),
+  ('EXPRESSION_MAT_FLOTANTE -> LPAREN EXPRESSION_MAT_FLOTANTE RPAREN','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',49),
+  ('EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',50),
+  ('EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT FLOTANTE','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',51),
+  ('EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT VARIABLE','EXPRESSION_MAT_FLOTANTE',3,'p_EXPRESSION_MAT','sictactico_javascript.py',52),
+  ('EXPRESSION_CONDICION_BOOLEANA -> COMPARACION OPERATOR_COMP_MAT COMPARACION','EXPRESSION_CONDICION_BOOLEANA',3,'p_EXPRESSION_CONDICION_BOOLEANA','sictactico_javascript.py',58),
+  ('COMPARACION -> VARIABLE','COMPARACION',1,'p_COMPARACION','sictactico_javascript.py',64),
+  ('COMPARACION -> NUMERO','COMPARACION',1,'p_COMPARACION','sictactico_javascript.py',65),
+  ('COMPARACION -> BOOLEANO','COMPARACION',1,'p_COMPARACION','sictactico_javascript.py',66),
+  ('OPERATOR_COMP_MAT -> IGUALDADESTRICTA','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',71),
+  ('OPERATOR_COMP_MAT -> MAYORIGUAL','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',72),
+  ('OPERATOR_COMP_MAT -> MENORIGUAL','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',73),
+  ('OPERATOR_COMP_MAT -> MENOR_QUE','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',74),
+  ('OPERATOR_COMP_MAT -> MAYOR_QUE','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',75),
+  ('OPERATOR_COMP_MAT -> AND','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',76),
+  ('OPERATOR_COMP_MAT -> OR','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',77),
+  ('OPERATOR_COMP_MAT -> NOESIGUAL','OPERATOR_COMP_MAT',1,'p_OPERATOR_COMP_MAT','sictactico_javascript.py',78),
+  ('grupo_datos -> tipos_datos','grupo_datos',1,'p_grupo_datos','sictactico_javascript.py',83),
+  ('grupo_datos -> tipos_datos COMA grupo_datos','grupo_datos',3,'p_grupo_datos','sictactico_javascript.py',84),
+  ('asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',94),
+  ('asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',95),
+  ('asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',96),
+  ('asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras','asignar_variable',3,'p_asignar_variable','sictactico_javascript.py',97),
+  ('declarar_variable -> tipo_variable VARIABLE PUNTOCOMA','declarar_variable',3,'p_declarar_variable','sictactico_javascript.py',102),
+  ('declarar_variable -> tipo_variable VARIABLE','declarar_variable',2,'p_declarar_variable','sictactico_javascript.py',103),
+  ('tipos_datos -> booleano_tipo','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',109),
+  ('tipos_datos -> NUMERO','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',110),
+  ('tipos_datos -> CADENA','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',111),
+  ('tipos_datos -> FLOTANTE','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',112),
+  ('tipos_datos -> NULL','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',113),
+  ('iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA','iniciar_estructuras',5,'p_iniciar_estructuras','sictactico_javascript.py',117),
+  ('tipo_variable -> VAR','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',123),
+  ('tipo_variable -> LET','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',124),
+  ('tipo_variable -> CONST','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',125),
+  ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',129),
+  ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',130),
+  ('cadenas_caracteres -> CADENA','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',135),
+  ('FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE','FUNCTIONS',7,'p_FUNCTIONS','sictactico_javascript.py',141),
+  ('MASPARAMETROS -> PARAMETROS','MASPARAMETROS',1,'p_MASPARAMETROS','sictactico_javascript.py',147),
+  ('MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS','MASPARAMETROS',3,'p_MASPARAMETROS','sictactico_javascript.py',148),
+  ('PARAMETROS -> tipos_datos','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',153),
+  ('PARAMETROS -> VARIABLE','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',154),
 ]

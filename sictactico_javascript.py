@@ -4,13 +4,80 @@ import ply.yacc as yacc
 
 #yonkani
 
+def p_STATEMENT(p):
+    ''' STATEMENT : EXPRESSION
+    '''
+    p[0] = p[1]
 
-def p_expresion(p):
-    '''expresion : asignar_variable
+def p_OPERATOR_MAT(p):
+    '''OPERATOR_MAT : MAS
+                    | MENOS
+                    | MULTIPLICAR
+                    | DIVIDIR
+    '''
+    p[0] = ('OPERADOR_MATEMATICO', p[1])
+
+def p_EXPRESSION(p):
+    '''EXPRESSION : asignar_variable
                 | grupo_datos
                 | FUNCTIONS
-                | declarar_variable'''
+                | declarar_variable
+                | NUMERO
+                | FLOTANTE
+                | EXPRESSION_MAT
+                | EXPRESSION_CONDICION_BOOLEANA
+    '''
+    p[0] = ('EXPRESSION', p[1])
 
+def p_EXPRESSION_MAT(p):
+    ''' EXPRESSION_MAT : EXPRESSION_MAT_OPTIONS
+
+        EXPRESSION_MAT_OPTIONS : EXPRESSION_MAT_NUMERO
+                      | EXPRESSION_MAT_FLOTANTE
+
+        EXPRESSION_MAT_NUMERO : EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO
+                      | EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO
+                      | LPAREN EXPRESSION_MAT_NUMERO RPAREN
+                      | NUMERO OPERATOR_MAT NUMERO
+                      | VARIABLE OPERATOR_MAT VARIABLE
+                      | VARIABLE OPERATOR_MAT NUMERO
+                      | NUMERO OPERATOR_MAT VARIABLE
+
+        EXPRESSION_MAT_FLOTANTE : EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE
+                      | EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE
+                      | FLOTANTE OPERATOR_MAT FLOTANTE
+                      | LPAREN EXPRESSION_MAT_FLOTANTE RPAREN
+                      | VARIABLE OPERATOR_MAT VARIABLE
+                      | VARIABLE OPERATOR_MAT FLOTANTE
+                      | FLOTANTE OPERATOR_MAT VARIABLE
+    '''
+    p[0] = ('EXPRESSION_MATEMATICA')
+
+
+def p_EXPRESSION_CONDICION_BOOLEANA(p):
+    ''' EXPRESSION_CONDICION_BOOLEANA : COMPARACION OPERATOR_COMP_MAT COMPARACION
+
+
+    '''
+    p[0] = "EXPRESSION_COMP_BOOLEAN"
+def p_COMPARACION(p):
+    '''COMPARACION : VARIABLE
+                    | NUMERO
+                    | BOOLEANO
+    '''
+    p[0] = ('OPERADOR_COMPARACION', p[1])
+#se usa para la funcion p_EXPRESSION_CONDICION_BOOLEANA lo usa para comparar
+def p_OPERATOR_COMP_MAT(p):
+    '''OPERATOR_COMP_MAT : IGUALDADESTRICTA
+                    | MAYORIGUAL
+                    | MENORIGUAL
+                    | MENOR_QUE
+                    | MAYOR_QUE
+                    | AND
+                    | OR
+                    | NOESIGUAL
+    '''
+    p[0] = ('OPERADOR_MATEMATICO_COMPARACION', p[1])
 #Nos permite agrupar
 def p_grupo_datos(p):
     '''grupo_datos : tipos_datos
@@ -22,6 +89,7 @@ def p_grupo_datos(p):
 #Tambien permite asignar a una variable otra variable
 #Permite asignar a una variable ya creada otro tipo de dato
 #Permite declarar las instancias de las estructuras Set y Map
+
 def p_asignar_variable(p):
     '''asignar_variable : declarar_variable ASIGNAR tipos_datos PUNTOCOMA
                         | VARIABLE ASIGNAR VARIABLE PUNTOCOMA
