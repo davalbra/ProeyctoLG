@@ -88,11 +88,13 @@ def p_grupo_datos(p):
 # Funcion que permite declarar variables con su tipo de dato respectivo
 #Tambien permite asignar a una variable otra variable
 #Permite asignar a una variable ya creada otro tipo de dato
+#Permite declarar las instancias de las estructuras Set y Map
 
 def p_asignar_variable(p):
     '''asignar_variable : declarar_variable ASIGNAR tipos_datos PUNTOCOMA
                         | VARIABLE ASIGNAR VARIABLE PUNTOCOMA
                         | VARIABLE ASIGNAR tipos_datos PUNTOCOMA
+                        | declarar_variable ASIGNAR iniciar_estructuras
                         '''
 
 #Funcion para inicializar variables
@@ -110,16 +112,23 @@ def p_tipos_datos(p):
                     | FLOTANTE
                     | NULL'''
 
+#Instanciar las estructuras de datos Map y Set
+def p_iniciar_estructuras(p):
+    '''iniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA '''
+
+
 
 #Para declarar el tipo de variable
 def p_tipo_variable(p):
     '''tipo_variable : VAR
                     | LET
                     | CONST'''
+
 #Datos booleanos
 def p_booleano_tipo(p):
     '''booleano_tipo : TRUE
                     | FALSE'''
+
 
 # HAcer uso de cadena de caracteres
 def p_cadenas_caracteres(p):
@@ -130,10 +139,9 @@ def p_cadenas_caracteres(p):
 #Daniela
 def p_FUNCTIONS(p):
     ''' FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+                  | FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
     '''
     p[0] = ('FUNCTION')
-
-
 def p_MASPARAMETROS(p):
     '''MASPARAMETROS : PARAMETROS
                     | PARAMETROS COMA MASPARAMETROS
@@ -146,6 +154,7 @@ def p_PARAMETROS(p):
                     | VARIABLE
     '''
     p[0] = 'PARAMETROS'
+
 
 
 
