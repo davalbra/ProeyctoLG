@@ -19,6 +19,7 @@ def p_OPERATOR_MAT(p):
 
 def p_EXPRESSION(p):
     '''EXPRESSION : asignar_variable
+                | ESTRUCTURA_FOR
                 | grupo_datos
                 | FUNCTIONS
                 | declarar_variable
@@ -26,6 +27,7 @@ def p_EXPRESSION(p):
                 | FLOTANTE
                 | EXPRESSION_MAT
                 | EXPRESSION_CONDICION_BOOLEANA
+
     '''
     p[0] = ('EXPRESSION', p[1])
 
@@ -56,8 +58,6 @@ def p_EXPRESSION_MAT(p):
 
 def p_EXPRESSION_CONDICION_BOOLEANA(p):
     ''' EXPRESSION_CONDICION_BOOLEANA : COMPARACION OPERATOR_COMP_MAT COMPARACION
-
-
     '''
     p[0] = "EXPRESSION_COMP_BOOLEAN"
 def p_COMPARACION(p):
@@ -143,7 +143,7 @@ def p_FUNCTIONS(p):
     '''
     p[0] = ('FUNCTION')
 def p_MASPARAMETROS(p):
-    '''MASPARAMETROS : PARAMETROS
+    '''MASPARAMETROS : PARAMETROS VAR
                     | PARAMETROS COMA MASPARAMETROS
     '''
     p[0] = 'MASPARAMETROS'
@@ -162,6 +162,12 @@ def p_PARAMETROS(p):
 #Daniela
 
 #David
+
+def p_ESTRUCTURA_FOR(p):
+    '''ESTRUCTURA_FOR : FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE DLLAVE
+    '''
+    p[0] = ('ESTRUCTURA_FOR', p[1])
+
 
 #David
 
