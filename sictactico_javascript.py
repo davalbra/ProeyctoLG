@@ -139,10 +139,9 @@ def p_cadenas_caracteres(p):
 #Daniela
 def p_FUNCTIONS(p):
     ''' FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+                  | FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
     '''
     p[0] = ('FUNCTION')
-
-
 def p_MASPARAMETROS(p):
     '''MASPARAMETROS : PARAMETROS
                     | PARAMETROS COMA MASPARAMETROS
@@ -155,6 +154,7 @@ def p_PARAMETROS(p):
                     | VARIABLE
     '''
     p[0] = 'PARAMETROS'
+
 
 
 
