@@ -83,6 +83,7 @@ tokens = (
     'PUNTOCOMA',
     'BOOLEANO',
     'MODULO',
+    'PUNTO',
     'DOSPUNTOS',
     'MENOSIGUAL',
     'PORIGUAL',
@@ -116,6 +117,7 @@ t_IGUALDADESTRICTA = r'==='
 t_DLLAVE= r'\{'
 t_ILLAVE= r'\}'
 t_COMA=r'\,'
+t_PUNTO=r'\.'
 t_DCORCHETE= r'\['
 t_ICORCHETE= r'\]'
 t_MENORIGUAL= r'<='
@@ -159,6 +161,8 @@ def t_CADENA(t):
     r'\".*\"'
     t.value = t.value[1:-1]  # remuevo las comillas
     return t
+
+
 #Fin Genesis Baquerizo
 
 #Yonkani Cedeño

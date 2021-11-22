@@ -6,15 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-<<<<<<< HEAD
-_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CASE CATCH CLASS COMA COMMENT CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDE DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MINUS MODULO NEGACION NEW NOESIGUAL NULL NUMBER OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTOCOMA RETURN RPAREN STATIC STRING SUPER SWITCH THIS THROW TIMES TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpresion : asignar_variableasignar_variable : tipo_variable VARIABLE ASIGNAR tipos_datostipos_datos : booleano_tipo\n                    | STRING\n                    | NUMBER\n                    | FLOTANTE\n                    | NULLtipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : STRING'
+_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CADENA CASE CATCH CLASS COMA COMENTARIO CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDIR DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOS MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MODULO MULTIPLICAR NEGACION NEW NOESIGUAL NULL NUMERO OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTOCOMA RETURN RPAREN STATIC SUPER SWITCH THIS THROW TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpresion : asignar_variable\n                | grupo_datosgrupo_datos : tipos_datos\n                    | tipos_datos COMA grupo_datosasignar_variable : tipo_variable VARIABLE ASIGNAR tipos_datostipos_datos : booleano_tipo\n                    | NUMERO\n                    | CADENA\n                    | FLOTANTE\n                    | NULLtipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : CADENA'
     
-_lr_action_items = {'VAR':([0,],[4,]),'LET':([0,],[5,]),'CONST':([0,],[6,]),'$end':([1,2,9,10,11,12,13,14,15,16,],[0,-1,-2,-3,-4,-5,-6,-7,-11,-12,]),'VARIABLE':([3,4,5,6,],[7,-8,-9,-10,]),'ASIGNAR':([7,],[8,]),'STRING':([8,],[11,]),'NUMBER':([8,],[12,]),'FLOTANTE':([8,],[13,]),'NULL':([8,],[14,]),'TRUE':([8,],[15,]),'FALSE':([8,],[16,]),}
-=======
-_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CASE CATCH CLASS COMA COMMENT CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDE DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MINUS MODULO NEGACION NEW NOESIGUAL NULL NUMBER OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTOCOMA RETURN RPAREN STATIC STRING SUPER SWITCH THIS THROW TIMES TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpression_mas : NUMBER MAS NUMBERexpression_mas : NUMBER MINUS NUMBER'
-    
-_lr_action_items = {'NUMBER':([0,3,4,],[2,5,6,]),'$end':([1,5,6,],[0,-1,-2,]),'MAS':([2,],[3,]),'MINUS':([2,],[4,]),}
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+_lr_action_items = {'VAR':([0,],[6,]),'LET':([0,],[7,]),'CONST':([0,],[8,]),'NUMERO':([0,17,18,],[10,10,10,]),'CADENA':([0,17,18,],[11,11,11,]),'FLOTANTE':([0,17,18,],[12,12,12,]),'NULL':([0,17,18,],[13,13,13,]),'TRUE':([0,17,18,],[14,14,14,]),'FALSE':([0,17,18,],[15,15,15,]),'$end':([1,2,3,5,9,10,11,12,13,14,15,19,20,],[0,-1,-2,-3,-6,-7,-8,-9,-10,-14,-15,-4,-5,]),'VARIABLE':([4,6,7,8,],[16,-11,-12,-13,]),'COMA':([5,9,10,11,12,13,14,15,],[17,-6,-7,-8,-9,-10,-14,-15,]),'ASIGNAR':([16,],[18,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -23,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expresion':([0,],[1,]),'asignar_variable':([0,],[2,]),'tipo_variable':([0,],[3,]),'tipos_datos':([8,],[9,]),'booleano_tipo':([8,],[10,]),}
+_lr_goto_items = {'expresion':([0,],[1,]),'asignar_variable':([0,],[2,]),'grupo_datos':([0,17,],[3,19,]),'tipo_variable':([0,],[4,]),'tipos_datos':([0,17,18,],[5,5,20,]),'booleano_tipo':([0,17,18,],[9,9,9,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,24 +26,21 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-<<<<<<< HEAD
   ("S' -> expresion","S'",1,None,None,None),
-  ('expresion -> asignar_variable','expresion',1,'p_expresion','sictactico_javascript.py',8),
-  ('asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos','asignar_variable',4,'p_asigar_variable','sictactico_javascript.py',11),
-  ('tipos_datos -> booleano_tipo','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',14),
-  ('tipos_datos -> STRING','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',15),
-  ('tipos_datos -> NUMBER','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',16),
-  ('tipos_datos -> FLOTANTE','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',17),
-  ('tipos_datos -> NULL','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',18),
-  ('tipo_variable -> VAR','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',23),
-  ('tipo_variable -> LET','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',24),
-  ('tipo_variable -> CONST','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',25),
-  ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',28),
-  ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',29),
-  ('cadenas_caracteres -> STRING','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',31),
-=======
-  ("S' -> expression_mas","S'",1,None,None,None),
-  ('expression_mas -> NUMBER MAS NUMBER','expression_mas',3,'p_expression_mas','sictactico_javascript.py',20),
-  ('expression_mas -> NUMBER MINUS NUMBER','expression_mas',3,'p_expression_minus','sictactico_javascript.py',24),
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+  ('expresion -> asignar_variable','expresion',1,'p_expresion','sictactico_javascript.py',9),
+  ('expresion -> grupo_datos','expresion',1,'p_expresion','sictactico_javascript.py',10),
+  ('grupo_datos -> tipos_datos','grupo_datos',1,'p_grupo_datos','sictactico_javascript.py',13),
+  ('grupo_datos -> tipos_datos COMA grupo_datos','grupo_datos',3,'p_grupo_datos','sictactico_javascript.py',14),
+  ('asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos','asignar_variable',4,'p_asigar_variable','sictactico_javascript.py',17),
+  ('tipos_datos -> booleano_tipo','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',20),
+  ('tipos_datos -> NUMERO','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',21),
+  ('tipos_datos -> CADENA','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',22),
+  ('tipos_datos -> FLOTANTE','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',23),
+  ('tipos_datos -> NULL','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',24),
+  ('tipo_variable -> VAR','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',29),
+  ('tipo_variable -> LET','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',30),
+  ('tipo_variable -> CONST','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',31),
+  ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',34),
+  ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',35),
+  ('cadenas_caracteres -> CADENA','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',38),
 ]

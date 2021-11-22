@@ -11,14 +11,13 @@ Unused terminals:
     CASE
     CATCH
     CLASS
-    COMA
-    COMMENT
+    COMENTARIO
     CONTINUE
     DCORCHETE
     DEBUGGER
     DEFAULT
     DELETE
-    DIVIDE
+    DIVIDIR
     DIVISIONIGUAL
     DLLAVE
     DO
@@ -45,6 +44,7 @@ Unused terminals:
     MAYOR_QUE
     MENORIGUAL
     MENOR_QUE
+    MENOS
     MENOSIGUAL
     METODO_ADD_SET
     METODO_HAS
@@ -52,8 +52,8 @@ Unused terminals:
     METODO_PUSH_ARRAY
     METODO_SET
     METODO_SIZE_SET
-    MINUS
     MODULO
+    MULTIPLICAR
     NEGACION
     NEW
     NOESIGUAL
@@ -71,7 +71,6 @@ Unused terminals:
     SWITCH
     THIS
     THROW
-    TIMES
     TRY
     TYPEOF
     VOID
@@ -81,48 +80,46 @@ Unused terminals:
 
 Grammar
 
-<<<<<<< HEAD
 Rule 0     S' -> expresion
 Rule 1     expresion -> asignar_variable
-Rule 2     asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos
-Rule 3     tipos_datos -> booleano_tipo
-Rule 4     tipos_datos -> STRING
-Rule 5     tipos_datos -> NUMBER
-Rule 6     tipos_datos -> FLOTANTE
-Rule 7     tipos_datos -> NULL
-Rule 8     tipo_variable -> VAR
-Rule 9     tipo_variable -> LET
-Rule 10    tipo_variable -> CONST
-Rule 11    booleano_tipo -> TRUE
-Rule 12    booleano_tipo -> FALSE
-Rule 13    cadenas_caracteres -> STRING
-=======
-Rule 0     S' -> expression_mas
-Rule 1     expression_mas -> NUMBER MAS NUMBER
-Rule 2     expression_mas -> NUMBER MINUS NUMBER
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+Rule 2     expresion -> grupo_datos
+Rule 3     grupo_datos -> tipos_datos
+Rule 4     grupo_datos -> tipos_datos COMA grupo_datos
+Rule 5     asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos
+Rule 6     tipos_datos -> booleano_tipo
+Rule 7     tipos_datos -> NUMERO
+Rule 8     tipos_datos -> CADENA
+Rule 9     tipos_datos -> FLOTANTE
+Rule 10    tipos_datos -> NULL
+Rule 11    tipo_variable -> VAR
+Rule 12    tipo_variable -> LET
+Rule 13    tipo_variable -> CONST
+Rule 14    booleano_tipo -> TRUE
+Rule 15    booleano_tipo -> FALSE
+Rule 16    cadenas_caracteres -> CADENA
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 AND                  : 
 ARGUMENTS            : 
-ASIGNAR              : 2
+ASIGNAR              : 5
 AWAIT                : 
 BOOLEANO             : 
 BREAK                : 
+CADENA               : 8 16
 CASE                 : 
 CATCH                : 
 CLASS                : 
-COMA                 : 
-COMMENT              : 
-CONST                : 10
+COMA                 : 4
+COMENTARIO           : 
+CONST                : 13
 CONTINUE             : 
 DCORCHETE            : 
 DEBUGGER             : 
 DEFAULT              : 
 DELETE               : 
-DIVIDE               : 
+DIVIDIR              : 
 DIVISIONIGUAL        : 
 DLLAVE               : 
 DO                   : 
@@ -131,9 +128,9 @@ ELSE                 :
 ENUM                 : 
 EXPORT               : 
 EXTENDS              : 
-FALSE                : 12
+FALSE                : 15
 FINALLY              : 
-FLOTANTE             : 6
+FLOTANTE             : 9
 FOR                  : 
 FUNCTION             : 
 ICORCHETE            : 
@@ -144,7 +141,7 @@ IMPLEMENTS           :
 IN                   : 
 INSTANCEOF           : 
 INTERFACE            : 
-LET                  : 9
+LET                  : 12
 LPAREN               : 
 MAS                  : 
 MASIGUAL             : 
@@ -152,6 +149,7 @@ MAYORIGUAL           :
 MAYOR_QUE            : 
 MENORIGUAL           : 
 MENOR_QUE            : 
+MENOS                : 
 MENOSIGUAL           : 
 METODO_ADD_SET       : 
 METODO_HAS           : 
@@ -159,13 +157,13 @@ METODO_POP_ARRAY     :
 METODO_PUSH_ARRAY    : 
 METODO_SET           : 
 METODO_SIZE_SET      : 
-MINUS                : 
 MODULO               : 
+MULTIPLICAR          : 
 NEGACION             : 
 NEW                  : 
 NOESIGUAL            : 
-NULL                 : 7
-NUMBER               : 5
+NULL                 : 10
+NUMERO               : 7
 OR                   : 
 PACKAGE              : 
 PORIGUAL             : 
@@ -176,17 +174,15 @@ PUNTOCOMA            :
 RETURN               : 
 RPAREN               : 
 STATIC               : 
-STRING               : 4 13
 SUPER                : 
 SWITCH               : 
 THIS                 : 
 THROW                : 
-TIMES                : 
-TRUE                 : 11
+TRUE                 : 14
 TRY                  : 
 TYPEOF               : 
-VAR                  : 8
-VARIABLE             : 2
+VAR                  : 11
+VARIABLE             : 5
 VOID                 : 
 WHILE                : 
 WITH                 : 
@@ -195,41 +191,51 @@ error                :
 
 Nonterminals, with rules where they appear
 
-<<<<<<< HEAD
 asignar_variable     : 1
-booleano_tipo        : 3
+booleano_tipo        : 6
 cadenas_caracteres   : 
 expresion            : 0
-tipo_variable        : 2
-tipos_datos          : 2
-=======
-expression_mas       : 0
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+grupo_datos          : 2 4
+tipo_variable        : 5
+tipos_datos          : 3 4 5
 
 Parsing method: LALR
 
 state 0
 
-<<<<<<< HEAD
     (0) S' -> . expresion
     (1) expresion -> . asignar_variable
-    (2) asignar_variable -> . tipo_variable VARIABLE ASIGNAR tipos_datos
-    (8) tipo_variable -> . VAR
-    (9) tipo_variable -> . LET
-    (10) tipo_variable -> . CONST
-=======
-    (0) S' -> . expression_mas
-    (1) expression_mas -> . NUMBER MAS NUMBER
-    (2) expression_mas -> . NUMBER MINUS NUMBER
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+    (2) expresion -> . grupo_datos
+    (5) asignar_variable -> . tipo_variable VARIABLE ASIGNAR tipos_datos
+    (3) grupo_datos -> . tipos_datos
+    (4) grupo_datos -> . tipos_datos COMA grupo_datos
+    (11) tipo_variable -> . VAR
+    (12) tipo_variable -> . LET
+    (13) tipo_variable -> . CONST
+    (6) tipos_datos -> . booleano_tipo
+    (7) tipos_datos -> . NUMERO
+    (8) tipos_datos -> . CADENA
+    (9) tipos_datos -> . FLOTANTE
+    (10) tipos_datos -> . NULL
+    (14) booleano_tipo -> . TRUE
+    (15) booleano_tipo -> . FALSE
 
-    VAR             shift and go to state 4
-    LET             shift and go to state 5
-    CONST           shift and go to state 6
+    VAR             shift and go to state 6
+    LET             shift and go to state 7
+    CONST           shift and go to state 8
+    NUMERO          shift and go to state 10
+    CADENA          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    NULL            shift and go to state 13
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 15
 
     expresion                      shift and go to state 1
     asignar_variable               shift and go to state 2
-    tipo_variable                  shift and go to state 3
+    grupo_datos                    shift and go to state 3
+    tipo_variable                  shift and go to state 4
+    tipos_datos                    shift and go to state 5
+    booleano_tipo                  shift and go to state 9
 
 state 1
 
@@ -239,149 +245,173 @@ state 1
 
 state 2
 
-<<<<<<< HEAD
     (1) expresion -> asignar_variable .
 
     $end            reduce using rule 1 (expresion -> asignar_variable .)
-=======
-    (1) expression_mas -> NUMBER . MAS NUMBER
-    (2) expression_mas -> NUMBER . MINUS NUMBER
-
-    MAS             shift and go to state 3
-    MINUS           shift and go to state 4
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
 
 state 3
 
-    (2) asignar_variable -> tipo_variable . VARIABLE ASIGNAR tipos_datos
+    (2) expresion -> grupo_datos .
 
-<<<<<<< HEAD
-    VARIABLE        shift and go to state 7
-=======
-    NUMBER          shift and go to state 5
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+    $end            reduce using rule 2 (expresion -> grupo_datos .)
 
 
 state 4
 
-<<<<<<< HEAD
-    (8) tipo_variable -> VAR .
-=======
-    (2) expression_mas -> NUMBER MINUS . NUMBER
+    (5) asignar_variable -> tipo_variable . VARIABLE ASIGNAR tipos_datos
 
-    NUMBER          shift and go to state 6
+    VARIABLE        shift and go to state 16
 
 
 state 5
 
-    (1) expression_mas -> NUMBER MAS NUMBER .
->>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
+    (3) grupo_datos -> tipos_datos .
+    (4) grupo_datos -> tipos_datos . COMA grupo_datos
 
-    VARIABLE        reduce using rule 8 (tipo_variable -> VAR .)
-
-
-state 5
-
-    (9) tipo_variable -> LET .
-
-    VARIABLE        reduce using rule 9 (tipo_variable -> LET .)
+    $end            reduce using rule 3 (grupo_datos -> tipos_datos .)
+    COMA            shift and go to state 17
 
 
 state 6
 
-    (10) tipo_variable -> CONST .
+    (11) tipo_variable -> VAR .
 
-    VARIABLE        reduce using rule 10 (tipo_variable -> CONST .)
+    VARIABLE        reduce using rule 11 (tipo_variable -> VAR .)
 
 
 state 7
 
-    (2) asignar_variable -> tipo_variable VARIABLE . ASIGNAR tipos_datos
+    (12) tipo_variable -> LET .
 
-    ASIGNAR         shift and go to state 8
+    VARIABLE        reduce using rule 12 (tipo_variable -> LET .)
 
 
 state 8
 
-    (2) asignar_variable -> tipo_variable VARIABLE ASIGNAR . tipos_datos
-    (3) tipos_datos -> . booleano_tipo
-    (4) tipos_datos -> . STRING
-    (5) tipos_datos -> . NUMBER
-    (6) tipos_datos -> . FLOTANTE
-    (7) tipos_datos -> . NULL
-    (11) booleano_tipo -> . TRUE
-    (12) booleano_tipo -> . FALSE
+    (13) tipo_variable -> CONST .
 
-    STRING          shift and go to state 11
-    NUMBER          shift and go to state 12
-    FLOTANTE        shift and go to state 13
-    NULL            shift and go to state 14
-    TRUE            shift and go to state 15
-    FALSE           shift and go to state 16
+    VARIABLE        reduce using rule 13 (tipo_variable -> CONST .)
 
-    tipos_datos                    shift and go to state 9
-    booleano_tipo                  shift and go to state 10
 
 state 9
 
-    (2) asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos .
+    (6) tipos_datos -> booleano_tipo .
 
-    $end            reduce using rule 2 (asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos .)
+    COMA            reduce using rule 6 (tipos_datos -> booleano_tipo .)
+    $end            reduce using rule 6 (tipos_datos -> booleano_tipo .)
 
 
 state 10
 
-    (3) tipos_datos -> booleano_tipo .
+    (7) tipos_datos -> NUMERO .
 
-    $end            reduce using rule 3 (tipos_datos -> booleano_tipo .)
+    COMA            reduce using rule 7 (tipos_datos -> NUMERO .)
+    $end            reduce using rule 7 (tipos_datos -> NUMERO .)
 
 
 state 11
 
-    (4) tipos_datos -> STRING .
+    (8) tipos_datos -> CADENA .
 
-    $end            reduce using rule 4 (tipos_datos -> STRING .)
+    COMA            reduce using rule 8 (tipos_datos -> CADENA .)
+    $end            reduce using rule 8 (tipos_datos -> CADENA .)
 
 
 state 12
 
-    (5) tipos_datos -> NUMBER .
+    (9) tipos_datos -> FLOTANTE .
 
-    $end            reduce using rule 5 (tipos_datos -> NUMBER .)
+    COMA            reduce using rule 9 (tipos_datos -> FLOTANTE .)
+    $end            reduce using rule 9 (tipos_datos -> FLOTANTE .)
 
 
 state 13
 
-    (6) tipos_datos -> FLOTANTE .
+    (10) tipos_datos -> NULL .
 
-    $end            reduce using rule 6 (tipos_datos -> FLOTANTE .)
+    COMA            reduce using rule 10 (tipos_datos -> NULL .)
+    $end            reduce using rule 10 (tipos_datos -> NULL .)
 
 
 state 14
 
-    (7) tipos_datos -> NULL .
+    (14) booleano_tipo -> TRUE .
 
-    $end            reduce using rule 7 (tipos_datos -> NULL .)
+    COMA            reduce using rule 14 (booleano_tipo -> TRUE .)
+    $end            reduce using rule 14 (booleano_tipo -> TRUE .)
 
 
 state 15
 
-    (11) booleano_tipo -> TRUE .
+    (15) booleano_tipo -> FALSE .
 
-    $end            reduce using rule 11 (booleano_tipo -> TRUE .)
+    COMA            reduce using rule 15 (booleano_tipo -> FALSE .)
+    $end            reduce using rule 15 (booleano_tipo -> FALSE .)
 
 
 state 16
 
-    (12) booleano_tipo -> FALSE .
+    (5) asignar_variable -> tipo_variable VARIABLE . ASIGNAR tipos_datos
 
-    $end            reduce using rule 12 (booleano_tipo -> FALSE .)
+    ASIGNAR         shift and go to state 18
 
 
-state 6
+state 17
 
-    (2) expression_mas -> NUMBER MINUS NUMBER .
+    (4) grupo_datos -> tipos_datos COMA . grupo_datos
+    (3) grupo_datos -> . tipos_datos
+    (4) grupo_datos -> . tipos_datos COMA grupo_datos
+    (6) tipos_datos -> . booleano_tipo
+    (7) tipos_datos -> . NUMERO
+    (8) tipos_datos -> . CADENA
+    (9) tipos_datos -> . FLOTANTE
+    (10) tipos_datos -> . NULL
+    (14) booleano_tipo -> . TRUE
+    (15) booleano_tipo -> . FALSE
 
-    $end            reduce using rule 2 (expression_mas -> NUMBER MINUS NUMBER .)
+    NUMERO          shift and go to state 10
+    CADENA          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    NULL            shift and go to state 13
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 15
+
+    tipos_datos                    shift and go to state 5
+    grupo_datos                    shift and go to state 19
+    booleano_tipo                  shift and go to state 9
+
+state 18
+
+    (5) asignar_variable -> tipo_variable VARIABLE ASIGNAR . tipos_datos
+    (6) tipos_datos -> . booleano_tipo
+    (7) tipos_datos -> . NUMERO
+    (8) tipos_datos -> . CADENA
+    (9) tipos_datos -> . FLOTANTE
+    (10) tipos_datos -> . NULL
+    (14) booleano_tipo -> . TRUE
+    (15) booleano_tipo -> . FALSE
+
+    NUMERO          shift and go to state 10
+    CADENA          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    NULL            shift and go to state 13
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 15
+
+    tipos_datos                    shift and go to state 20
+    booleano_tipo                  shift and go to state 9
+
+state 19
+
+    (4) grupo_datos -> tipos_datos COMA grupo_datos .
+
+    $end            reduce using rule 4 (grupo_datos -> tipos_datos COMA grupo_datos .)
+
+
+state 20
+
+    (5) asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos .
+
+    $end            reduce using rule 5 (asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos .)
 
