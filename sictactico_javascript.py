@@ -20,6 +20,7 @@ def p_OPERATOR_MAT(p):
 def p_EXPRESSION(p):
     '''EXPRESSION : asignar_variable
                 | ESTRUCTURA_FOR
+                | ESTRUCTURA_WHILE
                 | grupo_datos
                 | FUNCTIONS
                 | declarar_variable
@@ -192,11 +193,15 @@ def p_PRINT(p):
 #David
 
 def p_ESTRUCTURA_FOR(p):
-    '''ESTRUCTURA_FOR : FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE DLLAVE
+    '''ESTRUCTURA_FOR : FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
     '''
     p[0] = ('ESTRUCTURA_FOR', p[1])
 
+def p_ESTRUCTURA_WHILE(p):
+    '''ESTRUCTURA_WHILE : WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
 
+    '''
+    p[0] = ('ESTRUCTURA_WHILE', p[1])
 #David
 
 
