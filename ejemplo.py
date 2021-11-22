@@ -55,12 +55,12 @@ reserved = {
 
 # List of token names.   This is always required
 tokens = (
-    'STRING',
-    'NUMBER',
+    'CADENA',
+    'NUMERO',
     'MAS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
+    'MENOS',
+    'MULTIPLICAR',
+    'DIVIDIR',
     'LPAREN',
     'RPAREN',
     'FLOTANTE',
@@ -87,7 +87,7 @@ tokens = (
     'MENOSIGUAL',
     'PORIGUAL',
     'DIVISIONIGUAL',
-    'COMMENT',
+    'COMENTARIO',
     'MENORIGUAL',
     'METODO_POP_ARRAY',
     'METODO_PUSH_ARRAY',
@@ -95,17 +95,15 @@ tokens = (
     'METODO_SIZE_SET',
     'METODO_SET',
     'METODO_HAS'
-
          ) + tuple(reserved.values())
 
 # Regular expression rules for simple tokens
 t_MAS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
+t_MENOS = r'-'
+t_MULTIPLICAR = r'\*'
+t_DIVIDIR = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-#t_NUMBER = r'\d+\.?\d*'
 t_FLOTANTE = r'\d+\.\d+'
 t_NOESIGUAL = r'!\='
 t_MAYORIGUAL = r'>='
@@ -140,7 +138,7 @@ t_METODO_ADD_SET= r'\.Add'
 t_METODO_SIZE_SET= r'\.Size'
 
 
-def t_NUMBER(t):
+def t_NUMERO(t):
     r'\d+'
     t.value =int(t.value)
     return t
@@ -157,16 +155,16 @@ def t_VARIABLE(t):
     return t
 
 #Genesis Baquerizo
-def t_STRING(t):
+def t_CADENA(t):
     r'\".*\"'
     t.value = t.value[1:-1]  # remuevo las comillas
     return t
 #Fin Genesis Baquerizo
 
 #Yonkani Cedeño
-def t_COMMENT(t):
+def t_COMENTARIO(t):
     r'\/{2}.{1,30}'
-    t.type = reserved.get(t.value, 'COMMENT')
+    t.type = reserved.get(t.value, 'COMENTARIO')
     return t
 #Fin Yonkani CEdeño 
 # A string containing ignored characters (spaces and tabs)

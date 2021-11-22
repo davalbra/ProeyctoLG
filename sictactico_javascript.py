@@ -11,7 +11,14 @@ import ply.yacc as yacc
 #Daniela
 
 #David
-
+def p_OPERATOR_MAT(p):
+    '''OPERATOR_MAT : PLUS
+                    | MINUS
+                    | TIMES
+                    | DIVIDE
+                    | EXPONENTIATION
+    '''
+    p[0] = ('OPERADOR_MATEMATICO', p[1])
 #David
 
 
