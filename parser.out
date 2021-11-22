@@ -1,0 +1,228 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    AND
+    ARGUMENTS
+    ASIGNAR
+    AWAIT
+    BOOLEANO
+    BREAK
+    CASE
+    CATCH
+    CLASS
+    COMA
+    COMMENT
+    CONST
+    CONTINUE
+    DCORCHETE
+    DEBUGGER
+    DEFAULT
+    DELETE
+    DIVIDE
+    DIVISIONIGUAL
+    DLLAVE
+    DO
+    DOSPUNTOS
+    ELSE
+    ENUM
+    EXPORT
+    EXTENDS
+    FALSE
+    FINALLY
+    FLOTANTE
+    FOR
+    FUNCTION
+    ICORCHETE
+    IF
+    IGUALDADESTRICTA
+    ILLAVE
+    IMPLEMENTS
+    IN
+    INSTANCEOF
+    INTERFACE
+    LET
+    LPAREN
+    MASIGUAL
+    MAYORIGUAL
+    MAYOR_QUE
+    MENORIGUAL
+    MENOR_QUE
+    MENOSIGUAL
+    METODO_ADD_SET
+    METODO_HAS
+    METODO_POP_ARRAY
+    METODO_PUSH_ARRAY
+    METODO_SET
+    METODO_SIZE_SET
+    MODULO
+    NEGACION
+    NEW
+    NOESIGUAL
+    NULL
+    OR
+    PACKAGE
+    PORIGUAL
+    PRIVATE
+    PROTECTED
+    PUBLIC
+    PUNTOCOMA
+    RETURN
+    RPAREN
+    STATIC
+    STRING
+    SUPER
+    SWITCH
+    THIS
+    THROW
+    TIMES
+    TRUE
+    TRY
+    TYPEOF
+    VAR
+    VARIABLE
+    VOID
+    WHILE
+    WITH
+    YIELD
+
+Grammar
+
+Rule 0     S' -> expression_mas
+Rule 1     expression_mas -> NUMBER MAS NUMBER
+Rule 2     expression_minus -> NUMBER MINUS NUMBER
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+AND                  : 
+ARGUMENTS            : 
+ASIGNAR              : 
+AWAIT                : 
+BOOLEANO             : 
+BREAK                : 
+CASE                 : 
+CATCH                : 
+CLASS                : 
+COMA                 : 
+COMMENT              : 
+CONST                : 
+CONTINUE             : 
+DCORCHETE            : 
+DEBUGGER             : 
+DEFAULT              : 
+DELETE               : 
+DIVIDE               : 
+DIVISIONIGUAL        : 
+DLLAVE               : 
+DO                   : 
+DOSPUNTOS            : 
+ELSE                 : 
+ENUM                 : 
+EXPORT               : 
+EXTENDS              : 
+FALSE                : 
+FINALLY              : 
+FLOTANTE             : 
+FOR                  : 
+FUNCTION             : 
+ICORCHETE            : 
+IF                   : 
+IGUALDADESTRICTA     : 
+ILLAVE               : 
+IMPLEMENTS           : 
+IN                   : 
+INSTANCEOF           : 
+INTERFACE            : 
+LET                  : 
+LPAREN               : 
+MAS                  : 1
+MASIGUAL             : 
+MAYORIGUAL           : 
+MAYOR_QUE            : 
+MENORIGUAL           : 
+MENOR_QUE            : 
+MENOSIGUAL           : 
+METODO_ADD_SET       : 
+METODO_HAS           : 
+METODO_POP_ARRAY     : 
+METODO_PUSH_ARRAY    : 
+METODO_SET           : 
+METODO_SIZE_SET      : 
+MINUS                : 2
+MODULO               : 
+NEGACION             : 
+NEW                  : 
+NOESIGUAL            : 
+NULL                 : 
+NUMBER               : 1 1 2 2
+OR                   : 
+PACKAGE              : 
+PORIGUAL             : 
+PRIVATE              : 
+PROTECTED            : 
+PUBLIC               : 
+PUNTOCOMA            : 
+RETURN               : 
+RPAREN               : 
+STATIC               : 
+STRING               : 
+SUPER                : 
+SWITCH               : 
+THIS                 : 
+THROW                : 
+TIMES                : 
+TRUE                 : 
+TRY                  : 
+TYPEOF               : 
+VAR                  : 
+VARIABLE             : 
+VOID                 : 
+WHILE                : 
+WITH                 : 
+YIELD                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression_mas       : 0
+expression_minus     : 
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression_mas
+    (1) expression_mas -> . NUMBER MAS NUMBER
+
+    NUMBER          shift and go to state 2
+
+    expression_mas                 shift and go to state 1
+
+state 1
+
+    (0) S' -> expression_mas .
+
+
+
+state 2
+
+    (1) expression_mas -> NUMBER . MAS NUMBER
+
+    MAS             shift and go to state 3
+
+
+state 3
+
+    (1) expression_mas -> NUMBER MAS . NUMBER
+
+    NUMBER          shift and go to state 4
+
+
+state 4
+
+    (1) expression_mas -> NUMBER MAS NUMBER .
+
+    $end            reduce using rule 1 (expression_mas -> NUMBER MAS NUMBER .)
+

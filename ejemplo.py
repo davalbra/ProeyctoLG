@@ -1,6 +1,7 @@
 import ply.lex as lex
 #Javascript
 #Genesis Baquerizo
+
 reserved = {
     'default': 'DEFAULT',
     'delete' : 'DELETE',
