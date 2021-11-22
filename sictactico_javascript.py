@@ -81,6 +81,7 @@ def p_OPERATOR_COMP_MAT(p):
                     | NOESIGUAL
     '''
     p[0] = ('OPERADOR_MATEMATICO_COMPARACION', p[1])
+
 #Nos permite agrupar
 def p_grupo_datos(p):
     '''grupo_datos : tipos_datos
@@ -98,6 +99,7 @@ def p_asignar_variable(p):
                         | VARIABLE ASIGNAR VARIABLE PUNTOCOMA
                         | VARIABLE ASIGNAR tipos_datos PUNTOCOMA
                         | declarar_variable ASIGNAR iniciar_estructuras
+                        | declarar_variable ASIGNAR iniciar_array
                         '''
 
 #Funcion para inicializar variables
@@ -140,13 +142,41 @@ def p_tipos_datos(p):
 
 
 
+
 #Para declarar el tipo de variable
 def p_tipo_variable(p):
     '''tipo_variable : VAR
                     | LET
                     | CONST'''
 
+#Declarar un array
+def p_iniciar_array(p):
+    '''iniciar_array : ICORCHETE DCORCHETE
+                    | ICORCHETE repeticion_bool DCORCHETE
+                    | ICORCHETE repeticion_flotante DCORCHETE
+                    | ICORCHETE repeticion_null DCORCHETE
+                    | ICORCHETE repeticion_cadena DCORCHETE
+                    | ICORCHETE repeticion_numero DCORCHETE'''
 
+def p_repeticion_flotante(p):
+    '''repeticion_flotante : FLOTANTE
+                            | repeticion_flotante COMA FLOTANTE'''
+
+def p_repeticion_null(p):
+    '''repeticion_null : NULL
+                        | repeticion_null COMA NULL'''
+
+def p_repeticion_cadena(p):
+    '''repeticion_cadena : CADENA
+                            | repeticion_cadena COMA CADENA'''
+
+def p_repeticion_numero(p):
+    '''repeticion_numero : NUMERO
+                            | repeticion_numero COMA NUMERO'''
+
+def p_repeticion_bool(p):
+    '''repeticion_bool : booleano_tipo
+                        | repeticion_bool COMA booleano_tipo'''
 
 #Datos booleanos
 def p_booleano_tipo(p):
