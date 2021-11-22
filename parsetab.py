@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CADENA CASE CATCH CLASS COMA COMENTARIO CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDIR DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOS MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MODULO MULTIPLICAR NEGACION NEW NOESIGUAL NULL NUMERO OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTO PUNTOCOMA RETURN RPAREN STATIC SUPER SWITCH THIS THROW TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpresion : asignar_variable\n                | grupo_datos\n                | FUNCTIONS\n                | declarar_variablegrupo_datos : tipos_datos\n                    | tipos_datos COMA grupo_datosasignar_variable : declarar_variable ASIGNAR tipos_datos PUNTOCOMA\n                        | VARIABLE ASIGNAR VARIABLE PUNTOCOMA\n                        | VARIABLE ASIGNAR tipos_datos PUNTOCOMA\n                        declarar_variable : tipo_variable VARIABLE PUNTOCOMA\n                        | tipo_variable VARIABLE\n                        tipos_datos : booleano_tipo\n                    | NUMERO\n                    | CADENA\n                    | FLOTANTE\n                    | NULLtipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : CADENA FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE\n    MASPARAMETROS : PARAMETROS\n                    | PARAMETROS COMA MASPARAMETROS\n    PARAMETROS :  tipos_datos\n                    | VARIABLE\n    '
+_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CADENA CASE CATCH CLASS COMA COMENTARIO CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDIR DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOS MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MODULO MULTIPLICAR NEGACION NEW NOESIGUAL NULL NUMERO OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTO PUNTOCOMA RETURN RPAREN STATIC SUPER SWITCH THIS THROW TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpresion : asignar_variable\n                | grupo_datos\n                | FUNCTIONS\n                | declarar_variablegrupo_datos : tipos_datos\n                    | tipos_datos COMA grupo_datosasignar_variable : declarar_variable ASIGNAR tipos_datos PUNTOCOMA\n                        | VARIABLE ASIGNAR VARIABLE PUNTOCOMA\n                        | VARIABLE ASIGNAR tipos_datos PUNTOCOMA\n                        | declarar_variable ASIGNAR iniciar_estructuras\n                        declarar_variable : tipo_variable VARIABLE PUNTOCOMA\n                        | tipo_variable VARIABLE\n                        tipos_datos : booleano_tipo\n                    | NUMERO\n                    | CADENA\n                    | FLOTANTE\n                    | NULLiniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA tipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : CADENA FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE\n    MASPARAMETROS : PARAMETROS\n                    | PARAMETROS COMA MASPARAMETROS\n    PARAMETROS :  tipos_datos\n                    | VARIABLE\n    '
     
-_lr_action_items = {'VARIABLE':([0,8,9,15,16,17,22,29,39,],[7,23,24,-17,-18,-19,27,34,34,]),'FUNCTION':([0,],[8,]),'NUMERO':([0,20,21,22,29,39,],[11,11,11,11,11,11,]),'CADENA':([0,20,21,22,29,39,],[12,12,12,12,12,12,]),'FLOTANTE':([0,20,21,22,29,39,],[13,13,13,13,13,13,]),'NULL':([0,20,21,22,29,39,],[14,14,14,14,14,14,]),'VAR':([0,],[15,]),'LET':([0,],[16,]),'CONST':([0,],[17,]),'TRUE':([0,20,21,22,29,39,],[18,18,18,18,18,18,]),'FALSE':([0,20,21,22,29,39,],[19,19,19,19,19,19,]),'$end':([1,2,3,4,5,6,10,11,12,13,14,18,19,24,26,30,31,32,33,42,],[0,-1,-2,-3,-4,-5,-12,-13,-14,-15,-16,-20,-21,-11,-6,-10,-7,-8,-9,-23,]),'ASIGNAR':([5,7,24,30,],[20,22,-11,-10,]),'COMA':([6,10,11,12,13,14,18,19,34,36,37,],[21,-12,-13,-14,-15,-16,-20,-21,-27,39,-26,]),'PUNTOCOMA':([10,11,12,13,14,18,19,24,25,27,28,],[-12,-13,-14,-15,-16,-20,-21,30,31,32,33,]),'RPAREN':([10,11,12,13,14,18,19,34,35,36,37,41,],[-12,-13,-14,-15,-16,-20,-21,-27,38,-24,-26,-25,]),'LPAREN':([23,],[29,]),'ILLAVE':([38,],[40,]),'DLLAVE':([40,],[42,]),}
+_lr_action_items = {'VARIABLE':([0,8,9,15,16,17,22,27,31,43,],[7,23,24,-19,-20,-21,29,34,37,37,]),'FUNCTION':([0,],[8,]),'NUMERO':([0,20,21,22,31,43,],[11,11,11,11,11,11,]),'CADENA':([0,20,21,22,31,43,],[12,12,12,12,12,12,]),'FLOTANTE':([0,20,21,22,31,43,],[13,13,13,13,13,13,]),'NULL':([0,20,21,22,31,43,],[14,14,14,14,14,14,]),'VAR':([0,],[15,]),'LET':([0,],[16,]),'CONST':([0,],[17,]),'TRUE':([0,20,21,22,31,43,],[18,18,18,18,18,18,]),'FALSE':([0,20,21,22,31,43,],[19,19,19,19,19,19,]),'$end':([1,2,3,4,5,6,10,11,12,13,14,18,19,24,26,28,32,33,35,36,47,48,],[0,-1,-2,-3,-4,-5,-13,-14,-15,-16,-17,-22,-23,-12,-10,-6,-11,-7,-8,-9,-18,-25,]),'ASIGNAR':([5,7,24,32,],[20,22,-12,-11,]),'COMA':([6,10,11,12,13,14,18,19,37,39,40,],[21,-13,-14,-15,-16,-17,-22,-23,-29,43,-28,]),'PUNTOCOMA':([10,11,12,13,14,18,19,24,25,29,30,44,],[-13,-14,-15,-16,-17,-22,-23,32,33,35,36,47,]),'RPAREN':([10,11,12,13,14,18,19,37,38,39,40,41,46,],[-13,-14,-15,-16,-17,-22,-23,-29,42,-26,-28,44,-27,]),'NEW':([20,],[27,]),'LPAREN':([23,34,],[31,41,]),'ILLAVE':([42,],[45,]),'DLLAVE':([45,],[48,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expresion':([0,],[1,]),'asignar_variable':([0,],[2,]),'grupo_datos':([0,21,],[3,26,]),'FUNCTIONS':([0,],[4,]),'declarar_variable':([0,],[5,]),'tipos_datos':([0,20,21,22,29,39,],[6,25,6,28,37,37,]),'tipo_variable':([0,],[9,]),'booleano_tipo':([0,20,21,22,29,39,],[10,10,10,10,10,10,]),'MASPARAMETROS':([29,39,],[35,41,]),'PARAMETROS':([29,39,],[36,36,]),}
+_lr_goto_items = {'expresion':([0,],[1,]),'asignar_variable':([0,],[2,]),'grupo_datos':([0,21,],[3,28,]),'FUNCTIONS':([0,],[4,]),'declarar_variable':([0,],[5,]),'tipos_datos':([0,20,21,22,31,43,],[6,25,6,30,40,40,]),'tipo_variable':([0,],[9,]),'booleano_tipo':([0,20,21,22,31,43,],[10,10,10,10,10,10,]),'iniciar_estructuras':([20,],[26,]),'MASPARAMETROS':([31,43,],[38,46,]),'PARAMETROS':([31,43,],[39,39,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -33,25 +33,27 @@ _lr_productions = [
   ('expresion -> declarar_variable','expresion',1,'p_expresion','sictactico_javascript.py',12),
   ('grupo_datos -> tipos_datos','grupo_datos',1,'p_grupo_datos','sictactico_javascript.py',16),
   ('grupo_datos -> tipos_datos COMA grupo_datos','grupo_datos',3,'p_grupo_datos','sictactico_javascript.py',17),
-  ('asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',23),
-  ('asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',24),
-  ('asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',25),
-  ('declarar_variable -> tipo_variable VARIABLE PUNTOCOMA','declarar_variable',3,'p_declarar_variable','sictactico_javascript.py',29),
-  ('declarar_variable -> tipo_variable VARIABLE','declarar_variable',2,'p_declarar_variable','sictactico_javascript.py',30),
-  ('tipos_datos -> booleano_tipo','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',34),
-  ('tipos_datos -> NUMERO','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',35),
-  ('tipos_datos -> CADENA','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',36),
-  ('tipos_datos -> FLOTANTE','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',37),
-  ('tipos_datos -> NULL','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',38),
-  ('tipo_variable -> VAR','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',43),
-  ('tipo_variable -> LET','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',44),
-  ('tipo_variable -> CONST','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',45),
-  ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',48),
-  ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',49),
-  ('cadenas_caracteres -> CADENA','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',53),
-  ('FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE','FUNCTIONS',7,'p_FUNCTIONS','sictactico_javascript.py',59),
-  ('MASPARAMETROS -> PARAMETROS','MASPARAMETROS',1,'p_MASPARAMETROS','sictactico_javascript.py',65),
-  ('MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS','MASPARAMETROS',3,'p_MASPARAMETROS','sictactico_javascript.py',66),
-  ('PARAMETROS -> tipos_datos','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',71),
-  ('PARAMETROS -> VARIABLE','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',72),
+  ('asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',25),
+  ('asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',26),
+  ('asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA','asignar_variable',4,'p_asignar_variable','sictactico_javascript.py',27),
+  ('asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras','asignar_variable',3,'p_asignar_variable','sictactico_javascript.py',28),
+  ('declarar_variable -> tipo_variable VARIABLE PUNTOCOMA','declarar_variable',3,'p_declarar_variable','sictactico_javascript.py',33),
+  ('declarar_variable -> tipo_variable VARIABLE','declarar_variable',2,'p_declarar_variable','sictactico_javascript.py',34),
+  ('tipos_datos -> booleano_tipo','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',40),
+  ('tipos_datos -> NUMERO','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',41),
+  ('tipos_datos -> CADENA','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',42),
+  ('tipos_datos -> FLOTANTE','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',43),
+  ('tipos_datos -> NULL','tipos_datos',1,'p_tipos_datos','sictactico_javascript.py',44),
+  ('iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA','iniciar_estructuras',5,'p_iniciar_estructuras','sictactico_javascript.py',48),
+  ('tipo_variable -> VAR','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',54),
+  ('tipo_variable -> LET','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',55),
+  ('tipo_variable -> CONST','tipo_variable',1,'p_tipo_variable','sictactico_javascript.py',56),
+  ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',59),
+  ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',60),
+  ('cadenas_caracteres -> CADENA','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',64),
+  ('FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE','FUNCTIONS',7,'p_FUNCTIONS','sictactico_javascript.py',70),
+  ('MASPARAMETROS -> PARAMETROS','MASPARAMETROS',1,'p_MASPARAMETROS','sictactico_javascript.py',76),
+  ('MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS','MASPARAMETROS',3,'p_MASPARAMETROS','sictactico_javascript.py',77),
+  ('PARAMETROS -> tipos_datos','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',82),
+  ('PARAMETROS -> VARIABLE','PARAMETROS',1,'p_PARAMETROS','sictactico_javascript.py',83),
 ]

@@ -51,7 +51,6 @@ Unused terminals:
     MODULO
     MULTIPLICAR
     NEGACION
-    NEW
     NOESIGUAL
     OR
     PACKAGE
@@ -85,41 +84,43 @@ Rule 6     grupo_datos -> tipos_datos COMA grupo_datos
 Rule 7     asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA
 Rule 8     asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA
 Rule 9     asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA
-Rule 10    declarar_variable -> tipo_variable VARIABLE PUNTOCOMA
-Rule 11    declarar_variable -> tipo_variable VARIABLE
-Rule 12    tipos_datos -> booleano_tipo
-Rule 13    tipos_datos -> NUMERO
-Rule 14    tipos_datos -> CADENA
-Rule 15    tipos_datos -> FLOTANTE
-Rule 16    tipos_datos -> NULL
-Rule 17    tipo_variable -> VAR
-Rule 18    tipo_variable -> LET
-Rule 19    tipo_variable -> CONST
-Rule 20    booleano_tipo -> TRUE
-Rule 21    booleano_tipo -> FALSE
-Rule 22    cadenas_caracteres -> CADENA
-Rule 23    FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-Rule 24    MASPARAMETROS -> PARAMETROS
-Rule 25    MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS
-Rule 26    PARAMETROS -> tipos_datos
-Rule 27    PARAMETROS -> VARIABLE
+Rule 10    asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras
+Rule 11    declarar_variable -> tipo_variable VARIABLE PUNTOCOMA
+Rule 12    declarar_variable -> tipo_variable VARIABLE
+Rule 13    tipos_datos -> booleano_tipo
+Rule 14    tipos_datos -> NUMERO
+Rule 15    tipos_datos -> CADENA
+Rule 16    tipos_datos -> FLOTANTE
+Rule 17    tipos_datos -> NULL
+Rule 18    iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA
+Rule 19    tipo_variable -> VAR
+Rule 20    tipo_variable -> LET
+Rule 21    tipo_variable -> CONST
+Rule 22    booleano_tipo -> TRUE
+Rule 23    booleano_tipo -> FALSE
+Rule 24    cadenas_caracteres -> CADENA
+Rule 25    FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+Rule 26    MASPARAMETROS -> PARAMETROS
+Rule 27    MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS
+Rule 28    PARAMETROS -> tipos_datos
+Rule 29    PARAMETROS -> VARIABLE
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 AND                  : 
 ARGUMENTS            : 
-ASIGNAR              : 7 8 9
+ASIGNAR              : 7 8 9 10
 AWAIT                : 
 BOOLEANO             : 
 BREAK                : 
-CADENA               : 14 22
+CADENA               : 15 24
 CASE                 : 
 CATCH                : 
 CLASS                : 
-COMA                 : 6 25
+COMA                 : 6 27
 COMENTARIO           : 
-CONST                : 19
+CONST                : 21
 CONTINUE             : 
 DCORCHETE            : 
 DEBUGGER             : 
@@ -127,28 +128,28 @@ DEFAULT              :
 DELETE               : 
 DIVIDIR              : 
 DIVISIONIGUAL        : 
-DLLAVE               : 23
+DLLAVE               : 25
 DO                   : 
 DOSPUNTOS            : 
 ELSE                 : 
 ENUM                 : 
 EXPORT               : 
 EXTENDS              : 
-FALSE                : 21
+FALSE                : 23
 FINALLY              : 
-FLOTANTE             : 15
+FLOTANTE             : 16
 FOR                  : 
-FUNCTION             : 23
+FUNCTION             : 25
 ICORCHETE            : 
 IF                   : 
 IGUALDADESTRICTA     : 
-ILLAVE               : 23
+ILLAVE               : 25
 IMPLEMENTS           : 
 IN                   : 
 INSTANCEOF           : 
 INTERFACE            : 
-LET                  : 18
-LPAREN               : 23
+LET                  : 20
+LPAREN               : 18 25
 MAS                  : 
 MASIGUAL             : 
 MAYORIGUAL           : 
@@ -166,10 +167,10 @@ METODO_SIZE_SET      :
 MODULO               : 
 MULTIPLICAR          : 
 NEGACION             : 
-NEW                  : 
+NEW                  : 18
 NOESIGUAL            : 
-NULL                 : 16
-NUMERO               : 13
+NULL                 : 17
+NUMERO               : 14
 OR                   : 
 PACKAGE              : 
 PORIGUAL             : 
@@ -177,19 +178,19 @@ PRIVATE              :
 PROTECTED            : 
 PUBLIC               : 
 PUNTO                : 
-PUNTOCOMA            : 7 8 9 10
+PUNTOCOMA            : 7 8 9 11 18
 RETURN               : 
-RPAREN               : 23
+RPAREN               : 18 25
 STATIC               : 
 SUPER                : 
 SWITCH               : 
 THIS                 : 
 THROW                : 
-TRUE                 : 20
+TRUE                 : 22
 TRY                  : 
 TYPEOF               : 
-VAR                  : 17
-VARIABLE             : 8 8 9 10 11 23 27
+VAR                  : 19
+VARIABLE             : 8 8 9 11 12 18 25 29
 VOID                 : 
 WHILE                : 
 WITH                 : 
@@ -199,16 +200,17 @@ error                :
 Nonterminals, with rules where they appear
 
 FUNCTIONS            : 3
-MASPARAMETROS        : 23 25
-PARAMETROS           : 24 25
+MASPARAMETROS        : 25 27
+PARAMETROS           : 26 27
 asignar_variable     : 1
-booleano_tipo        : 12
+booleano_tipo        : 13
 cadenas_caracteres   : 
-declarar_variable    : 4 7
+declarar_variable    : 4 7 10
 expresion            : 0
 grupo_datos          : 2 6
-tipo_variable        : 10 11
-tipos_datos          : 5 6 7 9 26
+iniciar_estructuras  : 10
+tipo_variable        : 11 12
+tipos_datos          : 5 6 7 9 28
 
 Parsing method: LALR
 
@@ -222,21 +224,22 @@ state 0
     (7) asignar_variable -> . declarar_variable ASIGNAR tipos_datos PUNTOCOMA
     (8) asignar_variable -> . VARIABLE ASIGNAR VARIABLE PUNTOCOMA
     (9) asignar_variable -> . VARIABLE ASIGNAR tipos_datos PUNTOCOMA
+    (10) asignar_variable -> . declarar_variable ASIGNAR iniciar_estructuras
     (5) grupo_datos -> . tipos_datos
     (6) grupo_datos -> . tipos_datos COMA grupo_datos
-    (23) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (10) declarar_variable -> . tipo_variable VARIABLE PUNTOCOMA
-    (11) declarar_variable -> . tipo_variable VARIABLE
-    (12) tipos_datos -> . booleano_tipo
-    (13) tipos_datos -> . NUMERO
-    (14) tipos_datos -> . CADENA
-    (15) tipos_datos -> . FLOTANTE
-    (16) tipos_datos -> . NULL
-    (17) tipo_variable -> . VAR
-    (18) tipo_variable -> . LET
-    (19) tipo_variable -> . CONST
-    (20) booleano_tipo -> . TRUE
-    (21) booleano_tipo -> . FALSE
+    (25) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (11) declarar_variable -> . tipo_variable VARIABLE PUNTOCOMA
+    (12) declarar_variable -> . tipo_variable VARIABLE
+    (13) tipos_datos -> . booleano_tipo
+    (14) tipos_datos -> . NUMERO
+    (15) tipos_datos -> . CADENA
+    (16) tipos_datos -> . FLOTANTE
+    (17) tipos_datos -> . NULL
+    (19) tipo_variable -> . VAR
+    (20) tipo_variable -> . LET
+    (21) tipo_variable -> . CONST
+    (22) booleano_tipo -> . TRUE
+    (23) booleano_tipo -> . FALSE
 
     VARIABLE        shift and go to state 7
     FUNCTION        shift and go to state 8
@@ -290,6 +293,7 @@ state 5
 
     (4) expresion -> declarar_variable .
     (7) asignar_variable -> declarar_variable . ASIGNAR tipos_datos PUNTOCOMA
+    (10) asignar_variable -> declarar_variable . ASIGNAR iniciar_estructuras
 
     $end            reduce using rule 4 (expresion -> declarar_variable .)
     ASIGNAR         shift and go to state 20
@@ -314,129 +318,133 @@ state 7
 
 state 8
 
-    (23) FUNCTIONS -> FUNCTION . VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (25) FUNCTIONS -> FUNCTION . VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
 
     VARIABLE        shift and go to state 23
 
 
 state 9
 
-    (10) declarar_variable -> tipo_variable . VARIABLE PUNTOCOMA
-    (11) declarar_variable -> tipo_variable . VARIABLE
+    (11) declarar_variable -> tipo_variable . VARIABLE PUNTOCOMA
+    (12) declarar_variable -> tipo_variable . VARIABLE
 
     VARIABLE        shift and go to state 24
 
 
 state 10
 
-    (12) tipos_datos -> booleano_tipo .
+    (13) tipos_datos -> booleano_tipo .
 
-    COMA            reduce using rule 12 (tipos_datos -> booleano_tipo .)
-    $end            reduce using rule 12 (tipos_datos -> booleano_tipo .)
-    PUNTOCOMA       reduce using rule 12 (tipos_datos -> booleano_tipo .)
-    RPAREN          reduce using rule 12 (tipos_datos -> booleano_tipo .)
+    COMA            reduce using rule 13 (tipos_datos -> booleano_tipo .)
+    $end            reduce using rule 13 (tipos_datos -> booleano_tipo .)
+    PUNTOCOMA       reduce using rule 13 (tipos_datos -> booleano_tipo .)
+    RPAREN          reduce using rule 13 (tipos_datos -> booleano_tipo .)
 
 
 state 11
 
-    (13) tipos_datos -> NUMERO .
+    (14) tipos_datos -> NUMERO .
 
-    COMA            reduce using rule 13 (tipos_datos -> NUMERO .)
-    $end            reduce using rule 13 (tipos_datos -> NUMERO .)
-    PUNTOCOMA       reduce using rule 13 (tipos_datos -> NUMERO .)
-    RPAREN          reduce using rule 13 (tipos_datos -> NUMERO .)
+    COMA            reduce using rule 14 (tipos_datos -> NUMERO .)
+    $end            reduce using rule 14 (tipos_datos -> NUMERO .)
+    PUNTOCOMA       reduce using rule 14 (tipos_datos -> NUMERO .)
+    RPAREN          reduce using rule 14 (tipos_datos -> NUMERO .)
 
 
 state 12
 
-    (14) tipos_datos -> CADENA .
+    (15) tipos_datos -> CADENA .
 
-    COMA            reduce using rule 14 (tipos_datos -> CADENA .)
-    $end            reduce using rule 14 (tipos_datos -> CADENA .)
-    PUNTOCOMA       reduce using rule 14 (tipos_datos -> CADENA .)
-    RPAREN          reduce using rule 14 (tipos_datos -> CADENA .)
+    COMA            reduce using rule 15 (tipos_datos -> CADENA .)
+    $end            reduce using rule 15 (tipos_datos -> CADENA .)
+    PUNTOCOMA       reduce using rule 15 (tipos_datos -> CADENA .)
+    RPAREN          reduce using rule 15 (tipos_datos -> CADENA .)
 
 
 state 13
 
-    (15) tipos_datos -> FLOTANTE .
+    (16) tipos_datos -> FLOTANTE .
 
-    COMA            reduce using rule 15 (tipos_datos -> FLOTANTE .)
-    $end            reduce using rule 15 (tipos_datos -> FLOTANTE .)
-    PUNTOCOMA       reduce using rule 15 (tipos_datos -> FLOTANTE .)
-    RPAREN          reduce using rule 15 (tipos_datos -> FLOTANTE .)
+    COMA            reduce using rule 16 (tipos_datos -> FLOTANTE .)
+    $end            reduce using rule 16 (tipos_datos -> FLOTANTE .)
+    PUNTOCOMA       reduce using rule 16 (tipos_datos -> FLOTANTE .)
+    RPAREN          reduce using rule 16 (tipos_datos -> FLOTANTE .)
 
 
 state 14
 
-    (16) tipos_datos -> NULL .
+    (17) tipos_datos -> NULL .
 
-    COMA            reduce using rule 16 (tipos_datos -> NULL .)
-    $end            reduce using rule 16 (tipos_datos -> NULL .)
-    PUNTOCOMA       reduce using rule 16 (tipos_datos -> NULL .)
-    RPAREN          reduce using rule 16 (tipos_datos -> NULL .)
+    COMA            reduce using rule 17 (tipos_datos -> NULL .)
+    $end            reduce using rule 17 (tipos_datos -> NULL .)
+    PUNTOCOMA       reduce using rule 17 (tipos_datos -> NULL .)
+    RPAREN          reduce using rule 17 (tipos_datos -> NULL .)
 
 
 state 15
 
-    (17) tipo_variable -> VAR .
+    (19) tipo_variable -> VAR .
 
-    VARIABLE        reduce using rule 17 (tipo_variable -> VAR .)
+    VARIABLE        reduce using rule 19 (tipo_variable -> VAR .)
 
 
 state 16
 
-    (18) tipo_variable -> LET .
+    (20) tipo_variable -> LET .
 
-    VARIABLE        reduce using rule 18 (tipo_variable -> LET .)
+    VARIABLE        reduce using rule 20 (tipo_variable -> LET .)
 
 
 state 17
 
-    (19) tipo_variable -> CONST .
+    (21) tipo_variable -> CONST .
 
-    VARIABLE        reduce using rule 19 (tipo_variable -> CONST .)
+    VARIABLE        reduce using rule 21 (tipo_variable -> CONST .)
 
 
 state 18
 
-    (20) booleano_tipo -> TRUE .
+    (22) booleano_tipo -> TRUE .
 
-    COMA            reduce using rule 20 (booleano_tipo -> TRUE .)
-    $end            reduce using rule 20 (booleano_tipo -> TRUE .)
-    PUNTOCOMA       reduce using rule 20 (booleano_tipo -> TRUE .)
-    RPAREN          reduce using rule 20 (booleano_tipo -> TRUE .)
+    COMA            reduce using rule 22 (booleano_tipo -> TRUE .)
+    $end            reduce using rule 22 (booleano_tipo -> TRUE .)
+    PUNTOCOMA       reduce using rule 22 (booleano_tipo -> TRUE .)
+    RPAREN          reduce using rule 22 (booleano_tipo -> TRUE .)
 
 
 state 19
 
-    (21) booleano_tipo -> FALSE .
+    (23) booleano_tipo -> FALSE .
 
-    COMA            reduce using rule 21 (booleano_tipo -> FALSE .)
-    $end            reduce using rule 21 (booleano_tipo -> FALSE .)
-    PUNTOCOMA       reduce using rule 21 (booleano_tipo -> FALSE .)
-    RPAREN          reduce using rule 21 (booleano_tipo -> FALSE .)
+    COMA            reduce using rule 23 (booleano_tipo -> FALSE .)
+    $end            reduce using rule 23 (booleano_tipo -> FALSE .)
+    PUNTOCOMA       reduce using rule 23 (booleano_tipo -> FALSE .)
+    RPAREN          reduce using rule 23 (booleano_tipo -> FALSE .)
 
 
 state 20
 
     (7) asignar_variable -> declarar_variable ASIGNAR . tipos_datos PUNTOCOMA
-    (12) tipos_datos -> . booleano_tipo
-    (13) tipos_datos -> . NUMERO
-    (14) tipos_datos -> . CADENA
-    (15) tipos_datos -> . FLOTANTE
-    (16) tipos_datos -> . NULL
-    (20) booleano_tipo -> . TRUE
-    (21) booleano_tipo -> . FALSE
+    (10) asignar_variable -> declarar_variable ASIGNAR . iniciar_estructuras
+    (13) tipos_datos -> . booleano_tipo
+    (14) tipos_datos -> . NUMERO
+    (15) tipos_datos -> . CADENA
+    (16) tipos_datos -> . FLOTANTE
+    (17) tipos_datos -> . NULL
+    (18) iniciar_estructuras -> . NEW VARIABLE LPAREN RPAREN PUNTOCOMA
+    (22) booleano_tipo -> . TRUE
+    (23) booleano_tipo -> . FALSE
 
     NUMERO          shift and go to state 11
     CADENA          shift and go to state 12
     FLOTANTE        shift and go to state 13
     NULL            shift and go to state 14
+    NEW             shift and go to state 27
     TRUE            shift and go to state 18
     FALSE           shift and go to state 19
 
     tipos_datos                    shift and go to state 25
+    iniciar_estructuras            shift and go to state 26
     booleano_tipo                  shift and go to state 10
 
 state 21
@@ -444,13 +452,13 @@ state 21
     (6) grupo_datos -> tipos_datos COMA . grupo_datos
     (5) grupo_datos -> . tipos_datos
     (6) grupo_datos -> . tipos_datos COMA grupo_datos
-    (12) tipos_datos -> . booleano_tipo
-    (13) tipos_datos -> . NUMERO
-    (14) tipos_datos -> . CADENA
-    (15) tipos_datos -> . FLOTANTE
-    (16) tipos_datos -> . NULL
-    (20) booleano_tipo -> . TRUE
-    (21) booleano_tipo -> . FALSE
+    (13) tipos_datos -> . booleano_tipo
+    (14) tipos_datos -> . NUMERO
+    (15) tipos_datos -> . CADENA
+    (16) tipos_datos -> . FLOTANTE
+    (17) tipos_datos -> . NULL
+    (22) booleano_tipo -> . TRUE
+    (23) booleano_tipo -> . FALSE
 
     NUMERO          shift and go to state 11
     CADENA          shift and go to state 12
@@ -460,22 +468,22 @@ state 21
     FALSE           shift and go to state 19
 
     tipos_datos                    shift and go to state 6
-    grupo_datos                    shift and go to state 26
+    grupo_datos                    shift and go to state 28
     booleano_tipo                  shift and go to state 10
 
 state 22
 
     (8) asignar_variable -> VARIABLE ASIGNAR . VARIABLE PUNTOCOMA
     (9) asignar_variable -> VARIABLE ASIGNAR . tipos_datos PUNTOCOMA
-    (12) tipos_datos -> . booleano_tipo
-    (13) tipos_datos -> . NUMERO
-    (14) tipos_datos -> . CADENA
-    (15) tipos_datos -> . FLOTANTE
-    (16) tipos_datos -> . NULL
-    (20) booleano_tipo -> . TRUE
-    (21) booleano_tipo -> . FALSE
+    (13) tipos_datos -> . booleano_tipo
+    (14) tipos_datos -> . NUMERO
+    (15) tipos_datos -> . CADENA
+    (16) tipos_datos -> . FLOTANTE
+    (17) tipos_datos -> . NULL
+    (22) booleano_tipo -> . TRUE
+    (23) booleano_tipo -> . FALSE
 
-    VARIABLE        shift and go to state 27
+    VARIABLE        shift and go to state 29
     NUMERO          shift and go to state 11
     CADENA          shift and go to state 12
     FLOTANTE        shift and go to state 13
@@ -483,70 +491,84 @@ state 22
     TRUE            shift and go to state 18
     FALSE           shift and go to state 19
 
-    tipos_datos                    shift and go to state 28
+    tipos_datos                    shift and go to state 30
     booleano_tipo                  shift and go to state 10
 
 state 23
 
-    (23) FUNCTIONS -> FUNCTION VARIABLE . LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (25) FUNCTIONS -> FUNCTION VARIABLE . LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
 
-    LPAREN          shift and go to state 29
+    LPAREN          shift and go to state 31
 
 
 state 24
 
-    (10) declarar_variable -> tipo_variable VARIABLE . PUNTOCOMA
-    (11) declarar_variable -> tipo_variable VARIABLE .
+    (11) declarar_variable -> tipo_variable VARIABLE . PUNTOCOMA
+    (12) declarar_variable -> tipo_variable VARIABLE .
 
-    PUNTOCOMA       shift and go to state 30
-    ASIGNAR         reduce using rule 11 (declarar_variable -> tipo_variable VARIABLE .)
-    $end            reduce using rule 11 (declarar_variable -> tipo_variable VARIABLE .)
+    PUNTOCOMA       shift and go to state 32
+    ASIGNAR         reduce using rule 12 (declarar_variable -> tipo_variable VARIABLE .)
+    $end            reduce using rule 12 (declarar_variable -> tipo_variable VARIABLE .)
 
 
 state 25
 
     (7) asignar_variable -> declarar_variable ASIGNAR tipos_datos . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 31
+    PUNTOCOMA       shift and go to state 33
 
 
 state 26
+
+    (10) asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras .
+
+    $end            reduce using rule 10 (asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras .)
+
+
+state 27
+
+    (18) iniciar_estructuras -> NEW . VARIABLE LPAREN RPAREN PUNTOCOMA
+
+    VARIABLE        shift and go to state 34
+
+
+state 28
 
     (6) grupo_datos -> tipos_datos COMA grupo_datos .
 
     $end            reduce using rule 6 (grupo_datos -> tipos_datos COMA grupo_datos .)
 
 
-state 27
+state 29
 
     (8) asignar_variable -> VARIABLE ASIGNAR VARIABLE . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 32
+    PUNTOCOMA       shift and go to state 35
 
 
-state 28
+state 30
 
     (9) asignar_variable -> VARIABLE ASIGNAR tipos_datos . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 33
+    PUNTOCOMA       shift and go to state 36
 
 
-state 29
+state 31
 
-    (23) FUNCTIONS -> FUNCTION VARIABLE LPAREN . MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (24) MASPARAMETROS -> . PARAMETROS
-    (25) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (26) PARAMETROS -> . tipos_datos
-    (27) PARAMETROS -> . VARIABLE
-    (12) tipos_datos -> . booleano_tipo
-    (13) tipos_datos -> . NUMERO
-    (14) tipos_datos -> . CADENA
-    (15) tipos_datos -> . FLOTANTE
-    (16) tipos_datos -> . NULL
-    (20) booleano_tipo -> . TRUE
-    (21) booleano_tipo -> . FALSE
+    (25) FUNCTIONS -> FUNCTION VARIABLE LPAREN . MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (26) MASPARAMETROS -> . PARAMETROS
+    (27) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
+    (28) PARAMETROS -> . tipos_datos
+    (29) PARAMETROS -> . VARIABLE
+    (13) tipos_datos -> . booleano_tipo
+    (14) tipos_datos -> . NUMERO
+    (15) tipos_datos -> . CADENA
+    (16) tipos_datos -> . FLOTANTE
+    (17) tipos_datos -> . NULL
+    (22) booleano_tipo -> . TRUE
+    (23) booleano_tipo -> . FALSE
 
-    VARIABLE        shift and go to state 34
+    VARIABLE        shift and go to state 37
     NUMERO          shift and go to state 11
     CADENA          shift and go to state 12
     FLOTANTE        shift and go to state 13
@@ -554,95 +576,109 @@ state 29
     TRUE            shift and go to state 18
     FALSE           shift and go to state 19
 
-    MASPARAMETROS                  shift and go to state 35
-    PARAMETROS                     shift and go to state 36
-    tipos_datos                    shift and go to state 37
+    MASPARAMETROS                  shift and go to state 38
+    PARAMETROS                     shift and go to state 39
+    tipos_datos                    shift and go to state 40
     booleano_tipo                  shift and go to state 10
 
-state 30
+state 32
 
-    (10) declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .
+    (11) declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .
 
-    ASIGNAR         reduce using rule 10 (declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .)
-    $end            reduce using rule 10 (declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .)
+    ASIGNAR         reduce using rule 11 (declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .)
+    $end            reduce using rule 11 (declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .)
 
 
-state 31
+state 33
 
     (7) asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA .
 
     $end            reduce using rule 7 (asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA .)
 
 
-state 32
+state 34
+
+    (18) iniciar_estructuras -> NEW VARIABLE . LPAREN RPAREN PUNTOCOMA
+
+    LPAREN          shift and go to state 41
+
+
+state 35
 
     (8) asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA .
 
     $end            reduce using rule 8 (asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA .)
 
 
-state 33
+state 36
 
     (9) asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA .
 
     $end            reduce using rule 9 (asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA .)
 
 
-state 34
-
-    (27) PARAMETROS -> VARIABLE .
-
-    COMA            reduce using rule 27 (PARAMETROS -> VARIABLE .)
-    RPAREN          reduce using rule 27 (PARAMETROS -> VARIABLE .)
-
-
-state 35
-
-    (23) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS . RPAREN ILLAVE DLLAVE
-
-    RPAREN          shift and go to state 38
-
-
-state 36
-
-    (24) MASPARAMETROS -> PARAMETROS .
-    (25) MASPARAMETROS -> PARAMETROS . COMA MASPARAMETROS
-
-    RPAREN          reduce using rule 24 (MASPARAMETROS -> PARAMETROS .)
-    COMA            shift and go to state 39
-
-
 state 37
 
-    (26) PARAMETROS -> tipos_datos .
+    (29) PARAMETROS -> VARIABLE .
 
-    COMA            reduce using rule 26 (PARAMETROS -> tipos_datos .)
-    RPAREN          reduce using rule 26 (PARAMETROS -> tipos_datos .)
+    COMA            reduce using rule 29 (PARAMETROS -> VARIABLE .)
+    RPAREN          reduce using rule 29 (PARAMETROS -> VARIABLE .)
 
 
 state 38
 
-    (23) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN . ILLAVE DLLAVE
+    (25) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS . RPAREN ILLAVE DLLAVE
 
-    ILLAVE          shift and go to state 40
+    RPAREN          shift and go to state 42
 
 
 state 39
 
-    (25) MASPARAMETROS -> PARAMETROS COMA . MASPARAMETROS
-    (24) MASPARAMETROS -> . PARAMETROS
-    (25) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (26) PARAMETROS -> . tipos_datos
-    (27) PARAMETROS -> . VARIABLE
-    (12) tipos_datos -> . booleano_tipo
-    (13) tipos_datos -> . NUMERO
-    (14) tipos_datos -> . CADENA
-    (15) tipos_datos -> . FLOTANTE
-    (16) tipos_datos -> . NULL
-    (20) booleano_tipo -> . TRUE
-    (21) booleano_tipo -> . FALSE
+    (26) MASPARAMETROS -> PARAMETROS .
+    (27) MASPARAMETROS -> PARAMETROS . COMA MASPARAMETROS
 
-    VARIABLE        shift and go to state 34
+    RPAREN          reduce using rule 26 (MASPARAMETROS -> PARAMETROS .)
+    COMA            shift and go to state 43
+
+
+state 40
+
+    (28) PARAMETROS -> tipos_datos .
+
+    COMA            reduce using rule 28 (PARAMETROS -> tipos_datos .)
+    RPAREN          reduce using rule 28 (PARAMETROS -> tipos_datos .)
+
+
+state 41
+
+    (18) iniciar_estructuras -> NEW VARIABLE LPAREN . RPAREN PUNTOCOMA
+
+    RPAREN          shift and go to state 44
+
+
+state 42
+
+    (25) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN . ILLAVE DLLAVE
+
+    ILLAVE          shift and go to state 45
+
+
+state 43
+
+    (27) MASPARAMETROS -> PARAMETROS COMA . MASPARAMETROS
+    (26) MASPARAMETROS -> . PARAMETROS
+    (27) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
+    (28) PARAMETROS -> . tipos_datos
+    (29) PARAMETROS -> . VARIABLE
+    (13) tipos_datos -> . booleano_tipo
+    (14) tipos_datos -> . NUMERO
+    (15) tipos_datos -> . CADENA
+    (16) tipos_datos -> . FLOTANTE
+    (17) tipos_datos -> . NULL
+    (22) booleano_tipo -> . TRUE
+    (23) booleano_tipo -> . FALSE
+
+    VARIABLE        shift and go to state 37
     NUMERO          shift and go to state 11
     CADENA          shift and go to state 12
     FLOTANTE        shift and go to state 13
@@ -650,28 +686,42 @@ state 39
     TRUE            shift and go to state 18
     FALSE           shift and go to state 19
 
-    PARAMETROS                     shift and go to state 36
-    MASPARAMETROS                  shift and go to state 41
-    tipos_datos                    shift and go to state 37
+    PARAMETROS                     shift and go to state 39
+    MASPARAMETROS                  shift and go to state 46
+    tipos_datos                    shift and go to state 40
     booleano_tipo                  shift and go to state 10
 
-state 40
+state 44
 
-    (23) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE . DLLAVE
+    (18) iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN . PUNTOCOMA
 
-    DLLAVE          shift and go to state 42
-
-
-state 41
-
-    (25) MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .
-
-    RPAREN          reduce using rule 25 (MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .)
+    PUNTOCOMA       shift and go to state 47
 
 
-state 42
+state 45
 
-    (23) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .
+    (25) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE . DLLAVE
 
-    $end            reduce using rule 23 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .)
+    DLLAVE          shift and go to state 48
+
+
+state 46
+
+    (27) MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .
+
+    RPAREN          reduce using rule 27 (MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .)
+
+
+state 47
+
+    (18) iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA .
+
+    $end            reduce using rule 18 (iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA .)
+
+
+state 48
+
+    (25) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .
+
+    $end            reduce using rule 25 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .)
 
