@@ -5,7 +5,6 @@ Unused terminals:
     ABSTRACT
     AND
     ARGUMENTS
-    ASIGNAR
     AWAIT
     BOOLEANO
     BREAK
@@ -14,7 +13,6 @@ Unused terminals:
     CLASS
     COMA
     COMMENT
-    CONST
     CONTINUE
     DCORCHETE
     DEBUGGER
@@ -29,9 +27,7 @@ Unused terminals:
     ENUM
     EXPORT
     EXTENDS
-    FALSE
     FINALLY
-    FLOTANTE
     FOR
     FUNCTION
     ICORCHETE
@@ -42,8 +38,8 @@ Unused terminals:
     IN
     INSTANCEOF
     INTERFACE
-    LET
     LPAREN
+    MAS
     MASIGUAL
     MAYORIGUAL
     MAYOR_QUE
@@ -56,11 +52,11 @@ Unused terminals:
     METODO_PUSH_ARRAY
     METODO_SET
     METODO_SIZE_SET
+    MINUS
     MODULO
     NEGACION
     NEW
     NOESIGUAL
-    NULL
     OR
     PACKAGE
     PORIGUAL
@@ -71,17 +67,13 @@ Unused terminals:
     RETURN
     RPAREN
     STATIC
-    STRING
     SUPER
     SWITCH
     THIS
     THROW
     TIMES
-    TRUE
     TRY
     TYPEOF
-    VAR
-    VARIABLE
     VOID
     WHILE
     WITH
@@ -89,16 +81,27 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> expression_mas
-Rule 1     expression_mas -> NUMBER MAS NUMBER
-Rule 2     expression_minus -> NUMBER MINUS NUMBER
+Rule 0     S' -> expresion
+Rule 1     expresion -> asignar_variable
+Rule 2     asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos
+Rule 3     tipos_datos -> booleano_tipo
+Rule 4     tipos_datos -> STRING
+Rule 5     tipos_datos -> NUMBER
+Rule 6     tipos_datos -> FLOTANTE
+Rule 7     tipos_datos -> NULL
+Rule 8     tipo_variable -> VAR
+Rule 9     tipo_variable -> LET
+Rule 10    tipo_variable -> CONST
+Rule 11    booleano_tipo -> TRUE
+Rule 12    booleano_tipo -> FALSE
+Rule 13    cadenas_caracteres -> STRING
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 AND                  : 
 ARGUMENTS            : 
-ASIGNAR              : 
+ASIGNAR              : 2
 AWAIT                : 
 BOOLEANO             : 
 BREAK                : 
@@ -107,7 +110,7 @@ CATCH                :
 CLASS                : 
 COMA                 : 
 COMMENT              : 
-CONST                : 
+CONST                : 10
 CONTINUE             : 
 DCORCHETE            : 
 DEBUGGER             : 
@@ -122,9 +125,9 @@ ELSE                 :
 ENUM                 : 
 EXPORT               : 
 EXTENDS              : 
-FALSE                : 
+FALSE                : 12
 FINALLY              : 
-FLOTANTE             : 
+FLOTANTE             : 6
 FOR                  : 
 FUNCTION             : 
 ICORCHETE            : 
@@ -135,9 +138,9 @@ IMPLEMENTS           :
 IN                   : 
 INSTANCEOF           : 
 INTERFACE            : 
-LET                  : 
+LET                  : 9
 LPAREN               : 
-MAS                  : 1
+MAS                  : 
 MASIGUAL             : 
 MAYORIGUAL           : 
 MAYOR_QUE            : 
@@ -150,13 +153,13 @@ METODO_POP_ARRAY     :
 METODO_PUSH_ARRAY    : 
 METODO_SET           : 
 METODO_SIZE_SET      : 
-MINUS                : 2
+MINUS                : 
 MODULO               : 
 NEGACION             : 
 NEW                  : 
 NOESIGUAL            : 
-NULL                 : 
-NUMBER               : 1 1 2 2
+NULL                 : 7
+NUMBER               : 5
 OR                   : 
 PACKAGE              : 
 PORIGUAL             : 
@@ -167,17 +170,17 @@ PUNTOCOMA            :
 RETURN               : 
 RPAREN               : 
 STATIC               : 
-STRING               : 
+STRING               : 4 13
 SUPER                : 
 SWITCH               : 
 THIS                 : 
 THROW                : 
 TIMES                : 
-TRUE                 : 
+TRUE                 : 11
 TRY                  : 
 TYPEOF               : 
-VAR                  : 
-VARIABLE             : 
+VAR                  : 8
+VARIABLE             : 2
 VOID                 : 
 WHILE                : 
 WITH                 : 
@@ -186,43 +189,153 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expression_mas       : 0
-expression_minus     : 
+asignar_variable     : 1
+booleano_tipo        : 3
+cadenas_caracteres   : 
+expresion            : 0
+tipo_variable        : 2
+tipos_datos          : 2
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . expression_mas
-    (1) expression_mas -> . NUMBER MAS NUMBER
+    (0) S' -> . expresion
+    (1) expresion -> . asignar_variable
+    (2) asignar_variable -> . tipo_variable VARIABLE ASIGNAR tipos_datos
+    (8) tipo_variable -> . VAR
+    (9) tipo_variable -> . LET
+    (10) tipo_variable -> . CONST
 
-    NUMBER          shift and go to state 2
+    VAR             shift and go to state 4
+    LET             shift and go to state 5
+    CONST           shift and go to state 6
 
-    expression_mas                 shift and go to state 1
+    expresion                      shift and go to state 1
+    asignar_variable               shift and go to state 2
+    tipo_variable                  shift and go to state 3
 
 state 1
 
-    (0) S' -> expression_mas .
+    (0) S' -> expresion .
 
 
 
 state 2
 
-    (1) expression_mas -> NUMBER . MAS NUMBER
+    (1) expresion -> asignar_variable .
 
-    MAS             shift and go to state 3
+    $end            reduce using rule 1 (expresion -> asignar_variable .)
 
 
 state 3
 
-    (1) expression_mas -> NUMBER MAS . NUMBER
+    (2) asignar_variable -> tipo_variable . VARIABLE ASIGNAR tipos_datos
 
-    NUMBER          shift and go to state 4
+    VARIABLE        shift and go to state 7
 
 
 state 4
 
-    (1) expression_mas -> NUMBER MAS NUMBER .
+    (8) tipo_variable -> VAR .
 
-    $end            reduce using rule 1 (expression_mas -> NUMBER MAS NUMBER .)
+    VARIABLE        reduce using rule 8 (tipo_variable -> VAR .)
+
+
+state 5
+
+    (9) tipo_variable -> LET .
+
+    VARIABLE        reduce using rule 9 (tipo_variable -> LET .)
+
+
+state 6
+
+    (10) tipo_variable -> CONST .
+
+    VARIABLE        reduce using rule 10 (tipo_variable -> CONST .)
+
+
+state 7
+
+    (2) asignar_variable -> tipo_variable VARIABLE . ASIGNAR tipos_datos
+
+    ASIGNAR         shift and go to state 8
+
+
+state 8
+
+    (2) asignar_variable -> tipo_variable VARIABLE ASIGNAR . tipos_datos
+    (3) tipos_datos -> . booleano_tipo
+    (4) tipos_datos -> . STRING
+    (5) tipos_datos -> . NUMBER
+    (6) tipos_datos -> . FLOTANTE
+    (7) tipos_datos -> . NULL
+    (11) booleano_tipo -> . TRUE
+    (12) booleano_tipo -> . FALSE
+
+    STRING          shift and go to state 11
+    NUMBER          shift and go to state 12
+    FLOTANTE        shift and go to state 13
+    NULL            shift and go to state 14
+    TRUE            shift and go to state 15
+    FALSE           shift and go to state 16
+
+    tipos_datos                    shift and go to state 9
+    booleano_tipo                  shift and go to state 10
+
+state 9
+
+    (2) asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos .
+
+    $end            reduce using rule 2 (asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos .)
+
+
+state 10
+
+    (3) tipos_datos -> booleano_tipo .
+
+    $end            reduce using rule 3 (tipos_datos -> booleano_tipo .)
+
+
+state 11
+
+    (4) tipos_datos -> STRING .
+
+    $end            reduce using rule 4 (tipos_datos -> STRING .)
+
+
+state 12
+
+    (5) tipos_datos -> NUMBER .
+
+    $end            reduce using rule 5 (tipos_datos -> NUMBER .)
+
+
+state 13
+
+    (6) tipos_datos -> FLOTANTE .
+
+    $end            reduce using rule 6 (tipos_datos -> FLOTANTE .)
+
+
+state 14
+
+    (7) tipos_datos -> NULL .
+
+    $end            reduce using rule 7 (tipos_datos -> NULL .)
+
+
+state 15
+
+    (11) booleano_tipo -> TRUE .
+
+    $end            reduce using rule 11 (booleano_tipo -> TRUE .)
+
+
+state 16
+
+    (12) booleano_tipo -> FALSE .
+
+    $end            reduce using rule 12 (booleano_tipo -> FALSE .)
 
