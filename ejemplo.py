@@ -16,6 +16,7 @@ reserved = {
     'while' : 'WHILE',
     'finally' : 'FINALLY',
     'instanceof' : 'INSTANCEOF',
+    'alert' : 'ALERT',
     'new' : 'NEW',
     'void' : 'VOID',
     'for' : 'FOR',

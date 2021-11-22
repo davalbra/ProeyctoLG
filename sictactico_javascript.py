@@ -28,6 +28,7 @@ def p_EXPRESSION(p):
                 | EXPRESSION_MAT
                 | EXPRESSION_CONDICION_BOOLEANA
                 | metodos_estructuras
+                | PRINT
 
     '''
     p[0] = ('EXPRESSION', p[1])
@@ -179,8 +180,11 @@ def p_PARAMETROS(p):
     '''
     p[0] = 'PARAMETROS'
 
+def p_PRINT(p):
+    ''' PRINT : ALERT LPAREN CADENA RPAREN
 
-
+    '''
+    p[0] = 'PRINT'
 
 
 #Daniela
