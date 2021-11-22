@@ -91,7 +91,7 @@ Grammar
 
 Rule 0     S' -> expression_mas
 Rule 1     expression_mas -> NUMBER MAS NUMBER
-Rule 2     expression_minus -> NUMBER MINUS NUMBER
+Rule 2     expression_mas -> NUMBER MINUS NUMBER
 
 Terminals, with rules where they appear
 
@@ -187,7 +187,6 @@ error                :
 Nonterminals, with rules where they appear
 
 expression_mas       : 0
-expression_minus     : 
 
 Parsing method: LALR
 
@@ -195,6 +194,7 @@ state 0
 
     (0) S' -> . expression_mas
     (1) expression_mas -> . NUMBER MAS NUMBER
+    (2) expression_mas -> . NUMBER MINUS NUMBER
 
     NUMBER          shift and go to state 2
 
@@ -209,20 +209,36 @@ state 1
 state 2
 
     (1) expression_mas -> NUMBER . MAS NUMBER
+    (2) expression_mas -> NUMBER . MINUS NUMBER
 
     MAS             shift and go to state 3
+    MINUS           shift and go to state 4
 
 
 state 3
 
     (1) expression_mas -> NUMBER MAS . NUMBER
 
-    NUMBER          shift and go to state 4
+    NUMBER          shift and go to state 5
 
 
 state 4
 
+    (2) expression_mas -> NUMBER MINUS . NUMBER
+
+    NUMBER          shift and go to state 6
+
+
+state 5
+
     (1) expression_mas -> NUMBER MAS NUMBER .
 
     $end            reduce using rule 1 (expression_mas -> NUMBER MAS NUMBER .)
+
+
+state 6
+
+    (2) expression_mas -> NUMBER MINUS NUMBER .
+
+    $end            reduce using rule 2 (expression_mas -> NUMBER MINUS NUMBER .)
 

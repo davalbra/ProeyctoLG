@@ -21,8 +21,10 @@ def p_expression_mas(p):
     p[0] = p[1] + p[3]
 
 def p_expression_minus(p):
-    "expression_minus : NUMBER MINUS NUMBER"
+    "expression_mas : NUMBER MINUS NUMBER"
     p[0] = p[1] - p[3]
+
+
 
 
 def p_error(p):

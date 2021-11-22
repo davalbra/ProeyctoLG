@@ -105,7 +105,7 @@ t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_NUMBER = r'\d+\.?\d*'
+#t_NUMBER = r'\d+\.?\d*'
 t_FLOTANTE = r'\d+\.\d+'
 t_NOESIGUAL = r'!\='
 t_MAYORIGUAL = r'>='
@@ -140,7 +140,10 @@ t_METODO_ADD_SET= r'\.Add'
 t_METODO_SIZE_SET= r'\.Size'
 
 
-
+def t_NUMBER(t):
+    r'\d+'
+    t.value =int(t.value)
+    return t
 
 # Define a rule so we can track line numbers
 def t_newline(t):
