@@ -136,8 +136,8 @@ t_DIVISIONIGUAL = r'\/='
 #t_METODO = r'\.[a-zA-Z]+[A-Za-z0-9]*'
 t_METODO_POP_ARRAY=r'\.pop'
 t_METODO_PUSH_ARRAY=r'\.push'
-t_METODO_ADD_SET= r'\.Add'
-t_METODO_SIZE_SET= r'\.Size'
+t_METODO_ADD_SET= r'\.add'
+t_METODO_SIZE_SET= r'\.size'
 
 
 def t_NUMERO(t):

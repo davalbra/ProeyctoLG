@@ -26,6 +26,7 @@ def p_EXPRESSION(p):
                 | FLOTANTE
                 | EXPRESSION_MAT
                 | EXPRESSION_CONDICION_BOOLEANA
+                | metodos_estructuras
     '''
     p[0] = ('EXPRESSION', p[1])
 
@@ -66,6 +67,8 @@ def p_COMPARACION(p):
                     | BOOLEANO
     '''
     p[0] = ('OPERADOR_COMPARACION', p[1])
+
+
 #se usa para la funcion p_EXPRESSION_CONDICION_BOOLEANA lo usa para comparar
 def p_OPERATOR_COMP_MAT(p):
     '''OPERATOR_COMP_MAT : IGUALDADESTRICTA
@@ -103,6 +106,29 @@ def p_declarar_variable(p):
                         | tipo_variable VARIABLE
                         '''
 
+#Estructuras hace uso de metodos
+#OJO por revisar
+def p_metodos_estructuras(p):
+    '''metodos_estructuras : VARIABLE  metodos_array
+                            | VARIABLE metodos_set
+                            | VARIABLE metodos_map'''
+
+def p_metodos_array(p):
+    '''metodos_array : METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
+                    | METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA'''
+
+def p_metodos_set(p):
+    '''metodos_set : METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA
+                    | METODO_SIZE_SET PUNTOCOMA'''
+
+def p_metodos_map(p):
+    '''metodos_map : METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
+                    | METODO_HAS LPAREN tipos_datos RPAREN PUNTOCOMA'''
+
+#Instanciar las estructuras de datos Map y Set
+def p_iniciar_estructuras(p):
+    '''iniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA '''
+
 
 # Aqui se declarar los tipos de datos
 def p_tipos_datos(p):
@@ -112,10 +138,6 @@ def p_tipos_datos(p):
                     | FLOTANTE
                     | NULL'''
 
-#Instanciar las estructuras de datos Map y Set
-def p_iniciar_estructuras(p):
-    '''iniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA '''
-
 
 
 #Para declarar el tipo de variable
@@ -123,6 +145,8 @@ def p_tipo_variable(p):
     '''tipo_variable : VAR
                     | LET
                     | CONST'''
+
+
 
 #Datos booleanos
 def p_booleano_tipo(p):
