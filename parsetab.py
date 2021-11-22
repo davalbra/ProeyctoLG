@@ -6,9 +6,15 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
+<<<<<<< HEAD
 _lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CASE CATCH CLASS COMA COMMENT CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDE DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MINUS MODULO NEGACION NEW NOESIGUAL NULL NUMBER OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTOCOMA RETURN RPAREN STATIC STRING SUPER SWITCH THIS THROW TIMES TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpresion : asignar_variableasignar_variable : tipo_variable VARIABLE ASIGNAR tipos_datostipos_datos : booleano_tipo\n                    | STRING\n                    | NUMBER\n                    | FLOTANTE\n                    | NULLtipo_variable : VAR\n                    | LET\n                    | CONSTbooleano_tipo : TRUE\n                    | FALSEcadenas_caracteres : STRING'
     
 _lr_action_items = {'VAR':([0,],[4,]),'LET':([0,],[5,]),'CONST':([0,],[6,]),'$end':([1,2,9,10,11,12,13,14,15,16,],[0,-1,-2,-3,-4,-5,-6,-7,-11,-12,]),'VARIABLE':([3,4,5,6,],[7,-8,-9,-10,]),'ASIGNAR':([7,],[8,]),'STRING':([8,],[11,]),'NUMBER':([8,],[12,]),'FLOTANTE':([8,],[13,]),'NULL':([8,],[14,]),'TRUE':([8,],[15,]),'FALSE':([8,],[16,]),}
+=======
+_lr_signature = 'ABSTRACT AND ARGUMENTS ASIGNAR AWAIT BOOLEANO BREAK CASE CATCH CLASS COMA COMMENT CONST CONTINUE DCORCHETE DEBUGGER DEFAULT DELETE DIVIDE DIVISIONIGUAL DLLAVE DO DOSPUNTOS ELSE ENUM EXPORT EXTENDS FALSE FINALLY FLOTANTE FOR FUNCTION ICORCHETE IF IGUALDADESTRICTA ILLAVE IMPLEMENTS IN INSTANCEOF INTERFACE LET LPAREN MAS MASIGUAL MAYORIGUAL MAYOR_QUE MENORIGUAL MENOR_QUE MENOSIGUAL METODO_ADD_SET METODO_HAS METODO_POP_ARRAY METODO_PUSH_ARRAY METODO_SET METODO_SIZE_SET MINUS MODULO NEGACION NEW NOESIGUAL NULL NUMBER OR PACKAGE PORIGUAL PRIVATE PROTECTED PUBLIC PUNTOCOMA RETURN RPAREN STATIC STRING SUPER SWITCH THIS THROW TIMES TRUE TRY TYPEOF VAR VARIABLE VOID WHILE WITH YIELDexpression_mas : NUMBER MAS NUMBERexpression_mas : NUMBER MINUS NUMBER'
+    
+_lr_action_items = {'NUMBER':([0,3,4,],[2,5,6,]),'$end':([1,5,6,],[0,-1,-2,]),'MAS':([2,],[3,]),'MINUS':([2,],[4,]),}
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -26,6 +32,7 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
+<<<<<<< HEAD
   ("S' -> expresion","S'",1,None,None,None),
   ('expresion -> asignar_variable','expresion',1,'p_expresion','sictactico_javascript.py',8),
   ('asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos','asignar_variable',4,'p_asigar_variable','sictactico_javascript.py',11),
@@ -40,4 +47,9 @@ _lr_productions = [
   ('booleano_tipo -> TRUE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',28),
   ('booleano_tipo -> FALSE','booleano_tipo',1,'p_booleano_tipo','sictactico_javascript.py',29),
   ('cadenas_caracteres -> STRING','cadenas_caracteres',1,'p_cadenas_caracteres','sictactico_javascript.py',31),
+=======
+  ("S' -> expression_mas","S'",1,None,None,None),
+  ('expression_mas -> NUMBER MAS NUMBER','expression_mas',3,'p_expression_mas','sictactico_javascript.py',20),
+  ('expression_mas -> NUMBER MINUS NUMBER','expression_mas',3,'p_expression_minus','sictactico_javascript.py',24),
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 ]

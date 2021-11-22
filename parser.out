@@ -81,6 +81,7 @@ Unused terminals:
 
 Grammar
 
+<<<<<<< HEAD
 Rule 0     S' -> expresion
 Rule 1     expresion -> asignar_variable
 Rule 2     asignar_variable -> tipo_variable VARIABLE ASIGNAR tipos_datos
@@ -95,6 +96,11 @@ Rule 10    tipo_variable -> CONST
 Rule 11    booleano_tipo -> TRUE
 Rule 12    booleano_tipo -> FALSE
 Rule 13    cadenas_caracteres -> STRING
+=======
+Rule 0     S' -> expression_mas
+Rule 1     expression_mas -> NUMBER MAS NUMBER
+Rule 2     expression_mas -> NUMBER MINUS NUMBER
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
 Terminals, with rules where they appear
 
@@ -189,23 +195,33 @@ error                :
 
 Nonterminals, with rules where they appear
 
+<<<<<<< HEAD
 asignar_variable     : 1
 booleano_tipo        : 3
 cadenas_caracteres   : 
 expresion            : 0
 tipo_variable        : 2
 tipos_datos          : 2
+=======
+expression_mas       : 0
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
 Parsing method: LALR
 
 state 0
 
+<<<<<<< HEAD
     (0) S' -> . expresion
     (1) expresion -> . asignar_variable
     (2) asignar_variable -> . tipo_variable VARIABLE ASIGNAR tipos_datos
     (8) tipo_variable -> . VAR
     (9) tipo_variable -> . LET
     (10) tipo_variable -> . CONST
+=======
+    (0) S' -> . expression_mas
+    (1) expression_mas -> . NUMBER MAS NUMBER
+    (2) expression_mas -> . NUMBER MINUS NUMBER
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
     VAR             shift and go to state 4
     LET             shift and go to state 5
@@ -223,21 +239,44 @@ state 1
 
 state 2
 
+<<<<<<< HEAD
     (1) expresion -> asignar_variable .
 
     $end            reduce using rule 1 (expresion -> asignar_variable .)
+=======
+    (1) expression_mas -> NUMBER . MAS NUMBER
+    (2) expression_mas -> NUMBER . MINUS NUMBER
+
+    MAS             shift and go to state 3
+    MINUS           shift and go to state 4
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
 
 state 3
 
     (2) asignar_variable -> tipo_variable . VARIABLE ASIGNAR tipos_datos
 
+<<<<<<< HEAD
     VARIABLE        shift and go to state 7
+=======
+    NUMBER          shift and go to state 5
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
 
 state 4
 
+<<<<<<< HEAD
     (8) tipo_variable -> VAR .
+=======
+    (2) expression_mas -> NUMBER MINUS . NUMBER
+
+    NUMBER          shift and go to state 6
+
+
+state 5
+
+    (1) expression_mas -> NUMBER MAS NUMBER .
+>>>>>>> 811ee3f01b075491a8987c73e4ddd01c38645007
 
     VARIABLE        reduce using rule 8 (tipo_variable -> VAR .)
 
@@ -338,4 +377,11 @@ state 16
     (12) booleano_tipo -> FALSE .
 
     $end            reduce using rule 12 (booleano_tipo -> FALSE .)
+
+
+state 6
+
+    (2) expression_mas -> NUMBER MINUS NUMBER .
+
+    $end            reduce using rule 2 (expression_mas -> NUMBER MINUS NUMBER .)
 

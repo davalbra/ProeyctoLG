@@ -37,9 +37,21 @@ def p_cadenas_caracteres(p):
 #Daniela
 
 #David
-
+def p_OPERATOR_MAT(p):
+    '''OPERATOR_MAT : PLUS
+                    | MINUS
+                    | TIMES
+                    | DIVIDE
+                    | EXPONENTIATION
+    '''
+    p[0] = ('OPERADOR_MATEMATICO', p[1])
 #David
 
+
+
+def p_expression_minus(p):
+    "expression_mas : NUMBER MINUS NUMBER"
+    p[0] = p[1] - p[3]
 
 
 
