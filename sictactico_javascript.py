@@ -23,16 +23,16 @@ parser = yacc.yacc()
 ###
 
 
-def sintaxis():
-    while True:
-        try:
-            s = input('parser > ')
-        except EOFError:
-            break
-        if not s:
-            continue
-        result = parser.parse(s)
-        print(result)
+
+while True:
+    try:
+        s = input('parser > ')
+    except EOFError:
+        break
+    if not s:
+        continue
+    result = parser.parse(s)
+    print(result)
 
 
 def analizador_sintactico(data):
