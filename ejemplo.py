@@ -201,10 +201,34 @@ function nombre(o1,o2,o3) {
 # Give the lexer some input
 lexer.input(data)
 
+def analyze(data):
+    lexer.input(data)
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
+def lectura_archivo():
+    archivo = open("prueba_lexica.txt", "r")
+    for line in archivo:
+        print(">>>" + line)
+        analyze(line)
+        if len(line) == 0:
+            break
 # Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    print(tok)
+def analizador_lexico(data):
+    lexer.input(data)
+    result = []
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        result.append(tok)
+    return result
+archivo = open("prueba_lexica.txt", "r")
+for line in archivo:
+    print(">>>" + line)
+    analyze(line)
+    if len(line) == 0:
+        break
 

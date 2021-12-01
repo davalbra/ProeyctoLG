@@ -7,9 +7,9 @@ import Funciones as fnc
 
 root = Tk()
 root.title("Analizador Javascript")
-root.iconbitmap('C:\\Users\\EvilFourier\\Desktop\\Proyecto David\\ProeyctoLG')
+#root.iconbitmap('C:\\Users\\EvilFourier\\Desktop\\Proyecto David\\ProeyctoLG\\javascript.ico')
 root['bg'] = '#404254'
-root.geometry("1024x768")
+root.geometry("900x568")
 
 def analizar(dato, result_text_area):
     lexer.input(dato)
@@ -38,7 +38,7 @@ def analizadorSintactico(result_text_area):
     file = open("prueba_lexica.txt", "r")
     for l in file:
         if l != "\n":
-            if l[:3] == "for" or line[:5] == "while" or l[:2] == "if":
+            if l[:3] == "for" or l[:5] == "while" or l[:2] == "if":
                 newL = l
                 for line in file:
                     newL += " " + line
@@ -64,20 +64,20 @@ def sintactico(codigo):
 
 codigo = tkinter.Text(root, height=10, width=30,)
 codigo.configure(relief = "sunken", borderwidth=5)
-codigo.place(x=15, y=50, width=300, height=200)
+codigo.place(x=50, y=50, width=300, height=200)
 
 lexic_button = tkinter.Button(root, text= "Lexico", padx=40, pady=30,
                               command= lambda: lexico(codigo))
 
-lexic_button.place(x=270, y=60, width=150, height = 75)
+lexic_button.place(x=300, y=300, width=100, height = 75)
 
 sintactic_button = tkinter.Button(root, text="Sintáctico", padx=40, pady=30,
                                   command=lambda: sintactico(codigo))
 
-sintactic_button.place(x=270, y=60, width=150, height = 75)
+sintactic_button.place(x=470, y=300, width=100, height = 75)
 
-result_text_area = tkinter.Text(root, height=5, width=40)
+result_text_area = tkinter.Text(root, height=10, width=30)
 result_text_area.configure(relief="sunken", borderwidth=5)
-result_text_area.place(x=670, y=60, width=350, height=195)
+result_text_area.place(x=470, y=50, width=350, height=195)
 
 root.mainloop()
