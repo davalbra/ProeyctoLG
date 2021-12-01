@@ -76,83 +76,93 @@ Rule 52    asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras
 Rule 53    asignar_variable -> declarar_variable ASIGNAR iniciar_array
 Rule 54    declarar_variable -> tipo_variable VARIABLE PUNTOCOMA
 Rule 55    declarar_variable -> tipo_variable VARIABLE
-Rule 56    metodos_estructuras -> VARIABLE metodos_array
+Rule 56    metodos_estructuras -> metodos_array
 Rule 57    metodos_estructuras -> VARIABLE metodos_set
 Rule 58    metodos_estructuras -> VARIABLE metodos_map
 Rule 59    metodos_array -> METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
-Rule 60    metodos_array -> METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA
+Rule 60    metodos_array -> push_array
 Rule 61    metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA
 Rule 62    metodos_set -> METODO_SIZE_SET PUNTOCOMA
 Rule 63    metodos_map -> METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
 Rule 64    metodos_map -> METODO_HAS LPAREN tipos_datos RPAREN PUNTOCOMA
 Rule 65    iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA
-Rule 66    tipos_datos -> booleano_tipo
-Rule 67    tipos_datos -> NUMERO
-Rule 68    tipos_datos -> CADENA
-Rule 69    tipos_datos -> FLOTANTE
-Rule 70    tipos_datos -> NULL
-Rule 71    tipo_variable -> VAR
-Rule 72    tipo_variable -> LET
-Rule 73    tipo_variable -> CONST
-Rule 74    iniciar_array -> ICORCHETE DCORCHETE
-Rule 75    iniciar_array -> ICORCHETE repeticion_bool DCORCHETE
-Rule 76    iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE
-Rule 77    iniciar_array -> ICORCHETE repeticion_null DCORCHETE
-Rule 78    iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE
-Rule 79    iniciar_array -> ICORCHETE repeticion_numero DCORCHETE
-Rule 80    repeticion_flotante -> FLOTANTE
-Rule 81    repeticion_flotante -> repeticion_flotante COMA FLOTANTE
-Rule 82    repeticion_null -> NULL
-Rule 83    repeticion_null -> repeticion_null COMA NULL
-Rule 84    repeticion_cadena -> CADENA
-Rule 85    repeticion_cadena -> repeticion_cadena COMA CADENA
-Rule 86    repeticion_numero -> NUMERO
-Rule 87    repeticion_numero -> repeticion_numero COMA NUMERO
-Rule 88    repeticion_bool -> booleano_tipo
-Rule 89    repeticion_bool -> repeticion_bool COMA booleano_tipo
-Rule 90    booleano_tipo -> TRUE
-Rule 91    booleano_tipo -> FALSE
-Rule 92    cadenas_caracteres -> CADENA
-Rule 93    FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-Rule 94    FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
-Rule 95    MASPARAMETROS -> PARAMETROS VAR
-Rule 96    MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS
-Rule 97    PARAMETROS -> tipos_datos
-Rule 98    PARAMETROS -> VARIABLE
-Rule 99    PRINT -> ALERT LPAREN CADENA RPAREN
-Rule 100   ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
-Rule 101   ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
+Rule 66    variable_metodo -> tipo_variable VARIABLE ASIGNAR iniciar_numero PUNTOCOMA numero_iguales_array
+Rule 67    push_array -> flotante_iguales_array
+Rule 68    push_array -> numero_iguales_array
+Rule 69    push_array -> bool_iguales_array
+Rule 70    bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA
+Rule 71    flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA
+Rule 72    numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA
+Rule 73    iniciar_numero -> ICORCHETE repeticion_numero DCORCHETE
+Rule 74    iniciar_flotante -> ICORCHETE repeticion_flotante DCORCHETE
+Rule 75    iniciar_bool -> ICORCHETE repeticion_bool DCORCHETE
+Rule 76    tipos_datos -> booleano_tipo
+Rule 77    tipos_datos -> NUMERO
+Rule 78    tipos_datos -> CADENA
+Rule 79    tipos_datos -> FLOTANTE
+Rule 80    tipos_datos -> NULL
+Rule 81    tipo_variable -> VAR
+Rule 82    tipo_variable -> LET
+Rule 83    tipo_variable -> CONST
+Rule 84    iniciar_array -> ICORCHETE DCORCHETE
+Rule 85    iniciar_array -> ICORCHETE repeticion_bool DCORCHETE
+Rule 86    iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE
+Rule 87    iniciar_array -> ICORCHETE repeticion_null DCORCHETE
+Rule 88    iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE
+Rule 89    iniciar_array -> ICORCHETE repeticion_numero DCORCHETE
+Rule 90    repeticion_flotante -> FLOTANTE
+Rule 91    repeticion_flotante -> repeticion_flotante COMA FLOTANTE
+Rule 92    repeticion_null -> NULL
+Rule 93    repeticion_null -> repeticion_null COMA NULL
+Rule 94    repeticion_cadena -> CADENA
+Rule 95    repeticion_cadena -> repeticion_cadena COMA CADENA
+Rule 96    repeticion_numero -> NUMERO
+Rule 97    repeticion_numero -> repeticion_numero COMA NUMERO
+Rule 98    repeticion_bool -> booleano_tipo
+Rule 99    repeticion_bool -> repeticion_bool COMA booleano_tipo
+Rule 100   booleano_tipo -> TRUE
+Rule 101   booleano_tipo -> FALSE
+Rule 102   cadenas_caracteres -> CADENA
+Rule 103   FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+Rule 104   FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+Rule 105   MASPARAMETROS -> PARAMETROS
+Rule 106   MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS
+Rule 107   PARAMETROS -> tipos_datos
+Rule 108   PARAMETROS -> VARIABLE
+Rule 109   PRINT -> ALERT LPAREN CADENA RPAREN
+Rule 110   ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+Rule 111   ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
 
 Terminals, with rules where they appear
 
-ALERT                : 99
+ALERT                : 109
 AND                  : 44
-ASIGNAR              : 49 50 51 52 53
+ASIGNAR              : 49 50 51 52 53 66
 BOOLEANO             : 38
-CADENA               : 68 84 85 92 99
-COMA                 : 48 63 81 83 85 87 89 96
+CADENA               : 78 94 95 102 109
+COMA                 : 48 63 91 93 95 97 99 106
 COMENTARIO           : 
-CONST                : 73
+CONST                : 83
 CONTINUE             : 
-DCORCHETE            : 74 75 76 77 78 79
+DCORCHETE            : 73 74 75 84 85 86 87 88 89
 DIVIDIR              : 5
 DIVISIONIGUAL        : 
-DLLAVE               : 93 94 100 101
+DLLAVE               : 103 104 110 111
 DO                   : 
 DOSPUNTOS            : 
 ELSE                 : 
-FALSE                : 91
-FLOTANTE             : 13 29 30 30 33 34 69 80 81
-FOR                  : 100
-FUNCTION             : 93 94
-ICORCHETE            : 74 75 76 77 78 79
+FALSE                : 101
+FLOTANTE             : 13 29 30 30 33 34 79 90 91
+FOR                  : 110
+FUNCTION             : 103 104
+ICORCHETE            : 73 74 75 84 85 86 87 88 89
 IF                   : 
 IGUALDADESTRICTA     : 39
-ILLAVE               : 93 94 100 101
+ILLAVE               : 103 104 110 111
 IN                   : 
-LET                  : 72
-LPAREN               : 23 31 59 60 61 63 64 65 93 94 99 100 101
-MAS                  : 2 100 100
+LET                  : 82
+LPAREN               : 23 31 59 61 63 64 65 70 71 72 103 104 109 110 111
+MAS                  : 2 110 110
 MASIGUAL             : 
 MAYORIGUAL           : 40
 MAYOR_QUE            : 43
@@ -163,7 +173,7 @@ MENOSIGUAL           :
 METODO_ADD_SET       : 61
 METODO_HAS           : 64
 METODO_POP_ARRAY     : 59
-METODO_PUSH_ARRAY    : 60
+METODO_PUSH_ARRAY    : 70 71 72
 METODO_SET           : 63
 METODO_SIZE_SET      : 62
 MODULO               : 
@@ -171,19 +181,19 @@ MULTIPLICAR          : 4
 NEGACION             : 
 NEW                  : 65
 NOESIGUAL            : 46
-NULL                 : 70 82 83
-NUMERO               : 12 22 24 24 26 27 37 67 86 87
+NULL                 : 80 92 93
+NUMERO               : 12 22 24 24 26 27 37 77 96 97
 OR                   : 45
 PORIGUAL             : 
 PUNTO                : 
-PUNTOCOMA            : 49 50 51 54 59 60 61 62 63 64 65 100
-RETURN               : 94
-RPAREN               : 23 31 59 60 61 63 64 65 93 94 99 100 101
-TRUE                 : 90
-VAR                  : 71 95
-VARIABLE             : 25 25 26 27 32 32 33 34 36 50 50 51 54 55 56 57 58 65 93 94 98 100
+PUNTOCOMA            : 49 50 51 54 59 61 62 63 64 65 66 70 71 72 110
+RETURN               : 104
+RPAREN               : 23 31 59 61 63 64 65 70 71 72 103 104 109 110 111
+TRUE                 : 100
+VAR                  : 81
+VARIABLE             : 25 25 26 27 32 32 33 34 36 50 50 51 54 55 57 58 65 66 70 71 72 103 104 108 110
 VOID                 : 
-WHILE                : 101
+WHILE                : 111
 error                : 
 
 Nonterminals, with rules where they appear
@@ -191,37 +201,45 @@ Nonterminals, with rules where they appear
 COMPARACION          : 35 35
 ESTRUCTURA_FOR       : 7
 ESTRUCTURA_WHILE     : 8
-EXPRESSION           : 1 100 101
-EXPRESSION_CONDICION_BOOLEANA : 15 100 101
+EXPRESSION           : 1 110 111
+EXPRESSION_CONDICION_BOOLEANA : 15 110 111
 EXPRESSION_MAT       : 14
 EXPRESSION_MAT_FLOTANTE : 20 28 28 29 31
 EXPRESSION_MAT_NUMERO : 19 21 21 22 23
 EXPRESSION_MAT_OPTIONS : 18
 FUNCTIONS            : 10
-MASPARAMETROS        : 60 61 93 94 94 96
+MASPARAMETROS        : 61 103 104 104 106
 OPERATOR_COMP_MAT    : 35
 OPERATOR_MAT         : 21 22 24 25 26 27 28 29 30 32 33 34
-PARAMETROS           : 95 96
+PARAMETROS           : 105 106
 PRINT                : 17
 STATEMENT            : 0
-asignar_variable     : 6 100
-booleano_tipo        : 66 88 89
+asignar_variable     : 6 110
+bool_iguales_array   : 69
+booleano_tipo        : 76 98 99
 cadenas_caracteres   : 
 declarar_variable    : 11 49 52 53
+flotante_iguales_array : 67
 grupo_datos          : 9 48
 iniciar_array        : 53
+iniciar_bool         : 
 iniciar_estructuras  : 52
+iniciar_flotante     : 
+iniciar_numero       : 66
 metodos_array        : 56
 metodos_estructuras  : 16
 metodos_map          : 58
 metodos_set          : 57
-repeticion_bool      : 75 89
-repeticion_cadena    : 78 85
-repeticion_flotante  : 76 81
-repeticion_null      : 77 83
-repeticion_numero    : 79 87
-tipo_variable        : 54 55
-tipos_datos          : 47 48 49 51 63 63 64 97
+numero_iguales_array : 66 68
+push_array           : 60
+repeticion_bool      : 70 75 85 99
+repeticion_cadena    : 88 95
+repeticion_flotante  : 71 74 86 91
+repeticion_null      : 87 93
+repeticion_numero    : 72 73 89 97
+tipo_variable        : 54 55 66
+tipos_datos          : 47 48 49 51 63 63 64 107
+variable_metodo      : 
 
 Parsing method: LALR
 
@@ -246,35 +264,37 @@ state 0
     (51) asignar_variable -> . VARIABLE ASIGNAR tipos_datos PUNTOCOMA
     (52) asignar_variable -> . declarar_variable ASIGNAR iniciar_estructuras
     (53) asignar_variable -> . declarar_variable ASIGNAR iniciar_array
-    (100) ESTRUCTURA_FOR -> . FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
-    (101) ESTRUCTURA_WHILE -> . WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> . FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (111) ESTRUCTURA_WHILE -> . WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
     (47) grupo_datos -> . tipos_datos
     (48) grupo_datos -> . tipos_datos COMA grupo_datos
-    (93) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (103) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
     (54) declarar_variable -> . tipo_variable VARIABLE PUNTOCOMA
     (55) declarar_variable -> . tipo_variable VARIABLE
     (18) EXPRESSION_MAT -> . EXPRESSION_MAT_OPTIONS
     (35) EXPRESSION_CONDICION_BOOLEANA -> . COMPARACION OPERATOR_COMP_MAT COMPARACION
-    (56) metodos_estructuras -> . VARIABLE metodos_array
+    (56) metodos_estructuras -> . metodos_array
     (57) metodos_estructuras -> . VARIABLE metodos_set
     (58) metodos_estructuras -> . VARIABLE metodos_map
-    (99) PRINT -> . ALERT LPAREN CADENA RPAREN
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (71) tipo_variable -> . VAR
-    (72) tipo_variable -> . LET
-    (73) tipo_variable -> . CONST
+    (109) PRINT -> . ALERT LPAREN CADENA RPAREN
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (81) tipo_variable -> . VAR
+    (82) tipo_variable -> . LET
+    (83) tipo_variable -> . CONST
     (19) EXPRESSION_MAT_OPTIONS -> . EXPRESSION_MAT_NUMERO
     (20) EXPRESSION_MAT_OPTIONS -> . EXPRESSION_MAT_FLOTANTE
     (36) COMPARACION -> . VARIABLE
     (37) COMPARACION -> . NUMERO
     (38) COMPARACION -> . BOOLEANO
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (59) metodos_array -> . METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
+    (60) metodos_array -> . push_array
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
     (21) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO
     (22) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO
     (23) EXPRESSION_MAT_NUMERO -> . LPAREN EXPRESSION_MAT_NUMERO RPAREN
@@ -289,6 +309,12 @@ state 0
     (32) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT VARIABLE
     (33) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> . FLOTANTE OPERATOR_MAT VARIABLE
+    (67) push_array -> . flotante_iguales_array
+    (68) push_array -> . numero_iguales_array
+    (69) push_array -> . bool_iguales_array
+    (71) flotante_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA
 
     NUMERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
@@ -296,15 +322,16 @@ state 0
     FOR             shift and go to state 17
     WHILE           shift and go to state 19
     FUNCTION        shift and go to state 20
-    ALERT           shift and go to state 24
-    CADENA          shift and go to state 25
-    NULL            shift and go to state 27
-    VAR             shift and go to state 28
-    LET             shift and go to state 29
-    CONST           shift and go to state 30
-    BOOLEANO        shift and go to state 33
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    ALERT           shift and go to state 25
+    CADENA          shift and go to state 26
+    NULL            shift and go to state 28
+    VAR             shift and go to state 29
+    LET             shift and go to state 30
+    CONST           shift and go to state 31
+    BOOLEANO        shift and go to state 34
+    METODO_POP_ARRAY shift and go to state 35
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
     LPAREN          shift and go to state 18
 
     STATEMENT                      shift and go to state 1
@@ -323,9 +350,14 @@ state 0
     tipo_variable                  shift and go to state 21
     EXPRESSION_MAT_OPTIONS         shift and go to state 22
     COMPARACION                    shift and go to state 23
-    booleano_tipo                  shift and go to state 26
-    EXPRESSION_MAT_NUMERO          shift and go to state 31
-    EXPRESSION_MAT_FLOTANTE        shift and go to state 32
+    metodos_array                  shift and go to state 24
+    booleano_tipo                  shift and go to state 27
+    EXPRESSION_MAT_NUMERO          shift and go to state 32
+    EXPRESSION_MAT_FLOTANTE        shift and go to state 33
+    push_array                     shift and go to state 36
+    flotante_iguales_array         shift and go to state 39
+    numero_iguales_array           shift and go to state 40
+    bool_iguales_array             shift and go to state 41
 
 state 1
 
@@ -389,13 +421,13 @@ state 8
 
     $end            reduce using rule 11 (EXPRESSION -> declarar_variable .)
     DLLAVE          reduce using rule 11 (EXPRESSION -> declarar_variable .)
-    ASIGNAR         shift and go to state 36
+    ASIGNAR         shift and go to state 42
 
 
 state 9
 
     (12) EXPRESSION -> NUMERO .
-    (67) tipos_datos -> NUMERO .
+    (77) tipos_datos -> NUMERO .
     (37) COMPARACION -> NUMERO .
     (24) EXPRESSION_MAT_NUMERO -> NUMERO . OPERATOR_MAT NUMERO
     (27) EXPRESSION_MAT_NUMERO -> NUMERO . OPERATOR_MAT VARIABLE
@@ -408,7 +440,7 @@ state 9
   ! reduce/reduce conflict for DLLAVE resolved using rule 12 (EXPRESSION -> NUMERO .)
     $end            reduce using rule 12 (EXPRESSION -> NUMERO .)
     DLLAVE          reduce using rule 12 (EXPRESSION -> NUMERO .)
-    COMA            reduce using rule 67 (tipos_datos -> NUMERO .)
+    COMA            reduce using rule 77 (tipos_datos -> NUMERO .)
     IGUALDADESTRICTA reduce using rule 37 (COMPARACION -> NUMERO .)
     MAYORIGUAL      reduce using rule 37 (COMPARACION -> NUMERO .)
     MENORIGUAL      reduce using rule 37 (COMPARACION -> NUMERO .)
@@ -417,20 +449,20 @@ state 9
     AND             reduce using rule 37 (COMPARACION -> NUMERO .)
     OR              reduce using rule 37 (COMPARACION -> NUMERO .)
     NOESIGUAL       reduce using rule 37 (COMPARACION -> NUMERO .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-  ! $end            [ reduce using rule 67 (tipos_datos -> NUMERO .) ]
-  ! DLLAVE          [ reduce using rule 67 (tipos_datos -> NUMERO .) ]
+  ! $end            [ reduce using rule 77 (tipos_datos -> NUMERO .) ]
+  ! DLLAVE          [ reduce using rule 77 (tipos_datos -> NUMERO .) ]
 
-    OPERATOR_MAT                   shift and go to state 37
+    OPERATOR_MAT                   shift and go to state 43
 
 state 10
 
     (13) EXPRESSION -> FLOTANTE .
-    (69) tipos_datos -> FLOTANTE .
+    (79) tipos_datos -> FLOTANTE .
     (30) EXPRESSION_MAT_FLOTANTE -> FLOTANTE . OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> FLOTANTE . OPERATOR_MAT VARIABLE
     (2) OPERATOR_MAT -> . MAS
@@ -442,16 +474,16 @@ state 10
   ! reduce/reduce conflict for DLLAVE resolved using rule 13 (EXPRESSION -> FLOTANTE .)
     $end            reduce using rule 13 (EXPRESSION -> FLOTANTE .)
     DLLAVE          reduce using rule 13 (EXPRESSION -> FLOTANTE .)
-    COMA            reduce using rule 69 (tipos_datos -> FLOTANTE .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    COMA            reduce using rule 79 (tipos_datos -> FLOTANTE .)
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-  ! $end            [ reduce using rule 69 (tipos_datos -> FLOTANTE .) ]
-  ! DLLAVE          [ reduce using rule 69 (tipos_datos -> FLOTANTE .) ]
+  ! $end            [ reduce using rule 79 (tipos_datos -> FLOTANTE .) ]
+  ! DLLAVE          [ reduce using rule 79 (tipos_datos -> FLOTANTE .) ]
 
-    OPERATOR_MAT                   shift and go to state 42
+    OPERATOR_MAT                   shift and go to state 48
 
 state 11
 
@@ -492,14 +524,13 @@ state 15
 
     $end            reduce using rule 47 (grupo_datos -> tipos_datos .)
     DLLAVE          reduce using rule 47 (grupo_datos -> tipos_datos .)
-    COMA            shift and go to state 43
+    COMA            shift and go to state 49
 
 
 state 16
 
     (50) asignar_variable -> VARIABLE . ASIGNAR VARIABLE PUNTOCOMA
     (51) asignar_variable -> VARIABLE . ASIGNAR tipos_datos PUNTOCOMA
-    (56) metodos_estructuras -> VARIABLE . metodos_array
     (57) metodos_estructuras -> VARIABLE . metodos_set
     (58) metodos_estructuras -> VARIABLE . metodos_map
     (36) COMPARACION -> VARIABLE .
@@ -507,8 +538,9 @@ state 16
     (26) EXPRESSION_MAT_NUMERO -> VARIABLE . OPERATOR_MAT NUMERO
     (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE . OPERATOR_MAT VARIABLE
     (33) EXPRESSION_MAT_FLOTANTE -> VARIABLE . OPERATOR_MAT FLOTANTE
-    (59) metodos_array -> . METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
-    (60) metodos_array -> . METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA
+    (71) flotante_iguales_array -> VARIABLE . METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> VARIABLE . METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> VARIABLE . METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA
     (61) metodos_set -> . METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA
     (62) metodos_set -> . METODO_SIZE_SET PUNTOCOMA
     (63) metodos_map -> . METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
@@ -518,7 +550,7 @@ state 16
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    ASIGNAR         shift and go to state 44
+    ASIGNAR         shift and go to state 50
     IGUALDADESTRICTA reduce using rule 36 (COMPARACION -> VARIABLE .)
     MAYORIGUAL      reduce using rule 36 (COMPARACION -> VARIABLE .)
     MENORIGUAL      reduce using rule 36 (COMPARACION -> VARIABLE .)
@@ -527,27 +559,25 @@ state 16
     AND             reduce using rule 36 (COMPARACION -> VARIABLE .)
     OR              reduce using rule 36 (COMPARACION -> VARIABLE .)
     NOESIGUAL       reduce using rule 36 (COMPARACION -> VARIABLE .)
-    METODO_POP_ARRAY shift and go to state 49
-    METODO_PUSH_ARRAY shift and go to state 50
-    METODO_ADD_SET  shift and go to state 51
-    METODO_SIZE_SET shift and go to state 52
-    METODO_SET      shift and go to state 53
-    METODO_HAS      shift and go to state 54
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    METODO_PUSH_ARRAY shift and go to state 54
+    METODO_ADD_SET  shift and go to state 55
+    METODO_SIZE_SET shift and go to state 56
+    METODO_SET      shift and go to state 57
+    METODO_HAS      shift and go to state 58
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    metodos_array                  shift and go to state 45
-    metodos_set                    shift and go to state 46
-    metodos_map                    shift and go to state 47
-    OPERATOR_MAT                   shift and go to state 48
+    metodos_set                    shift and go to state 51
+    metodos_map                    shift and go to state 52
+    OPERATOR_MAT                   shift and go to state 53
 
 state 17
 
-    (100) ESTRUCTURA_FOR -> FOR . LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR . LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
 
-    LPAREN          shift and go to state 55
+    LPAREN          shift and go to state 59
 
 
 state 18
@@ -570,26 +600,26 @@ state 18
     (34) EXPRESSION_MAT_FLOTANTE -> . FLOTANTE OPERATOR_MAT VARIABLE
 
     LPAREN          shift and go to state 18
-    NUMERO          shift and go to state 58
-    VARIABLE        shift and go to state 59
-    FLOTANTE        shift and go to state 60
+    NUMERO          shift and go to state 62
+    VARIABLE        shift and go to state 63
+    FLOTANTE        shift and go to state 64
 
-    EXPRESSION_MAT_NUMERO          shift and go to state 56
-    EXPRESSION_MAT_FLOTANTE        shift and go to state 57
+    EXPRESSION_MAT_NUMERO          shift and go to state 60
+    EXPRESSION_MAT_FLOTANTE        shift and go to state 61
 
 state 19
 
-    (101) ESTRUCTURA_WHILE -> WHILE . LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
+    (111) ESTRUCTURA_WHILE -> WHILE . LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
 
-    LPAREN          shift and go to state 61
+    LPAREN          shift and go to state 65
 
 
 state 20
 
-    (93) FUNCTIONS -> FUNCTION . VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> FUNCTION . VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (103) FUNCTIONS -> FUNCTION . VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> FUNCTION . VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
 
-    VARIABLE        shift and go to state 62
+    VARIABLE        shift and go to state 66
 
 
 state 21
@@ -597,7 +627,7 @@ state 21
     (54) declarar_variable -> tipo_variable . VARIABLE PUNTOCOMA
     (55) declarar_variable -> tipo_variable . VARIABLE
 
-    VARIABLE        shift and go to state 63
+    VARIABLE        shift and go to state 67
 
 
 state 22
@@ -620,82 +650,87 @@ state 23
     (45) OPERATOR_COMP_MAT -> . OR
     (46) OPERATOR_COMP_MAT -> . NOESIGUAL
 
-    IGUALDADESTRICTA shift and go to state 65
-    MAYORIGUAL      shift and go to state 66
-    MENORIGUAL      shift and go to state 67
-    MENOR_QUE       shift and go to state 68
-    MAYOR_QUE       shift and go to state 69
-    AND             shift and go to state 70
-    OR              shift and go to state 71
-    NOESIGUAL       shift and go to state 72
+    IGUALDADESTRICTA shift and go to state 69
+    MAYORIGUAL      shift and go to state 70
+    MENORIGUAL      shift and go to state 71
+    MENOR_QUE       shift and go to state 72
+    MAYOR_QUE       shift and go to state 73
+    AND             shift and go to state 74
+    OR              shift and go to state 75
+    NOESIGUAL       shift and go to state 76
 
-    OPERATOR_COMP_MAT              shift and go to state 64
+    OPERATOR_COMP_MAT              shift and go to state 68
 
 state 24
 
-    (99) PRINT -> ALERT . LPAREN CADENA RPAREN
+    (56) metodos_estructuras -> metodos_array .
 
-    LPAREN          shift and go to state 73
+    $end            reduce using rule 56 (metodos_estructuras -> metodos_array .)
+    DLLAVE          reduce using rule 56 (metodos_estructuras -> metodos_array .)
 
 
 state 25
 
-    (68) tipos_datos -> CADENA .
+    (109) PRINT -> ALERT . LPAREN CADENA RPAREN
 
-    COMA            reduce using rule 68 (tipos_datos -> CADENA .)
-    $end            reduce using rule 68 (tipos_datos -> CADENA .)
-    PUNTOCOMA       reduce using rule 68 (tipos_datos -> CADENA .)
-    DLLAVE          reduce using rule 68 (tipos_datos -> CADENA .)
-    VAR             reduce using rule 68 (tipos_datos -> CADENA .)
-    RPAREN          reduce using rule 68 (tipos_datos -> CADENA .)
+    LPAREN          shift and go to state 77
 
 
 state 26
 
-    (66) tipos_datos -> booleano_tipo .
+    (78) tipos_datos -> CADENA .
 
-    COMA            reduce using rule 66 (tipos_datos -> booleano_tipo .)
-    $end            reduce using rule 66 (tipos_datos -> booleano_tipo .)
-    PUNTOCOMA       reduce using rule 66 (tipos_datos -> booleano_tipo .)
-    DLLAVE          reduce using rule 66 (tipos_datos -> booleano_tipo .)
-    VAR             reduce using rule 66 (tipos_datos -> booleano_tipo .)
-    RPAREN          reduce using rule 66 (tipos_datos -> booleano_tipo .)
+    COMA            reduce using rule 78 (tipos_datos -> CADENA .)
+    $end            reduce using rule 78 (tipos_datos -> CADENA .)
+    PUNTOCOMA       reduce using rule 78 (tipos_datos -> CADENA .)
+    DLLAVE          reduce using rule 78 (tipos_datos -> CADENA .)
+    RPAREN          reduce using rule 78 (tipos_datos -> CADENA .)
 
 
 state 27
 
-    (70) tipos_datos -> NULL .
+    (76) tipos_datos -> booleano_tipo .
 
-    COMA            reduce using rule 70 (tipos_datos -> NULL .)
-    $end            reduce using rule 70 (tipos_datos -> NULL .)
-    PUNTOCOMA       reduce using rule 70 (tipos_datos -> NULL .)
-    DLLAVE          reduce using rule 70 (tipos_datos -> NULL .)
-    VAR             reduce using rule 70 (tipos_datos -> NULL .)
-    RPAREN          reduce using rule 70 (tipos_datos -> NULL .)
+    COMA            reduce using rule 76 (tipos_datos -> booleano_tipo .)
+    $end            reduce using rule 76 (tipos_datos -> booleano_tipo .)
+    PUNTOCOMA       reduce using rule 76 (tipos_datos -> booleano_tipo .)
+    DLLAVE          reduce using rule 76 (tipos_datos -> booleano_tipo .)
+    RPAREN          reduce using rule 76 (tipos_datos -> booleano_tipo .)
 
 
 state 28
 
-    (71) tipo_variable -> VAR .
+    (80) tipos_datos -> NULL .
 
-    VARIABLE        reduce using rule 71 (tipo_variable -> VAR .)
+    COMA            reduce using rule 80 (tipos_datos -> NULL .)
+    $end            reduce using rule 80 (tipos_datos -> NULL .)
+    PUNTOCOMA       reduce using rule 80 (tipos_datos -> NULL .)
+    DLLAVE          reduce using rule 80 (tipos_datos -> NULL .)
+    RPAREN          reduce using rule 80 (tipos_datos -> NULL .)
 
 
 state 29
 
-    (72) tipo_variable -> LET .
+    (81) tipo_variable -> VAR .
 
-    VARIABLE        reduce using rule 72 (tipo_variable -> LET .)
+    VARIABLE        reduce using rule 81 (tipo_variable -> VAR .)
 
 
 state 30
 
-    (73) tipo_variable -> CONST .
+    (82) tipo_variable -> LET .
 
-    VARIABLE        reduce using rule 73 (tipo_variable -> CONST .)
+    VARIABLE        reduce using rule 82 (tipo_variable -> LET .)
 
 
 state 31
+
+    (83) tipo_variable -> CONST .
+
+    VARIABLE        reduce using rule 83 (tipo_variable -> CONST .)
+
+
+state 32
 
     (19) EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_NUMERO .
     (21) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO . OPERATOR_MAT EXPRESSION_MAT_NUMERO
@@ -707,14 +742,14 @@ state 31
 
     $end            reduce using rule 19 (EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_NUMERO .)
     DLLAVE          reduce using rule 19 (EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_NUMERO .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 74
+    OPERATOR_MAT                   shift and go to state 78
 
-state 32
+state 33
 
     (20) EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_FLOTANTE .
     (28) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE . OPERATOR_MAT EXPRESSION_MAT_FLOTANTE
@@ -726,14 +761,14 @@ state 32
 
     $end            reduce using rule 20 (EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_FLOTANTE .)
     DLLAVE          reduce using rule 20 (EXPRESSION_MAT_OPTIONS -> EXPRESSION_MAT_FLOTANTE .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 75
+    OPERATOR_MAT                   shift and go to state 79
 
-state 33
+state 34
 
     (38) COMPARACION -> BOOLEANO .
 
@@ -751,76 +786,113 @@ state 33
     DLLAVE          reduce using rule 38 (COMPARACION -> BOOLEANO .)
 
 
-state 34
-
-    (90) booleano_tipo -> TRUE .
-
-    COMA            reduce using rule 90 (booleano_tipo -> TRUE .)
-    $end            reduce using rule 90 (booleano_tipo -> TRUE .)
-    PUNTOCOMA       reduce using rule 90 (booleano_tipo -> TRUE .)
-    DLLAVE          reduce using rule 90 (booleano_tipo -> TRUE .)
-    DCORCHETE       reduce using rule 90 (booleano_tipo -> TRUE .)
-    VAR             reduce using rule 90 (booleano_tipo -> TRUE .)
-    RPAREN          reduce using rule 90 (booleano_tipo -> TRUE .)
-
-
 state 35
 
-    (91) booleano_tipo -> FALSE .
+    (59) metodos_array -> METODO_POP_ARRAY . LPAREN RPAREN PUNTOCOMA
 
-    COMA            reduce using rule 91 (booleano_tipo -> FALSE .)
-    $end            reduce using rule 91 (booleano_tipo -> FALSE .)
-    PUNTOCOMA       reduce using rule 91 (booleano_tipo -> FALSE .)
-    DLLAVE          reduce using rule 91 (booleano_tipo -> FALSE .)
-    DCORCHETE       reduce using rule 91 (booleano_tipo -> FALSE .)
-    VAR             reduce using rule 91 (booleano_tipo -> FALSE .)
-    RPAREN          reduce using rule 91 (booleano_tipo -> FALSE .)
+    LPAREN          shift and go to state 80
 
 
 state 36
 
+    (60) metodos_array -> push_array .
+
+    $end            reduce using rule 60 (metodos_array -> push_array .)
+    DLLAVE          reduce using rule 60 (metodos_array -> push_array .)
+
+
+state 37
+
+    (100) booleano_tipo -> TRUE .
+
+    COMA            reduce using rule 100 (booleano_tipo -> TRUE .)
+    $end            reduce using rule 100 (booleano_tipo -> TRUE .)
+    PUNTOCOMA       reduce using rule 100 (booleano_tipo -> TRUE .)
+    DLLAVE          reduce using rule 100 (booleano_tipo -> TRUE .)
+    DCORCHETE       reduce using rule 100 (booleano_tipo -> TRUE .)
+    RPAREN          reduce using rule 100 (booleano_tipo -> TRUE .)
+
+
+state 38
+
+    (101) booleano_tipo -> FALSE .
+
+    COMA            reduce using rule 101 (booleano_tipo -> FALSE .)
+    $end            reduce using rule 101 (booleano_tipo -> FALSE .)
+    PUNTOCOMA       reduce using rule 101 (booleano_tipo -> FALSE .)
+    DLLAVE          reduce using rule 101 (booleano_tipo -> FALSE .)
+    DCORCHETE       reduce using rule 101 (booleano_tipo -> FALSE .)
+    RPAREN          reduce using rule 101 (booleano_tipo -> FALSE .)
+
+
+state 39
+
+    (67) push_array -> flotante_iguales_array .
+
+    $end            reduce using rule 67 (push_array -> flotante_iguales_array .)
+    DLLAVE          reduce using rule 67 (push_array -> flotante_iguales_array .)
+
+
+state 40
+
+    (68) push_array -> numero_iguales_array .
+
+    $end            reduce using rule 68 (push_array -> numero_iguales_array .)
+    DLLAVE          reduce using rule 68 (push_array -> numero_iguales_array .)
+
+
+state 41
+
+    (69) push_array -> bool_iguales_array .
+
+    $end            reduce using rule 69 (push_array -> bool_iguales_array .)
+    DLLAVE          reduce using rule 69 (push_array -> bool_iguales_array .)
+
+
+state 42
+
     (49) asignar_variable -> declarar_variable ASIGNAR . tipos_datos PUNTOCOMA
     (52) asignar_variable -> declarar_variable ASIGNAR . iniciar_estructuras
     (53) asignar_variable -> declarar_variable ASIGNAR . iniciar_array
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
     (65) iniciar_estructuras -> . NEW VARIABLE LPAREN RPAREN PUNTOCOMA
-    (74) iniciar_array -> . ICORCHETE DCORCHETE
-    (75) iniciar_array -> . ICORCHETE repeticion_bool DCORCHETE
-    (76) iniciar_array -> . ICORCHETE repeticion_flotante DCORCHETE
-    (77) iniciar_array -> . ICORCHETE repeticion_null DCORCHETE
-    (78) iniciar_array -> . ICORCHETE repeticion_cadena DCORCHETE
-    (79) iniciar_array -> . ICORCHETE repeticion_numero DCORCHETE
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (84) iniciar_array -> . ICORCHETE DCORCHETE
+    (85) iniciar_array -> . ICORCHETE repeticion_bool DCORCHETE
+    (86) iniciar_array -> . ICORCHETE repeticion_flotante DCORCHETE
+    (87) iniciar_array -> . ICORCHETE repeticion_null DCORCHETE
+    (88) iniciar_array -> . ICORCHETE repeticion_cadena DCORCHETE
+    (89) iniciar_array -> . ICORCHETE repeticion_numero DCORCHETE
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    NEW             shift and go to state 81
-    ICORCHETE       shift and go to state 82
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    NEW             shift and go to state 86
+    ICORCHETE       shift and go to state 87
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    tipos_datos                    shift and go to state 76
-    iniciar_estructuras            shift and go to state 77
-    iniciar_array                  shift and go to state 78
-    booleano_tipo                  shift and go to state 26
+    tipos_datos                    shift and go to state 81
+    iniciar_estructuras            shift and go to state 82
+    iniciar_array                  shift and go to state 83
+    booleano_tipo                  shift and go to state 27
 
-state 37
+state 43
 
     (24) EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT . NUMERO
     (27) EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT . VARIABLE
 
-    NUMERO          shift and go to state 83
-    VARIABLE        shift and go to state 84
+    NUMERO          shift and go to state 88
+    VARIABLE        shift and go to state 89
 
 
-state 38
+state 44
 
     (2) OPERATOR_MAT -> MAS .
 
@@ -830,7 +902,7 @@ state 38
     LPAREN          reduce using rule 2 (OPERATOR_MAT -> MAS .)
 
 
-state 39
+state 45
 
     (3) OPERATOR_MAT -> MENOS .
 
@@ -840,7 +912,7 @@ state 39
     LPAREN          reduce using rule 3 (OPERATOR_MAT -> MENOS .)
 
 
-state 40
+state 46
 
     (4) OPERATOR_MAT -> MULTIPLICAR .
 
@@ -850,7 +922,7 @@ state 40
     LPAREN          reduce using rule 4 (OPERATOR_MAT -> MULTIPLICAR .)
 
 
-state 41
+state 47
 
     (5) OPERATOR_MAT -> DIVIDIR .
 
@@ -860,71 +932,63 @@ state 41
     LPAREN          reduce using rule 5 (OPERATOR_MAT -> DIVIDIR .)
 
 
-state 42
+state 48
 
     (30) EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT . FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT . VARIABLE
 
-    FLOTANTE        shift and go to state 85
-    VARIABLE        shift and go to state 86
+    FLOTANTE        shift and go to state 90
+    VARIABLE        shift and go to state 91
 
 
-state 43
+state 49
 
     (48) grupo_datos -> tipos_datos COMA . grupo_datos
     (47) grupo_datos -> . tipos_datos
     (48) grupo_datos -> . tipos_datos COMA grupo_datos
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
     tipos_datos                    shift and go to state 15
-    grupo_datos                    shift and go to state 87
-    booleano_tipo                  shift and go to state 26
+    grupo_datos                    shift and go to state 92
+    booleano_tipo                  shift and go to state 27
 
-state 44
+state 50
 
     (50) asignar_variable -> VARIABLE ASIGNAR . VARIABLE PUNTOCOMA
     (51) asignar_variable -> VARIABLE ASIGNAR . tipos_datos PUNTOCOMA
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    VARIABLE        shift and go to state 88
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    VARIABLE        shift and go to state 93
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    tipos_datos                    shift and go to state 89
-    booleano_tipo                  shift and go to state 26
+    tipos_datos                    shift and go to state 94
+    booleano_tipo                  shift and go to state 27
 
-state 45
-
-    (56) metodos_estructuras -> VARIABLE metodos_array .
-
-    $end            reduce using rule 56 (metodos_estructuras -> VARIABLE metodos_array .)
-    DLLAVE          reduce using rule 56 (metodos_estructuras -> VARIABLE metodos_array .)
-
-
-state 46
+state 51
 
     (57) metodos_estructuras -> VARIABLE metodos_set .
 
@@ -932,7 +996,7 @@ state 46
     DLLAVE          reduce using rule 57 (metodos_estructuras -> VARIABLE metodos_set .)
 
 
-state 47
+state 52
 
     (58) metodos_estructuras -> VARIABLE metodos_map .
 
@@ -940,63 +1004,58 @@ state 47
     DLLAVE          reduce using rule 58 (metodos_estructuras -> VARIABLE metodos_map .)
 
 
-state 48
+state 53
 
     (25) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT . VARIABLE
     (26) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT . NUMERO
     (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT . VARIABLE
     (33) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT . FLOTANTE
 
-    VARIABLE        shift and go to state 90
-    NUMERO          shift and go to state 91
-    FLOTANTE        shift and go to state 92
-
-
-state 49
-
-    (59) metodos_array -> METODO_POP_ARRAY . LPAREN RPAREN PUNTOCOMA
-
-    LPAREN          shift and go to state 93
-
-
-state 50
-
-    (60) metodos_array -> METODO_PUSH_ARRAY . LPAREN MASPARAMETROS RPAREN PUNTOCOMA
-
-    LPAREN          shift and go to state 94
-
-
-state 51
-
-    (61) metodos_set -> METODO_ADD_SET . LPAREN MASPARAMETROS RPAREN PUNTOCOMA
-
-    LPAREN          shift and go to state 95
-
-
-state 52
-
-    (62) metodos_set -> METODO_SIZE_SET . PUNTOCOMA
-
-    PUNTOCOMA       shift and go to state 96
-
-
-state 53
-
-    (63) metodos_map -> METODO_SET . LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
-
-    LPAREN          shift and go to state 97
+    VARIABLE        shift and go to state 95
+    NUMERO          shift and go to state 96
+    FLOTANTE        shift and go to state 97
 
 
 state 54
 
-    (64) metodos_map -> METODO_HAS . LPAREN tipos_datos RPAREN PUNTOCOMA
+    (71) flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY . LPAREN repeticion_flotante RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY . LPAREN repeticion_numero RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY . LPAREN repeticion_bool RPAREN PUNTOCOMA
 
     LPAREN          shift and go to state 98
 
 
 state 55
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN . asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (61) metodos_set -> METODO_ADD_SET . LPAREN MASPARAMETROS RPAREN PUNTOCOMA
+
+    LPAREN          shift and go to state 99
+
+
+state 56
+
+    (62) metodos_set -> METODO_SIZE_SET . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 100
+
+
+state 57
+
+    (63) metodos_map -> METODO_SET . LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
+
+    LPAREN          shift and go to state 101
+
+
+state 58
+
+    (64) metodos_map -> METODO_HAS . LPAREN tipos_datos RPAREN PUNTOCOMA
+
+    LPAREN          shift and go to state 102
+
+
+state 59
+
+    (110) ESTRUCTURA_FOR -> FOR LPAREN . asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
     (49) asignar_variable -> . declarar_variable ASIGNAR tipos_datos PUNTOCOMA
     (50) asignar_variable -> . VARIABLE ASIGNAR VARIABLE PUNTOCOMA
     (51) asignar_variable -> . VARIABLE ASIGNAR tipos_datos PUNTOCOMA
@@ -1004,20 +1063,20 @@ state 55
     (53) asignar_variable -> . declarar_variable ASIGNAR iniciar_array
     (54) declarar_variable -> . tipo_variable VARIABLE PUNTOCOMA
     (55) declarar_variable -> . tipo_variable VARIABLE
-    (71) tipo_variable -> . VAR
-    (72) tipo_variable -> . LET
-    (73) tipo_variable -> . CONST
+    (81) tipo_variable -> . VAR
+    (82) tipo_variable -> . LET
+    (83) tipo_variable -> . CONST
 
-    VARIABLE        shift and go to state 100
-    VAR             shift and go to state 28
-    LET             shift and go to state 29
-    CONST           shift and go to state 30
+    VARIABLE        shift and go to state 104
+    VAR             shift and go to state 29
+    LET             shift and go to state 30
+    CONST           shift and go to state 31
 
-    asignar_variable               shift and go to state 99
-    declarar_variable              shift and go to state 101
+    asignar_variable               shift and go to state 103
+    declarar_variable              shift and go to state 105
     tipo_variable                  shift and go to state 21
 
-state 56
+state 60
 
     (23) EXPRESSION_MAT_NUMERO -> LPAREN EXPRESSION_MAT_NUMERO . RPAREN
     (21) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO . OPERATOR_MAT EXPRESSION_MAT_NUMERO
@@ -1027,15 +1086,15 @@ state 56
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    RPAREN          shift and go to state 102
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    RPAREN          shift and go to state 106
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 74
+    OPERATOR_MAT                   shift and go to state 78
 
-state 57
+state 61
 
     (31) EXPRESSION_MAT_FLOTANTE -> LPAREN EXPRESSION_MAT_FLOTANTE . RPAREN
     (28) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE . OPERATOR_MAT EXPRESSION_MAT_FLOTANTE
@@ -1045,15 +1104,15 @@ state 57
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    RPAREN          shift and go to state 103
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    RPAREN          shift and go to state 107
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 75
+    OPERATOR_MAT                   shift and go to state 79
 
-state 58
+state 62
 
     (24) EXPRESSION_MAT_NUMERO -> NUMERO . OPERATOR_MAT NUMERO
     (27) EXPRESSION_MAT_NUMERO -> NUMERO . OPERATOR_MAT VARIABLE
@@ -1062,14 +1121,14 @@ state 58
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 37
+    OPERATOR_MAT                   shift and go to state 43
 
-state 59
+state 63
 
     (25) EXPRESSION_MAT_NUMERO -> VARIABLE . OPERATOR_MAT VARIABLE
     (26) EXPRESSION_MAT_NUMERO -> VARIABLE . OPERATOR_MAT NUMERO
@@ -1080,14 +1139,14 @@ state 59
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 48
+    OPERATOR_MAT                   shift and go to state 53
 
-state 60
+state 64
 
     (30) EXPRESSION_MAT_FLOTANTE -> FLOTANTE . OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> FLOTANTE . OPERATOR_MAT VARIABLE
@@ -1096,61 +1155,61 @@ state 60
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 42
+    OPERATOR_MAT                   shift and go to state 48
 
-state 61
+state 65
 
-    (101) ESTRUCTURA_WHILE -> WHILE LPAREN . EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
+    (111) ESTRUCTURA_WHILE -> WHILE LPAREN . EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
     (35) EXPRESSION_CONDICION_BOOLEANA -> . COMPARACION OPERATOR_COMP_MAT COMPARACION
     (36) COMPARACION -> . VARIABLE
     (37) COMPARACION -> . NUMERO
     (38) COMPARACION -> . BOOLEANO
 
-    VARIABLE        shift and go to state 105
-    NUMERO          shift and go to state 106
-    BOOLEANO        shift and go to state 33
+    VARIABLE        shift and go to state 109
+    NUMERO          shift and go to state 110
+    BOOLEANO        shift and go to state 34
 
-    EXPRESSION_CONDICION_BOOLEANA  shift and go to state 104
+    EXPRESSION_CONDICION_BOOLEANA  shift and go to state 108
     COMPARACION                    shift and go to state 23
 
-state 62
+state 66
 
-    (93) FUNCTIONS -> FUNCTION VARIABLE . LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> FUNCTION VARIABLE . LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (103) FUNCTIONS -> FUNCTION VARIABLE . LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> FUNCTION VARIABLE . LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
 
-    LPAREN          shift and go to state 107
+    LPAREN          shift and go to state 111
 
 
-state 63
+state 67
 
     (54) declarar_variable -> tipo_variable VARIABLE . PUNTOCOMA
     (55) declarar_variable -> tipo_variable VARIABLE .
 
-    PUNTOCOMA       shift and go to state 108
+    PUNTOCOMA       shift and go to state 112
     ASIGNAR         reduce using rule 55 (declarar_variable -> tipo_variable VARIABLE .)
     $end            reduce using rule 55 (declarar_variable -> tipo_variable VARIABLE .)
     DLLAVE          reduce using rule 55 (declarar_variable -> tipo_variable VARIABLE .)
 
 
-state 64
+state 68
 
     (35) EXPRESSION_CONDICION_BOOLEANA -> COMPARACION OPERATOR_COMP_MAT . COMPARACION
     (36) COMPARACION -> . VARIABLE
     (37) COMPARACION -> . NUMERO
     (38) COMPARACION -> . BOOLEANO
 
-    VARIABLE        shift and go to state 105
-    NUMERO          shift and go to state 106
-    BOOLEANO        shift and go to state 33
+    VARIABLE        shift and go to state 109
+    NUMERO          shift and go to state 110
+    BOOLEANO        shift and go to state 34
 
-    COMPARACION                    shift and go to state 109
+    COMPARACION                    shift and go to state 113
 
-state 65
+state 69
 
     (39) OPERATOR_COMP_MAT -> IGUALDADESTRICTA .
 
@@ -1159,7 +1218,7 @@ state 65
     BOOLEANO        reduce using rule 39 (OPERATOR_COMP_MAT -> IGUALDADESTRICTA .)
 
 
-state 66
+state 70
 
     (40) OPERATOR_COMP_MAT -> MAYORIGUAL .
 
@@ -1168,7 +1227,7 @@ state 66
     BOOLEANO        reduce using rule 40 (OPERATOR_COMP_MAT -> MAYORIGUAL .)
 
 
-state 67
+state 71
 
     (41) OPERATOR_COMP_MAT -> MENORIGUAL .
 
@@ -1177,7 +1236,7 @@ state 67
     BOOLEANO        reduce using rule 41 (OPERATOR_COMP_MAT -> MENORIGUAL .)
 
 
-state 68
+state 72
 
     (42) OPERATOR_COMP_MAT -> MENOR_QUE .
 
@@ -1186,7 +1245,7 @@ state 68
     BOOLEANO        reduce using rule 42 (OPERATOR_COMP_MAT -> MENOR_QUE .)
 
 
-state 69
+state 73
 
     (43) OPERATOR_COMP_MAT -> MAYOR_QUE .
 
@@ -1195,7 +1254,7 @@ state 69
     BOOLEANO        reduce using rule 43 (OPERATOR_COMP_MAT -> MAYOR_QUE .)
 
 
-state 70
+state 74
 
     (44) OPERATOR_COMP_MAT -> AND .
 
@@ -1204,7 +1263,7 @@ state 70
     BOOLEANO        reduce using rule 44 (OPERATOR_COMP_MAT -> AND .)
 
 
-state 71
+state 75
 
     (45) OPERATOR_COMP_MAT -> OR .
 
@@ -1213,7 +1272,7 @@ state 71
     BOOLEANO        reduce using rule 45 (OPERATOR_COMP_MAT -> OR .)
 
 
-state 72
+state 76
 
     (46) OPERATOR_COMP_MAT -> NOESIGUAL .
 
@@ -1222,14 +1281,14 @@ state 72
     BOOLEANO        reduce using rule 46 (OPERATOR_COMP_MAT -> NOESIGUAL .)
 
 
-state 73
+state 77
 
-    (99) PRINT -> ALERT LPAREN . CADENA RPAREN
+    (109) PRINT -> ALERT LPAREN . CADENA RPAREN
 
-    CADENA          shift and go to state 110
+    CADENA          shift and go to state 114
 
 
-state 74
+state 78
 
     (21) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT . EXPRESSION_MAT_NUMERO
     (22) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT . NUMERO
@@ -1241,13 +1300,13 @@ state 74
     (26) EXPRESSION_MAT_NUMERO -> . VARIABLE OPERATOR_MAT NUMERO
     (27) EXPRESSION_MAT_NUMERO -> . NUMERO OPERATOR_MAT VARIABLE
 
-    NUMERO          shift and go to state 112
-    LPAREN          shift and go to state 113
-    VARIABLE        shift and go to state 114
+    NUMERO          shift and go to state 116
+    LPAREN          shift and go to state 117
+    VARIABLE        shift and go to state 118
 
-    EXPRESSION_MAT_NUMERO          shift and go to state 111
+    EXPRESSION_MAT_NUMERO          shift and go to state 115
 
-state 75
+state 79
 
     (28) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT . EXPRESSION_MAT_FLOTANTE
     (29) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT . FLOTANTE
@@ -1259,20 +1318,27 @@ state 75
     (33) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> . FLOTANTE OPERATOR_MAT VARIABLE
 
-    FLOTANTE        shift and go to state 116
-    LPAREN          shift and go to state 117
-    VARIABLE        shift and go to state 118
+    FLOTANTE        shift and go to state 120
+    LPAREN          shift and go to state 121
+    VARIABLE        shift and go to state 122
 
-    EXPRESSION_MAT_FLOTANTE        shift and go to state 115
+    EXPRESSION_MAT_FLOTANTE        shift and go to state 119
 
-state 76
+state 80
+
+    (59) metodos_array -> METODO_POP_ARRAY LPAREN . RPAREN PUNTOCOMA
+
+    RPAREN          shift and go to state 123
+
+
+state 81
 
     (49) asignar_variable -> declarar_variable ASIGNAR tipos_datos . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 119
+    PUNTOCOMA       shift and go to state 124
 
 
-state 77
+state 82
 
     (52) asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras .
 
@@ -1283,7 +1349,7 @@ state 77
     DLLAVE          reduce using rule 52 (asignar_variable -> declarar_variable ASIGNAR iniciar_estructuras .)
 
 
-state 78
+state 83
 
     (53) asignar_variable -> declarar_variable ASIGNAR iniciar_array .
 
@@ -1294,74 +1360,72 @@ state 78
     DLLAVE          reduce using rule 53 (asignar_variable -> declarar_variable ASIGNAR iniciar_array .)
 
 
-state 79
+state 84
 
-    (67) tipos_datos -> NUMERO .
+    (77) tipos_datos -> NUMERO .
 
-    PUNTOCOMA       reduce using rule 67 (tipos_datos -> NUMERO .)
-    COMA            reduce using rule 67 (tipos_datos -> NUMERO .)
-    $end            reduce using rule 67 (tipos_datos -> NUMERO .)
-    DLLAVE          reduce using rule 67 (tipos_datos -> NUMERO .)
-    VAR             reduce using rule 67 (tipos_datos -> NUMERO .)
-    RPAREN          reduce using rule 67 (tipos_datos -> NUMERO .)
-
-
-state 80
-
-    (69) tipos_datos -> FLOTANTE .
-
-    PUNTOCOMA       reduce using rule 69 (tipos_datos -> FLOTANTE .)
-    COMA            reduce using rule 69 (tipos_datos -> FLOTANTE .)
-    $end            reduce using rule 69 (tipos_datos -> FLOTANTE .)
-    DLLAVE          reduce using rule 69 (tipos_datos -> FLOTANTE .)
-    VAR             reduce using rule 69 (tipos_datos -> FLOTANTE .)
-    RPAREN          reduce using rule 69 (tipos_datos -> FLOTANTE .)
+    PUNTOCOMA       reduce using rule 77 (tipos_datos -> NUMERO .)
+    COMA            reduce using rule 77 (tipos_datos -> NUMERO .)
+    $end            reduce using rule 77 (tipos_datos -> NUMERO .)
+    DLLAVE          reduce using rule 77 (tipos_datos -> NUMERO .)
+    RPAREN          reduce using rule 77 (tipos_datos -> NUMERO .)
 
 
-state 81
+state 85
+
+    (79) tipos_datos -> FLOTANTE .
+
+    PUNTOCOMA       reduce using rule 79 (tipos_datos -> FLOTANTE .)
+    COMA            reduce using rule 79 (tipos_datos -> FLOTANTE .)
+    $end            reduce using rule 79 (tipos_datos -> FLOTANTE .)
+    DLLAVE          reduce using rule 79 (tipos_datos -> FLOTANTE .)
+    RPAREN          reduce using rule 79 (tipos_datos -> FLOTANTE .)
+
+
+state 86
 
     (65) iniciar_estructuras -> NEW . VARIABLE LPAREN RPAREN PUNTOCOMA
 
-    VARIABLE        shift and go to state 120
+    VARIABLE        shift and go to state 125
 
 
-state 82
+state 87
 
-    (74) iniciar_array -> ICORCHETE . DCORCHETE
-    (75) iniciar_array -> ICORCHETE . repeticion_bool DCORCHETE
-    (76) iniciar_array -> ICORCHETE . repeticion_flotante DCORCHETE
-    (77) iniciar_array -> ICORCHETE . repeticion_null DCORCHETE
-    (78) iniciar_array -> ICORCHETE . repeticion_cadena DCORCHETE
-    (79) iniciar_array -> ICORCHETE . repeticion_numero DCORCHETE
-    (88) repeticion_bool -> . booleano_tipo
-    (89) repeticion_bool -> . repeticion_bool COMA booleano_tipo
-    (80) repeticion_flotante -> . FLOTANTE
-    (81) repeticion_flotante -> . repeticion_flotante COMA FLOTANTE
-    (82) repeticion_null -> . NULL
-    (83) repeticion_null -> . repeticion_null COMA NULL
-    (84) repeticion_cadena -> . CADENA
-    (85) repeticion_cadena -> . repeticion_cadena COMA CADENA
-    (86) repeticion_numero -> . NUMERO
-    (87) repeticion_numero -> . repeticion_numero COMA NUMERO
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (84) iniciar_array -> ICORCHETE . DCORCHETE
+    (85) iniciar_array -> ICORCHETE . repeticion_bool DCORCHETE
+    (86) iniciar_array -> ICORCHETE . repeticion_flotante DCORCHETE
+    (87) iniciar_array -> ICORCHETE . repeticion_null DCORCHETE
+    (88) iniciar_array -> ICORCHETE . repeticion_cadena DCORCHETE
+    (89) iniciar_array -> ICORCHETE . repeticion_numero DCORCHETE
+    (98) repeticion_bool -> . booleano_tipo
+    (99) repeticion_bool -> . repeticion_bool COMA booleano_tipo
+    (90) repeticion_flotante -> . FLOTANTE
+    (91) repeticion_flotante -> . repeticion_flotante COMA FLOTANTE
+    (92) repeticion_null -> . NULL
+    (93) repeticion_null -> . repeticion_null COMA NULL
+    (94) repeticion_cadena -> . CADENA
+    (95) repeticion_cadena -> . repeticion_cadena COMA CADENA
+    (96) repeticion_numero -> . NUMERO
+    (97) repeticion_numero -> . repeticion_numero COMA NUMERO
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    DCORCHETE       shift and go to state 121
-    FLOTANTE        shift and go to state 128
-    NULL            shift and go to state 129
-    CADENA          shift and go to state 130
-    NUMERO          shift and go to state 131
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    DCORCHETE       shift and go to state 126
+    FLOTANTE        shift and go to state 133
+    NULL            shift and go to state 134
+    CADENA          shift and go to state 135
+    NUMERO          shift and go to state 136
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    repeticion_bool                shift and go to state 122
-    repeticion_flotante            shift and go to state 123
-    repeticion_null                shift and go to state 124
-    repeticion_cadena              shift and go to state 125
-    repeticion_numero              shift and go to state 126
-    booleano_tipo                  shift and go to state 127
+    repeticion_bool                shift and go to state 127
+    repeticion_flotante            shift and go to state 128
+    repeticion_null                shift and go to state 129
+    repeticion_cadena              shift and go to state 130
+    repeticion_numero              shift and go to state 131
+    booleano_tipo                  shift and go to state 132
 
-state 83
+state 88
 
     (24) EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT NUMERO .
 
@@ -1374,7 +1438,7 @@ state 83
     DLLAVE          reduce using rule 24 (EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT NUMERO .)
 
 
-state 84
+state 89
 
     (27) EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT VARIABLE .
 
@@ -1387,7 +1451,7 @@ state 84
     DLLAVE          reduce using rule 27 (EXPRESSION_MAT_NUMERO -> NUMERO OPERATOR_MAT VARIABLE .)
 
 
-state 85
+state 90
 
     (30) EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT FLOTANTE .
 
@@ -1400,7 +1464,7 @@ state 85
     DLLAVE          reduce using rule 30 (EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT FLOTANTE .)
 
 
-state 86
+state 91
 
     (34) EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT VARIABLE .
 
@@ -1413,7 +1477,7 @@ state 86
     DLLAVE          reduce using rule 34 (EXPRESSION_MAT_FLOTANTE -> FLOTANTE OPERATOR_MAT VARIABLE .)
 
 
-state 87
+state 92
 
     (48) grupo_datos -> tipos_datos COMA grupo_datos .
 
@@ -1421,21 +1485,21 @@ state 87
     DLLAVE          reduce using rule 48 (grupo_datos -> tipos_datos COMA grupo_datos .)
 
 
-state 88
+state 93
 
     (50) asignar_variable -> VARIABLE ASIGNAR VARIABLE . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 132
+    PUNTOCOMA       shift and go to state 137
 
 
-state 89
+state 94
 
     (51) asignar_variable -> VARIABLE ASIGNAR tipos_datos . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 133
+    PUNTOCOMA       shift and go to state 138
 
 
-state 90
+state 95
 
     (25) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT VARIABLE .
     (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE .
@@ -1464,7 +1528,7 @@ state 90
   ! DLLAVE          [ reduce using rule 32 (EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE .) ]
 
 
-state 91
+state 96
 
     (26) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT NUMERO .
 
@@ -1477,7 +1541,7 @@ state 91
     DLLAVE          reduce using rule 26 (EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT NUMERO .)
 
 
-state 92
+state 97
 
     (33) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT FLOTANTE .
 
@@ -1490,70 +1554,59 @@ state 92
     DLLAVE          reduce using rule 33 (EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT FLOTANTE .)
 
 
-state 93
+state 98
 
-    (59) metodos_array -> METODO_POP_ARRAY LPAREN . RPAREN PUNTOCOMA
+    (71) flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN . repeticion_flotante RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN . repeticion_numero RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN . repeticion_bool RPAREN PUNTOCOMA
+    (90) repeticion_flotante -> . FLOTANTE
+    (91) repeticion_flotante -> . repeticion_flotante COMA FLOTANTE
+    (96) repeticion_numero -> . NUMERO
+    (97) repeticion_numero -> . repeticion_numero COMA NUMERO
+    (98) repeticion_bool -> . booleano_tipo
+    (99) repeticion_bool -> . repeticion_bool COMA booleano_tipo
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    RPAREN          shift and go to state 134
+    FLOTANTE        shift and go to state 133
+    NUMERO          shift and go to state 136
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
+    repeticion_flotante            shift and go to state 139
+    repeticion_numero              shift and go to state 140
+    repeticion_bool                shift and go to state 141
+    booleano_tipo                  shift and go to state 132
 
-state 94
-
-    (60) metodos_array -> METODO_PUSH_ARRAY LPAREN . MASPARAMETROS RPAREN PUNTOCOMA
-    (95) MASPARAMETROS -> . PARAMETROS VAR
-    (96) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (97) PARAMETROS -> . tipos_datos
-    (98) PARAMETROS -> . VARIABLE
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
-
-    VARIABLE        shift and go to state 138
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
-
-    MASPARAMETROS                  shift and go to state 135
-    PARAMETROS                     shift and go to state 136
-    tipos_datos                    shift and go to state 137
-    booleano_tipo                  shift and go to state 26
-
-state 95
+state 99
 
     (61) metodos_set -> METODO_ADD_SET LPAREN . MASPARAMETROS RPAREN PUNTOCOMA
-    (95) MASPARAMETROS -> . PARAMETROS VAR
-    (96) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (97) PARAMETROS -> . tipos_datos
-    (98) PARAMETROS -> . VARIABLE
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (105) MASPARAMETROS -> . PARAMETROS
+    (106) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
+    (107) PARAMETROS -> . tipos_datos
+    (108) PARAMETROS -> . VARIABLE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    VARIABLE        shift and go to state 138
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    VARIABLE        shift and go to state 145
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    MASPARAMETROS                  shift and go to state 139
-    PARAMETROS                     shift and go to state 136
-    tipos_datos                    shift and go to state 137
-    booleano_tipo                  shift and go to state 26
+    MASPARAMETROS                  shift and go to state 142
+    PARAMETROS                     shift and go to state 143
+    tipos_datos                    shift and go to state 144
+    booleano_tipo                  shift and go to state 27
 
-state 96
+state 100
 
     (62) metodos_set -> METODO_SIZE_SET PUNTOCOMA .
 
@@ -1561,81 +1614,81 @@ state 96
     DLLAVE          reduce using rule 62 (metodos_set -> METODO_SIZE_SET PUNTOCOMA .)
 
 
-state 97
+state 101
 
     (63) metodos_map -> METODO_SET LPAREN . tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    tipos_datos                    shift and go to state 140
-    booleano_tipo                  shift and go to state 26
+    tipos_datos                    shift and go to state 146
+    booleano_tipo                  shift and go to state 27
 
-state 98
+state 102
 
     (64) metodos_map -> METODO_HAS LPAREN . tipos_datos RPAREN PUNTOCOMA
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    tipos_datos                    shift and go to state 141
-    booleano_tipo                  shift and go to state 26
+    tipos_datos                    shift and go to state 147
+    booleano_tipo                  shift and go to state 27
 
-state 99
+state 103
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable . EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable . EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
     (35) EXPRESSION_CONDICION_BOOLEANA -> . COMPARACION OPERATOR_COMP_MAT COMPARACION
     (36) COMPARACION -> . VARIABLE
     (37) COMPARACION -> . NUMERO
     (38) COMPARACION -> . BOOLEANO
 
-    VARIABLE        shift and go to state 105
-    NUMERO          shift and go to state 106
-    BOOLEANO        shift and go to state 33
+    VARIABLE        shift and go to state 109
+    NUMERO          shift and go to state 110
+    BOOLEANO        shift and go to state 34
 
-    EXPRESSION_CONDICION_BOOLEANA  shift and go to state 142
+    EXPRESSION_CONDICION_BOOLEANA  shift and go to state 148
     COMPARACION                    shift and go to state 23
 
-state 100
+state 104
 
     (50) asignar_variable -> VARIABLE . ASIGNAR VARIABLE PUNTOCOMA
     (51) asignar_variable -> VARIABLE . ASIGNAR tipos_datos PUNTOCOMA
 
-    ASIGNAR         shift and go to state 44
+    ASIGNAR         shift and go to state 50
 
 
-state 101
+state 105
 
     (49) asignar_variable -> declarar_variable . ASIGNAR tipos_datos PUNTOCOMA
     (52) asignar_variable -> declarar_variable . ASIGNAR iniciar_estructuras
     (53) asignar_variable -> declarar_variable . ASIGNAR iniciar_array
 
-    ASIGNAR         shift and go to state 36
+    ASIGNAR         shift and go to state 42
 
 
-state 102
+state 106
 
     (23) EXPRESSION_MAT_NUMERO -> LPAREN EXPRESSION_MAT_NUMERO RPAREN .
 
@@ -1648,7 +1701,7 @@ state 102
     DLLAVE          reduce using rule 23 (EXPRESSION_MAT_NUMERO -> LPAREN EXPRESSION_MAT_NUMERO RPAREN .)
 
 
-state 103
+state 107
 
     (31) EXPRESSION_MAT_FLOTANTE -> LPAREN EXPRESSION_MAT_FLOTANTE RPAREN .
 
@@ -1661,14 +1714,14 @@ state 103
     DLLAVE          reduce using rule 31 (EXPRESSION_MAT_FLOTANTE -> LPAREN EXPRESSION_MAT_FLOTANTE RPAREN .)
 
 
-state 104
+state 108
 
-    (101) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA . RPAREN ILLAVE EXPRESSION DLLAVE
+    (111) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA . RPAREN ILLAVE EXPRESSION DLLAVE
 
-    RPAREN          shift and go to state 143
+    RPAREN          shift and go to state 149
 
 
-state 105
+state 109
 
     (36) COMPARACION -> VARIABLE .
 
@@ -1686,7 +1739,7 @@ state 105
     DLLAVE          reduce using rule 36 (COMPARACION -> VARIABLE .)
 
 
-state 106
+state 110
 
     (37) COMPARACION -> NUMERO .
 
@@ -1704,36 +1757,36 @@ state 106
     DLLAVE          reduce using rule 37 (COMPARACION -> NUMERO .)
 
 
-state 107
+state 111
 
-    (93) FUNCTIONS -> FUNCTION VARIABLE LPAREN . MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN . MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
-    (95) MASPARAMETROS -> . PARAMETROS VAR
-    (96) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (97) PARAMETROS -> . tipos_datos
-    (98) PARAMETROS -> . VARIABLE
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (103) FUNCTIONS -> FUNCTION VARIABLE LPAREN . MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN . MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (105) MASPARAMETROS -> . PARAMETROS
+    (106) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
+    (107) PARAMETROS -> . tipos_datos
+    (108) PARAMETROS -> . VARIABLE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
 
-    VARIABLE        shift and go to state 138
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    VARIABLE        shift and go to state 145
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
 
-    MASPARAMETROS                  shift and go to state 144
-    PARAMETROS                     shift and go to state 136
-    tipos_datos                    shift and go to state 137
-    booleano_tipo                  shift and go to state 26
+    MASPARAMETROS                  shift and go to state 150
+    PARAMETROS                     shift and go to state 143
+    tipos_datos                    shift and go to state 144
+    booleano_tipo                  shift and go to state 27
 
-state 108
+state 112
 
     (54) declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .
 
@@ -1742,7 +1795,7 @@ state 108
     DLLAVE          reduce using rule 54 (declarar_variable -> tipo_variable VARIABLE PUNTOCOMA .)
 
 
-state 109
+state 113
 
     (35) EXPRESSION_CONDICION_BOOLEANA -> COMPARACION OPERATOR_COMP_MAT COMPARACION .
 
@@ -1752,14 +1805,14 @@ state 109
     DLLAVE          reduce using rule 35 (EXPRESSION_CONDICION_BOOLEANA -> COMPARACION OPERATOR_COMP_MAT COMPARACION .)
 
 
-state 110
+state 114
 
-    (99) PRINT -> ALERT LPAREN CADENA . RPAREN
+    (109) PRINT -> ALERT LPAREN CADENA . RPAREN
 
-    RPAREN          shift and go to state 145
+    RPAREN          shift and go to state 151
 
 
-state 111
+state 115
 
     (21) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .
     (21) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO . OPERATOR_MAT EXPRESSION_MAT_NUMERO
@@ -1776,19 +1829,19 @@ state 111
     $end            reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .)
     RPAREN          reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .)
     DLLAVE          reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
   ! MAS             [ reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .) ]
   ! MENOS           [ reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .) ]
   ! MULTIPLICAR     [ reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .) ]
   ! DIVIDIR         [ reduce using rule 21 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO .) ]
 
-    OPERATOR_MAT                   shift and go to state 74
+    OPERATOR_MAT                   shift and go to state 78
 
-state 112
+state 116
 
     (22) EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .
     (24) EXPRESSION_MAT_NUMERO -> NUMERO . OPERATOR_MAT NUMERO
@@ -1805,19 +1858,19 @@ state 112
     $end            reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .)
     RPAREN          reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .)
     DLLAVE          reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
   ! MAS             [ reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .) ]
   ! MENOS           [ reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .) ]
   ! MULTIPLICAR     [ reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .) ]
   ! DIVIDIR         [ reduce using rule 22 (EXPRESSION_MAT_NUMERO -> EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO .) ]
 
-    OPERATOR_MAT                   shift and go to state 37
+    OPERATOR_MAT                   shift and go to state 43
 
-state 113
+state 117
 
     (23) EXPRESSION_MAT_NUMERO -> LPAREN . EXPRESSION_MAT_NUMERO RPAREN
     (21) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO
@@ -1828,13 +1881,13 @@ state 113
     (26) EXPRESSION_MAT_NUMERO -> . VARIABLE OPERATOR_MAT NUMERO
     (27) EXPRESSION_MAT_NUMERO -> . NUMERO OPERATOR_MAT VARIABLE
 
-    LPAREN          shift and go to state 113
-    NUMERO          shift and go to state 58
-    VARIABLE        shift and go to state 114
+    LPAREN          shift and go to state 117
+    NUMERO          shift and go to state 62
+    VARIABLE        shift and go to state 118
 
-    EXPRESSION_MAT_NUMERO          shift and go to state 56
+    EXPRESSION_MAT_NUMERO          shift and go to state 60
 
-state 114
+state 118
 
     (25) EXPRESSION_MAT_NUMERO -> VARIABLE . OPERATOR_MAT VARIABLE
     (26) EXPRESSION_MAT_NUMERO -> VARIABLE . OPERATOR_MAT NUMERO
@@ -1843,14 +1896,14 @@ state 114
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 146
+    OPERATOR_MAT                   shift and go to state 152
 
-state 115
+state 119
 
     (28) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .
     (28) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE . OPERATOR_MAT EXPRESSION_MAT_FLOTANTE
@@ -1867,19 +1920,19 @@ state 115
     $end            reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .)
     RPAREN          reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .)
     DLLAVE          reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
   ! MAS             [ reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .) ]
   ! MENOS           [ reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .) ]
   ! MULTIPLICAR     [ reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .) ]
   ! DIVIDIR         [ reduce using rule 28 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE .) ]
 
-    OPERATOR_MAT                   shift and go to state 75
+    OPERATOR_MAT                   shift and go to state 79
 
-state 116
+state 120
 
     (29) EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .
     (30) EXPRESSION_MAT_FLOTANTE -> FLOTANTE . OPERATOR_MAT FLOTANTE
@@ -1896,19 +1949,19 @@ state 116
     $end            reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .)
     RPAREN          reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .)
     DLLAVE          reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .)
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
   ! MAS             [ reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .) ]
   ! MENOS           [ reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .) ]
   ! MULTIPLICAR     [ reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .) ]
   ! DIVIDIR         [ reduce using rule 29 (EXPRESSION_MAT_FLOTANTE -> EXPRESSION_MAT_FLOTANTE OPERATOR_MAT FLOTANTE .) ]
 
-    OPERATOR_MAT                   shift and go to state 42
+    OPERATOR_MAT                   shift and go to state 48
 
-state 117
+state 121
 
     (31) EXPRESSION_MAT_FLOTANTE -> LPAREN . EXPRESSION_MAT_FLOTANTE RPAREN
     (28) EXPRESSION_MAT_FLOTANTE -> . EXPRESSION_MAT_FLOTANTE OPERATOR_MAT EXPRESSION_MAT_FLOTANTE
@@ -1919,13 +1972,13 @@ state 117
     (33) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> . FLOTANTE OPERATOR_MAT VARIABLE
 
-    FLOTANTE        shift and go to state 60
-    LPAREN          shift and go to state 117
-    VARIABLE        shift and go to state 118
+    FLOTANTE        shift and go to state 64
+    LPAREN          shift and go to state 121
+    VARIABLE        shift and go to state 122
 
-    EXPRESSION_MAT_FLOTANTE        shift and go to state 57
+    EXPRESSION_MAT_FLOTANTE        shift and go to state 61
 
-state 118
+state 122
 
     (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE . OPERATOR_MAT VARIABLE
     (33) EXPRESSION_MAT_FLOTANTE -> VARIABLE . OPERATOR_MAT FLOTANTE
@@ -1934,14 +1987,21 @@ state 118
     (4) OPERATOR_MAT -> . MULTIPLICAR
     (5) OPERATOR_MAT -> . DIVIDIR
 
-    MAS             shift and go to state 38
-    MENOS           shift and go to state 39
-    MULTIPLICAR     shift and go to state 40
-    DIVIDIR         shift and go to state 41
+    MAS             shift and go to state 44
+    MENOS           shift and go to state 45
+    MULTIPLICAR     shift and go to state 46
+    DIVIDIR         shift and go to state 47
 
-    OPERATOR_MAT                   shift and go to state 147
+    OPERATOR_MAT                   shift and go to state 153
 
-state 119
+state 123
+
+    (59) metodos_array -> METODO_POP_ARRAY LPAREN RPAREN . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 154
+
+
+state 124
 
     (49) asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA .
 
@@ -1952,110 +2012,113 @@ state 119
     DLLAVE          reduce using rule 49 (asignar_variable -> declarar_variable ASIGNAR tipos_datos PUNTOCOMA .)
 
 
-state 120
+state 125
 
     (65) iniciar_estructuras -> NEW VARIABLE . LPAREN RPAREN PUNTOCOMA
 
-    LPAREN          shift and go to state 148
-
-
-state 121
-
-    (74) iniciar_array -> ICORCHETE DCORCHETE .
-
-    $end            reduce using rule 74 (iniciar_array -> ICORCHETE DCORCHETE .)
-    VARIABLE        reduce using rule 74 (iniciar_array -> ICORCHETE DCORCHETE .)
-    NUMERO          reduce using rule 74 (iniciar_array -> ICORCHETE DCORCHETE .)
-    BOOLEANO        reduce using rule 74 (iniciar_array -> ICORCHETE DCORCHETE .)
-    DLLAVE          reduce using rule 74 (iniciar_array -> ICORCHETE DCORCHETE .)
-
-
-state 122
-
-    (75) iniciar_array -> ICORCHETE repeticion_bool . DCORCHETE
-    (89) repeticion_bool -> repeticion_bool . COMA booleano_tipo
-
-    DCORCHETE       shift and go to state 149
-    COMA            shift and go to state 150
-
-
-state 123
-
-    (76) iniciar_array -> ICORCHETE repeticion_flotante . DCORCHETE
-    (81) repeticion_flotante -> repeticion_flotante . COMA FLOTANTE
-
-    DCORCHETE       shift and go to state 151
-    COMA            shift and go to state 152
-
-
-state 124
-
-    (77) iniciar_array -> ICORCHETE repeticion_null . DCORCHETE
-    (83) repeticion_null -> repeticion_null . COMA NULL
-
-    DCORCHETE       shift and go to state 153
-    COMA            shift and go to state 154
-
-
-state 125
-
-    (78) iniciar_array -> ICORCHETE repeticion_cadena . DCORCHETE
-    (85) repeticion_cadena -> repeticion_cadena . COMA CADENA
-
-    DCORCHETE       shift and go to state 155
-    COMA            shift and go to state 156
+    LPAREN          shift and go to state 155
 
 
 state 126
 
-    (79) iniciar_array -> ICORCHETE repeticion_numero . DCORCHETE
-    (87) repeticion_numero -> repeticion_numero . COMA NUMERO
+    (84) iniciar_array -> ICORCHETE DCORCHETE .
 
-    DCORCHETE       shift and go to state 157
-    COMA            shift and go to state 158
+    $end            reduce using rule 84 (iniciar_array -> ICORCHETE DCORCHETE .)
+    VARIABLE        reduce using rule 84 (iniciar_array -> ICORCHETE DCORCHETE .)
+    NUMERO          reduce using rule 84 (iniciar_array -> ICORCHETE DCORCHETE .)
+    BOOLEANO        reduce using rule 84 (iniciar_array -> ICORCHETE DCORCHETE .)
+    DLLAVE          reduce using rule 84 (iniciar_array -> ICORCHETE DCORCHETE .)
 
 
 state 127
 
-    (88) repeticion_bool -> booleano_tipo .
+    (85) iniciar_array -> ICORCHETE repeticion_bool . DCORCHETE
+    (99) repeticion_bool -> repeticion_bool . COMA booleano_tipo
 
-    DCORCHETE       reduce using rule 88 (repeticion_bool -> booleano_tipo .)
-    COMA            reduce using rule 88 (repeticion_bool -> booleano_tipo .)
+    DCORCHETE       shift and go to state 156
+    COMA            shift and go to state 157
 
 
 state 128
 
-    (80) repeticion_flotante -> FLOTANTE .
+    (86) iniciar_array -> ICORCHETE repeticion_flotante . DCORCHETE
+    (91) repeticion_flotante -> repeticion_flotante . COMA FLOTANTE
 
-    DCORCHETE       reduce using rule 80 (repeticion_flotante -> FLOTANTE .)
-    COMA            reduce using rule 80 (repeticion_flotante -> FLOTANTE .)
+    DCORCHETE       shift and go to state 158
+    COMA            shift and go to state 159
 
 
 state 129
 
-    (82) repeticion_null -> NULL .
+    (87) iniciar_array -> ICORCHETE repeticion_null . DCORCHETE
+    (93) repeticion_null -> repeticion_null . COMA NULL
 
-    DCORCHETE       reduce using rule 82 (repeticion_null -> NULL .)
-    COMA            reduce using rule 82 (repeticion_null -> NULL .)
+    DCORCHETE       shift and go to state 160
+    COMA            shift and go to state 161
 
 
 state 130
 
-    (84) repeticion_cadena -> CADENA .
+    (88) iniciar_array -> ICORCHETE repeticion_cadena . DCORCHETE
+    (95) repeticion_cadena -> repeticion_cadena . COMA CADENA
 
-    DCORCHETE       reduce using rule 84 (repeticion_cadena -> CADENA .)
-    COMA            reduce using rule 84 (repeticion_cadena -> CADENA .)
+    DCORCHETE       shift and go to state 162
+    COMA            shift and go to state 163
 
 
 state 131
 
-    (86) repeticion_numero -> NUMERO .
+    (89) iniciar_array -> ICORCHETE repeticion_numero . DCORCHETE
+    (97) repeticion_numero -> repeticion_numero . COMA NUMERO
 
-    DCORCHETE       reduce using rule 86 (repeticion_numero -> NUMERO .)
-    COMA            reduce using rule 86 (repeticion_numero -> NUMERO .)
+    DCORCHETE       shift and go to state 164
+    COMA            shift and go to state 165
 
 
 state 132
+
+    (98) repeticion_bool -> booleano_tipo .
+
+    DCORCHETE       reduce using rule 98 (repeticion_bool -> booleano_tipo .)
+    COMA            reduce using rule 98 (repeticion_bool -> booleano_tipo .)
+    RPAREN          reduce using rule 98 (repeticion_bool -> booleano_tipo .)
+
+
+state 133
+
+    (90) repeticion_flotante -> FLOTANTE .
+
+    DCORCHETE       reduce using rule 90 (repeticion_flotante -> FLOTANTE .)
+    COMA            reduce using rule 90 (repeticion_flotante -> FLOTANTE .)
+    RPAREN          reduce using rule 90 (repeticion_flotante -> FLOTANTE .)
+
+
+state 134
+
+    (92) repeticion_null -> NULL .
+
+    DCORCHETE       reduce using rule 92 (repeticion_null -> NULL .)
+    COMA            reduce using rule 92 (repeticion_null -> NULL .)
+
+
+state 135
+
+    (94) repeticion_cadena -> CADENA .
+
+    DCORCHETE       reduce using rule 94 (repeticion_cadena -> CADENA .)
+    COMA            reduce using rule 94 (repeticion_cadena -> CADENA .)
+
+
+state 136
+
+    (96) repeticion_numero -> NUMERO .
+
+    DCORCHETE       reduce using rule 96 (repeticion_numero -> NUMERO .)
+    COMA            reduce using rule 96 (repeticion_numero -> NUMERO .)
+    RPAREN          reduce using rule 96 (repeticion_numero -> NUMERO .)
+
+
+state 137
 
     (50) asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA .
 
@@ -2066,7 +2129,7 @@ state 132
     DLLAVE          reduce using rule 50 (asignar_variable -> VARIABLE ASIGNAR VARIABLE PUNTOCOMA .)
 
 
-state 133
+state 138
 
     (51) asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA .
 
@@ -2077,216 +2140,131 @@ state 133
     DLLAVE          reduce using rule 51 (asignar_variable -> VARIABLE ASIGNAR tipos_datos PUNTOCOMA .)
 
 
-state 134
-
-    (59) metodos_array -> METODO_POP_ARRAY LPAREN RPAREN . PUNTOCOMA
-
-    PUNTOCOMA       shift and go to state 159
-
-
-state 135
-
-    (60) metodos_array -> METODO_PUSH_ARRAY LPAREN MASPARAMETROS . RPAREN PUNTOCOMA
-
-    RPAREN          shift and go to state 160
-
-
-state 136
-
-    (95) MASPARAMETROS -> PARAMETROS . VAR
-    (96) MASPARAMETROS -> PARAMETROS . COMA MASPARAMETROS
-
-    VAR             shift and go to state 161
-    COMA            shift and go to state 162
-
-
-state 137
-
-    (97) PARAMETROS -> tipos_datos .
-
-    VAR             reduce using rule 97 (PARAMETROS -> tipos_datos .)
-    COMA            reduce using rule 97 (PARAMETROS -> tipos_datos .)
-
-
-state 138
-
-    (98) PARAMETROS -> VARIABLE .
-
-    VAR             reduce using rule 98 (PARAMETROS -> VARIABLE .)
-    COMA            reduce using rule 98 (PARAMETROS -> VARIABLE .)
-
-
 state 139
 
-    (61) metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS . RPAREN PUNTOCOMA
+    (71) flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante . RPAREN PUNTOCOMA
+    (91) repeticion_flotante -> repeticion_flotante . COMA FLOTANTE
 
-    RPAREN          shift and go to state 163
+    RPAREN          shift and go to state 166
+    COMA            shift and go to state 159
 
 
 state 140
 
-    (63) metodos_map -> METODO_SET LPAREN tipos_datos . COMA tipos_datos RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero . RPAREN PUNTOCOMA
+    (97) repeticion_numero -> repeticion_numero . COMA NUMERO
 
-    COMA            shift and go to state 164
+    RPAREN          shift and go to state 167
+    COMA            shift and go to state 165
 
 
 state 141
 
-    (64) metodos_map -> METODO_HAS LPAREN tipos_datos . RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool . RPAREN PUNTOCOMA
+    (99) repeticion_bool -> repeticion_bool . COMA booleano_tipo
 
-    RPAREN          shift and go to state 165
+    RPAREN          shift and go to state 168
+    COMA            shift and go to state 157
 
 
 state 142
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA . PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (61) metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS . RPAREN PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 166
+    RPAREN          shift and go to state 169
 
 
 state 143
 
-    (101) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN . ILLAVE EXPRESSION DLLAVE
+    (105) MASPARAMETROS -> PARAMETROS .
+    (106) MASPARAMETROS -> PARAMETROS . COMA MASPARAMETROS
 
-    ILLAVE          shift and go to state 167
+    RPAREN          reduce using rule 105 (MASPARAMETROS -> PARAMETROS .)
+    DLLAVE          reduce using rule 105 (MASPARAMETROS -> PARAMETROS .)
+    COMA            shift and go to state 170
 
 
 state 144
 
-    (93) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS . RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS . RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (107) PARAMETROS -> tipos_datos .
 
-    RPAREN          shift and go to state 168
+    COMA            reduce using rule 107 (PARAMETROS -> tipos_datos .)
+    RPAREN          reduce using rule 107 (PARAMETROS -> tipos_datos .)
+    DLLAVE          reduce using rule 107 (PARAMETROS -> tipos_datos .)
 
 
 state 145
 
-    (99) PRINT -> ALERT LPAREN CADENA RPAREN .
+    (108) PARAMETROS -> VARIABLE .
 
-    $end            reduce using rule 99 (PRINT -> ALERT LPAREN CADENA RPAREN .)
-    DLLAVE          reduce using rule 99 (PRINT -> ALERT LPAREN CADENA RPAREN .)
+    COMA            reduce using rule 108 (PARAMETROS -> VARIABLE .)
+    RPAREN          reduce using rule 108 (PARAMETROS -> VARIABLE .)
+    DLLAVE          reduce using rule 108 (PARAMETROS -> VARIABLE .)
 
 
 state 146
 
-    (25) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT . VARIABLE
-    (26) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT . NUMERO
+    (63) metodos_map -> METODO_SET LPAREN tipos_datos . COMA tipos_datos RPAREN PUNTOCOMA
 
-    VARIABLE        shift and go to state 169
-    NUMERO          shift and go to state 91
+    COMA            shift and go to state 171
 
 
 state 147
 
-    (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT . VARIABLE
-    (33) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT . FLOTANTE
+    (64) metodos_map -> METODO_HAS LPAREN tipos_datos . RPAREN PUNTOCOMA
 
-    VARIABLE        shift and go to state 170
-    FLOTANTE        shift and go to state 92
+    RPAREN          shift and go to state 172
 
 
 state 148
 
-    (65) iniciar_estructuras -> NEW VARIABLE LPAREN . RPAREN PUNTOCOMA
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA . PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
 
-    RPAREN          shift and go to state 171
+    PUNTOCOMA       shift and go to state 173
 
 
 state 149
 
-    (75) iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .
+    (111) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN . ILLAVE EXPRESSION DLLAVE
 
-    $end            reduce using rule 75 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
-    VARIABLE        reduce using rule 75 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
-    NUMERO          reduce using rule 75 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
-    BOOLEANO        reduce using rule 75 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
-    DLLAVE          reduce using rule 75 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
+    ILLAVE          shift and go to state 174
 
 
 state 150
 
-    (89) repeticion_bool -> repeticion_bool COMA . booleano_tipo
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (103) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS . RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS . RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
 
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    RPAREN          shift and go to state 175
 
-    booleano_tipo                  shift and go to state 172
 
 state 151
 
-    (76) iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .
+    (109) PRINT -> ALERT LPAREN CADENA RPAREN .
 
-    $end            reduce using rule 76 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
-    VARIABLE        reduce using rule 76 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
-    NUMERO          reduce using rule 76 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
-    BOOLEANO        reduce using rule 76 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
-    DLLAVE          reduce using rule 76 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
+    $end            reduce using rule 109 (PRINT -> ALERT LPAREN CADENA RPAREN .)
+    DLLAVE          reduce using rule 109 (PRINT -> ALERT LPAREN CADENA RPAREN .)
 
 
 state 152
 
-    (81) repeticion_flotante -> repeticion_flotante COMA . FLOTANTE
+    (25) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT . VARIABLE
+    (26) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT . NUMERO
 
-    FLOTANTE        shift and go to state 173
+    VARIABLE        shift and go to state 176
+    NUMERO          shift and go to state 96
 
 
 state 153
 
-    (77) iniciar_array -> ICORCHETE repeticion_null DCORCHETE .
+    (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT . VARIABLE
+    (33) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT . FLOTANTE
 
-    $end            reduce using rule 77 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
-    VARIABLE        reduce using rule 77 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
-    NUMERO          reduce using rule 77 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
-    BOOLEANO        reduce using rule 77 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
-    DLLAVE          reduce using rule 77 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
+    VARIABLE        shift and go to state 177
+    FLOTANTE        shift and go to state 97
 
 
 state 154
-
-    (83) repeticion_null -> repeticion_null COMA . NULL
-
-    NULL            shift and go to state 174
-
-
-state 155
-
-    (78) iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .
-
-    $end            reduce using rule 78 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
-    VARIABLE        reduce using rule 78 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
-    NUMERO          reduce using rule 78 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
-    BOOLEANO        reduce using rule 78 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
-    DLLAVE          reduce using rule 78 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
-
-
-state 156
-
-    (85) repeticion_cadena -> repeticion_cadena COMA . CADENA
-
-    CADENA          shift and go to state 175
-
-
-state 157
-
-    (79) iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .
-
-    $end            reduce using rule 79 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
-    VARIABLE        reduce using rule 79 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
-    NUMERO          reduce using rule 79 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
-    BOOLEANO        reduce using rule 79 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
-    DLLAVE          reduce using rule 79 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
-
-
-state 158
-
-    (87) repeticion_numero -> repeticion_numero COMA . NUMERO
-
-    NUMERO          shift and go to state 176
-
-
-state 159
 
     (59) metodos_array -> METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA .
 
@@ -2294,94 +2272,201 @@ state 159
     DLLAVE          reduce using rule 59 (metodos_array -> METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA .)
 
 
+state 155
+
+    (65) iniciar_estructuras -> NEW VARIABLE LPAREN . RPAREN PUNTOCOMA
+
+    RPAREN          shift and go to state 178
+
+
+state 156
+
+    (85) iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .
+
+    $end            reduce using rule 85 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
+    VARIABLE        reduce using rule 85 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
+    NUMERO          reduce using rule 85 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
+    BOOLEANO        reduce using rule 85 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
+    DLLAVE          reduce using rule 85 (iniciar_array -> ICORCHETE repeticion_bool DCORCHETE .)
+
+
+state 157
+
+    (99) repeticion_bool -> repeticion_bool COMA . booleano_tipo
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
+
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    booleano_tipo                  shift and go to state 179
+
+state 158
+
+    (86) iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .
+
+    $end            reduce using rule 86 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
+    VARIABLE        reduce using rule 86 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
+    NUMERO          reduce using rule 86 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
+    BOOLEANO        reduce using rule 86 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
+    DLLAVE          reduce using rule 86 (iniciar_array -> ICORCHETE repeticion_flotante DCORCHETE .)
+
+
+state 159
+
+    (91) repeticion_flotante -> repeticion_flotante COMA . FLOTANTE
+
+    FLOTANTE        shift and go to state 180
+
+
 state 160
 
-    (60) metodos_array -> METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN . PUNTOCOMA
+    (87) iniciar_array -> ICORCHETE repeticion_null DCORCHETE .
 
-    PUNTOCOMA       shift and go to state 177
+    $end            reduce using rule 87 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
+    VARIABLE        reduce using rule 87 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
+    NUMERO          reduce using rule 87 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
+    BOOLEANO        reduce using rule 87 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
+    DLLAVE          reduce using rule 87 (iniciar_array -> ICORCHETE repeticion_null DCORCHETE .)
 
 
 state 161
 
-    (95) MASPARAMETROS -> PARAMETROS VAR .
+    (93) repeticion_null -> repeticion_null COMA . NULL
 
-    RPAREN          reduce using rule 95 (MASPARAMETROS -> PARAMETROS VAR .)
-    DLLAVE          reduce using rule 95 (MASPARAMETROS -> PARAMETROS VAR .)
+    NULL            shift and go to state 181
 
 
 state 162
 
-    (96) MASPARAMETROS -> PARAMETROS COMA . MASPARAMETROS
-    (95) MASPARAMETROS -> . PARAMETROS VAR
-    (96) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (97) PARAMETROS -> . tipos_datos
-    (98) PARAMETROS -> . VARIABLE
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (88) iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .
 
-    VARIABLE        shift and go to state 138
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    $end            reduce using rule 88 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
+    VARIABLE        reduce using rule 88 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
+    NUMERO          reduce using rule 88 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
+    BOOLEANO        reduce using rule 88 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
+    DLLAVE          reduce using rule 88 (iniciar_array -> ICORCHETE repeticion_cadena DCORCHETE .)
 
-    PARAMETROS                     shift and go to state 136
-    MASPARAMETROS                  shift and go to state 178
-    tipos_datos                    shift and go to state 137
-    booleano_tipo                  shift and go to state 26
 
 state 163
 
-    (61) metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS RPAREN . PUNTOCOMA
+    (95) repeticion_cadena -> repeticion_cadena COMA . CADENA
 
-    PUNTOCOMA       shift and go to state 179
+    CADENA          shift and go to state 182
 
 
 state 164
 
-    (63) metodos_map -> METODO_SET LPAREN tipos_datos COMA . tipos_datos RPAREN PUNTOCOMA
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (89) iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .
 
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    $end            reduce using rule 89 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
+    VARIABLE        reduce using rule 89 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
+    NUMERO          reduce using rule 89 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
+    BOOLEANO        reduce using rule 89 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
+    DLLAVE          reduce using rule 89 (iniciar_array -> ICORCHETE repeticion_numero DCORCHETE .)
 
-    tipos_datos                    shift and go to state 180
-    booleano_tipo                  shift and go to state 26
 
 state 165
 
-    (64) metodos_map -> METODO_HAS LPAREN tipos_datos RPAREN . PUNTOCOMA
+    (97) repeticion_numero -> repeticion_numero COMA . NUMERO
 
-    PUNTOCOMA       shift and go to state 181
+    NUMERO          shift and go to state 183
 
 
 state 166
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA . VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (71) flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN . PUNTOCOMA
 
-    VARIABLE        shift and go to state 182
+    PUNTOCOMA       shift and go to state 184
 
 
 state 167
 
-    (101) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE . EXPRESSION DLLAVE
+    (72) numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 185
+
+
+state 168
+
+    (70) bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 186
+
+
+state 169
+
+    (61) metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS RPAREN . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 187
+
+
+state 170
+
+    (106) MASPARAMETROS -> PARAMETROS COMA . MASPARAMETROS
+    (105) MASPARAMETROS -> . PARAMETROS
+    (106) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
+    (107) PARAMETROS -> . tipos_datos
+    (108) PARAMETROS -> . VARIABLE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
+
+    VARIABLE        shift and go to state 145
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    PARAMETROS                     shift and go to state 143
+    MASPARAMETROS                  shift and go to state 188
+    tipos_datos                    shift and go to state 144
+    booleano_tipo                  shift and go to state 27
+
+state 171
+
+    (63) metodos_map -> METODO_SET LPAREN tipos_datos COMA . tipos_datos RPAREN PUNTOCOMA
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
+
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    tipos_datos                    shift and go to state 189
+    booleano_tipo                  shift and go to state 27
+
+state 172
+
+    (64) metodos_map -> METODO_HAS LPAREN tipos_datos RPAREN . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 190
+
+
+state 173
+
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA . VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+
+    VARIABLE        shift and go to state 191
+
+
+state 174
+
+    (111) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE . EXPRESSION DLLAVE
     (6) EXPRESSION -> . asignar_variable
     (7) EXPRESSION -> . ESTRUCTURA_FOR
     (8) EXPRESSION -> . ESTRUCTURA_WHILE
@@ -2399,35 +2484,37 @@ state 167
     (51) asignar_variable -> . VARIABLE ASIGNAR tipos_datos PUNTOCOMA
     (52) asignar_variable -> . declarar_variable ASIGNAR iniciar_estructuras
     (53) asignar_variable -> . declarar_variable ASIGNAR iniciar_array
-    (100) ESTRUCTURA_FOR -> . FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
-    (101) ESTRUCTURA_WHILE -> . WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> . FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (111) ESTRUCTURA_WHILE -> . WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
     (47) grupo_datos -> . tipos_datos
     (48) grupo_datos -> . tipos_datos COMA grupo_datos
-    (93) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (103) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
     (54) declarar_variable -> . tipo_variable VARIABLE PUNTOCOMA
     (55) declarar_variable -> . tipo_variable VARIABLE
     (18) EXPRESSION_MAT -> . EXPRESSION_MAT_OPTIONS
     (35) EXPRESSION_CONDICION_BOOLEANA -> . COMPARACION OPERATOR_COMP_MAT COMPARACION
-    (56) metodos_estructuras -> . VARIABLE metodos_array
+    (56) metodos_estructuras -> . metodos_array
     (57) metodos_estructuras -> . VARIABLE metodos_set
     (58) metodos_estructuras -> . VARIABLE metodos_map
-    (99) PRINT -> . ALERT LPAREN CADENA RPAREN
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (71) tipo_variable -> . VAR
-    (72) tipo_variable -> . LET
-    (73) tipo_variable -> . CONST
+    (109) PRINT -> . ALERT LPAREN CADENA RPAREN
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (81) tipo_variable -> . VAR
+    (82) tipo_variable -> . LET
+    (83) tipo_variable -> . CONST
     (19) EXPRESSION_MAT_OPTIONS -> . EXPRESSION_MAT_NUMERO
     (20) EXPRESSION_MAT_OPTIONS -> . EXPRESSION_MAT_FLOTANTE
     (36) COMPARACION -> . VARIABLE
     (37) COMPARACION -> . NUMERO
     (38) COMPARACION -> . BOOLEANO
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (59) metodos_array -> . METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
+    (60) metodos_array -> . push_array
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
     (21) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO
     (22) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO
     (23) EXPRESSION_MAT_NUMERO -> . LPAREN EXPRESSION_MAT_NUMERO RPAREN
@@ -2442,6 +2529,12 @@ state 167
     (32) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT VARIABLE
     (33) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> . FLOTANTE OPERATOR_MAT VARIABLE
+    (67) push_array -> . flotante_iguales_array
+    (68) push_array -> . numero_iguales_array
+    (69) push_array -> . bool_iguales_array
+    (71) flotante_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA
 
     NUMERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
@@ -2449,19 +2542,20 @@ state 167
     FOR             shift and go to state 17
     WHILE           shift and go to state 19
     FUNCTION        shift and go to state 20
-    ALERT           shift and go to state 24
-    CADENA          shift and go to state 25
-    NULL            shift and go to state 27
-    VAR             shift and go to state 28
-    LET             shift and go to state 29
-    CONST           shift and go to state 30
-    BOOLEANO        shift and go to state 33
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    ALERT           shift and go to state 25
+    CADENA          shift and go to state 26
+    NULL            shift and go to state 28
+    VAR             shift and go to state 29
+    LET             shift and go to state 30
+    CONST           shift and go to state 31
+    BOOLEANO        shift and go to state 34
+    METODO_POP_ARRAY shift and go to state 35
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
     LPAREN          shift and go to state 18
 
     EXPRESSION_CONDICION_BOOLEANA  shift and go to state 12
-    EXPRESSION                     shift and go to state 183
+    EXPRESSION                     shift and go to state 192
     asignar_variable               shift and go to state 3
     ESTRUCTURA_FOR                 shift and go to state 4
     ESTRUCTURA_WHILE               shift and go to state 5
@@ -2475,19 +2569,24 @@ state 167
     tipo_variable                  shift and go to state 21
     EXPRESSION_MAT_OPTIONS         shift and go to state 22
     COMPARACION                    shift and go to state 23
-    booleano_tipo                  shift and go to state 26
-    EXPRESSION_MAT_NUMERO          shift and go to state 31
-    EXPRESSION_MAT_FLOTANTE        shift and go to state 32
+    metodos_array                  shift and go to state 24
+    booleano_tipo                  shift and go to state 27
+    EXPRESSION_MAT_NUMERO          shift and go to state 32
+    EXPRESSION_MAT_FLOTANTE        shift and go to state 33
+    push_array                     shift and go to state 36
+    flotante_iguales_array         shift and go to state 39
+    numero_iguales_array           shift and go to state 40
+    bool_iguales_array             shift and go to state 41
 
-state 168
+state 175
 
-    (93) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN . ILLAVE DLLAVE
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN . ILLAVE RETURN MASPARAMETROS DLLAVE
+    (103) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN . ILLAVE DLLAVE
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN . ILLAVE RETURN MASPARAMETROS DLLAVE
 
-    ILLAVE          shift and go to state 184
+    ILLAVE          shift and go to state 193
 
 
-state 169
+state 176
 
     (25) EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT VARIABLE .
 
@@ -2500,7 +2599,7 @@ state 169
     DLLAVE          reduce using rule 25 (EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT VARIABLE .)
 
 
-state 170
+state 177
 
     (32) EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE .
 
@@ -2513,70 +2612,81 @@ state 170
     DLLAVE          reduce using rule 32 (EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE .)
 
 
-state 171
+state 178
 
     (65) iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 185
-
-
-state 172
-
-    (89) repeticion_bool -> repeticion_bool COMA booleano_tipo .
-
-    DCORCHETE       reduce using rule 89 (repeticion_bool -> repeticion_bool COMA booleano_tipo .)
-    COMA            reduce using rule 89 (repeticion_bool -> repeticion_bool COMA booleano_tipo .)
-
-
-state 173
-
-    (81) repeticion_flotante -> repeticion_flotante COMA FLOTANTE .
-
-    DCORCHETE       reduce using rule 81 (repeticion_flotante -> repeticion_flotante COMA FLOTANTE .)
-    COMA            reduce using rule 81 (repeticion_flotante -> repeticion_flotante COMA FLOTANTE .)
-
-
-state 174
-
-    (83) repeticion_null -> repeticion_null COMA NULL .
-
-    DCORCHETE       reduce using rule 83 (repeticion_null -> repeticion_null COMA NULL .)
-    COMA            reduce using rule 83 (repeticion_null -> repeticion_null COMA NULL .)
-
-
-state 175
-
-    (85) repeticion_cadena -> repeticion_cadena COMA CADENA .
-
-    DCORCHETE       reduce using rule 85 (repeticion_cadena -> repeticion_cadena COMA CADENA .)
-    COMA            reduce using rule 85 (repeticion_cadena -> repeticion_cadena COMA CADENA .)
-
-
-state 176
-
-    (87) repeticion_numero -> repeticion_numero COMA NUMERO .
-
-    DCORCHETE       reduce using rule 87 (repeticion_numero -> repeticion_numero COMA NUMERO .)
-    COMA            reduce using rule 87 (repeticion_numero -> repeticion_numero COMA NUMERO .)
-
-
-state 177
-
-    (60) metodos_array -> METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA .
-
-    $end            reduce using rule 60 (metodos_array -> METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA .)
-    DLLAVE          reduce using rule 60 (metodos_array -> METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA .)
-
-
-state 178
-
-    (96) MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .
-
-    RPAREN          reduce using rule 96 (MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .)
-    DLLAVE          reduce using rule 96 (MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .)
+    PUNTOCOMA       shift and go to state 194
 
 
 state 179
+
+    (99) repeticion_bool -> repeticion_bool COMA booleano_tipo .
+
+    DCORCHETE       reduce using rule 99 (repeticion_bool -> repeticion_bool COMA booleano_tipo .)
+    COMA            reduce using rule 99 (repeticion_bool -> repeticion_bool COMA booleano_tipo .)
+    RPAREN          reduce using rule 99 (repeticion_bool -> repeticion_bool COMA booleano_tipo .)
+
+
+state 180
+
+    (91) repeticion_flotante -> repeticion_flotante COMA FLOTANTE .
+
+    DCORCHETE       reduce using rule 91 (repeticion_flotante -> repeticion_flotante COMA FLOTANTE .)
+    COMA            reduce using rule 91 (repeticion_flotante -> repeticion_flotante COMA FLOTANTE .)
+    RPAREN          reduce using rule 91 (repeticion_flotante -> repeticion_flotante COMA FLOTANTE .)
+
+
+state 181
+
+    (93) repeticion_null -> repeticion_null COMA NULL .
+
+    DCORCHETE       reduce using rule 93 (repeticion_null -> repeticion_null COMA NULL .)
+    COMA            reduce using rule 93 (repeticion_null -> repeticion_null COMA NULL .)
+
+
+state 182
+
+    (95) repeticion_cadena -> repeticion_cadena COMA CADENA .
+
+    DCORCHETE       reduce using rule 95 (repeticion_cadena -> repeticion_cadena COMA CADENA .)
+    COMA            reduce using rule 95 (repeticion_cadena -> repeticion_cadena COMA CADENA .)
+
+
+state 183
+
+    (97) repeticion_numero -> repeticion_numero COMA NUMERO .
+
+    DCORCHETE       reduce using rule 97 (repeticion_numero -> repeticion_numero COMA NUMERO .)
+    COMA            reduce using rule 97 (repeticion_numero -> repeticion_numero COMA NUMERO .)
+    RPAREN          reduce using rule 97 (repeticion_numero -> repeticion_numero COMA NUMERO .)
+
+
+state 184
+
+    (71) flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA .
+
+    $end            reduce using rule 71 (flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA .)
+    DLLAVE          reduce using rule 71 (flotante_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA .)
+
+
+state 185
+
+    (72) numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA .
+
+    $end            reduce using rule 72 (numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA .)
+    DLLAVE          reduce using rule 72 (numero_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA .)
+
+
+state 186
+
+    (70) bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA .
+
+    $end            reduce using rule 70 (bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA .)
+    DLLAVE          reduce using rule 70 (bool_iguales_array -> VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA .)
+
+
+state 187
 
     (61) metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA .
 
@@ -2584,14 +2694,22 @@ state 179
     DLLAVE          reduce using rule 61 (metodos_set -> METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA .)
 
 
-state 180
+state 188
+
+    (106) MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .
+
+    RPAREN          reduce using rule 106 (MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .)
+    DLLAVE          reduce using rule 106 (MASPARAMETROS -> PARAMETROS COMA MASPARAMETROS .)
+
+
+state 189
 
     (63) metodos_map -> METODO_SET LPAREN tipos_datos COMA tipos_datos . RPAREN PUNTOCOMA
 
-    RPAREN          shift and go to state 186
+    RPAREN          shift and go to state 195
 
 
-state 181
+state 190
 
     (64) metodos_map -> METODO_HAS LPAREN tipos_datos RPAREN PUNTOCOMA .
 
@@ -2599,30 +2717,30 @@ state 181
     DLLAVE          reduce using rule 64 (metodos_map -> METODO_HAS LPAREN tipos_datos RPAREN PUNTOCOMA .)
 
 
-state 182
+state 191
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE . MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE . MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
 
-    MAS             shift and go to state 187
-
-
-state 183
-
-    (101) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION . DLLAVE
-
-    DLLAVE          shift and go to state 188
+    MAS             shift and go to state 196
 
 
-state 184
+state 192
 
-    (93) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE . DLLAVE
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE . RETURN MASPARAMETROS DLLAVE
+    (111) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION . DLLAVE
 
-    DLLAVE          shift and go to state 189
-    RETURN          shift and go to state 190
+    DLLAVE          shift and go to state 197
 
 
-state 185
+state 193
+
+    (103) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE . DLLAVE
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE . RETURN MASPARAMETROS DLLAVE
+
+    DLLAVE          shift and go to state 198
+    RETURN          shift and go to state 199
+
+
+state 194
 
     (65) iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA .
 
@@ -2633,65 +2751,65 @@ state 185
     DLLAVE          reduce using rule 65 (iniciar_estructuras -> NEW VARIABLE LPAREN RPAREN PUNTOCOMA .)
 
 
-state 186
+state 195
 
     (63) metodos_map -> METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 191
+    PUNTOCOMA       shift and go to state 200
 
 
-state 187
+state 196
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS . MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS . MAS RPAREN ILLAVE EXPRESSION DLLAVE
 
-    MAS             shift and go to state 192
-
-
-state 188
-
-    (101) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE .
-
-    $end            reduce using rule 101 (ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE .)
-    DLLAVE          reduce using rule 101 (ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE .)
+    MAS             shift and go to state 201
 
 
-state 189
+state 197
 
-    (93) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .
+    (111) ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE .
 
-    $end            reduce using rule 93 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .)
-    DLLAVE          reduce using rule 93 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .)
+    $end            reduce using rule 111 (ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE .)
+    DLLAVE          reduce using rule 111 (ESTRUCTURA_WHILE -> WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE .)
 
 
-state 190
+state 198
 
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN . MASPARAMETROS DLLAVE
-    (95) MASPARAMETROS -> . PARAMETROS VAR
-    (96) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
-    (97) PARAMETROS -> . tipos_datos
-    (98) PARAMETROS -> . VARIABLE
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (103) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .
 
-    VARIABLE        shift and go to state 138
-    NUMERO          shift and go to state 79
-    CADENA          shift and go to state 25
-    FLOTANTE        shift and go to state 80
-    NULL            shift and go to state 27
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    $end            reduce using rule 103 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .)
+    DLLAVE          reduce using rule 103 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE .)
 
-    MASPARAMETROS                  shift and go to state 193
-    PARAMETROS                     shift and go to state 136
-    tipos_datos                    shift and go to state 137
-    booleano_tipo                  shift and go to state 26
 
-state 191
+state 199
+
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN . MASPARAMETROS DLLAVE
+    (105) MASPARAMETROS -> . PARAMETROS
+    (106) MASPARAMETROS -> . PARAMETROS COMA MASPARAMETROS
+    (107) PARAMETROS -> . tipos_datos
+    (108) PARAMETROS -> . VARIABLE
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
+
+    VARIABLE        shift and go to state 145
+    NUMERO          shift and go to state 84
+    CADENA          shift and go to state 26
+    FLOTANTE        shift and go to state 85
+    NULL            shift and go to state 28
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    MASPARAMETROS                  shift and go to state 202
+    PARAMETROS                     shift and go to state 143
+    tipos_datos                    shift and go to state 144
+    booleano_tipo                  shift and go to state 27
+
+state 200
 
     (63) metodos_map -> METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA .
 
@@ -2699,38 +2817,38 @@ state 191
     DLLAVE          reduce using rule 63 (metodos_map -> METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA .)
 
 
-state 192
+state 201
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS . RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS . RPAREN ILLAVE EXPRESSION DLLAVE
 
-    RPAREN          shift and go to state 194
-
-
-state 193
-
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS . DLLAVE
-
-    DLLAVE          shift and go to state 195
+    RPAREN          shift and go to state 203
 
 
-state 194
+state 202
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN . ILLAVE EXPRESSION DLLAVE
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS . DLLAVE
 
-    ILLAVE          shift and go to state 196
-
-
-state 195
-
-    (94) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE .
-
-    $end            reduce using rule 94 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE .)
-    DLLAVE          reduce using rule 94 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE .)
+    DLLAVE          shift and go to state 204
 
 
-state 196
+state 203
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE . EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN . ILLAVE EXPRESSION DLLAVE
+
+    ILLAVE          shift and go to state 205
+
+
+state 204
+
+    (104) FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE .
+
+    $end            reduce using rule 104 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE .)
+    DLLAVE          reduce using rule 104 (FUNCTIONS -> FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE .)
+
+
+state 205
+
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE . EXPRESSION DLLAVE
     (6) EXPRESSION -> . asignar_variable
     (7) EXPRESSION -> . ESTRUCTURA_FOR
     (8) EXPRESSION -> . ESTRUCTURA_WHILE
@@ -2748,35 +2866,37 @@ state 196
     (51) asignar_variable -> . VARIABLE ASIGNAR tipos_datos PUNTOCOMA
     (52) asignar_variable -> . declarar_variable ASIGNAR iniciar_estructuras
     (53) asignar_variable -> . declarar_variable ASIGNAR iniciar_array
-    (100) ESTRUCTURA_FOR -> . FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
-    (101) ESTRUCTURA_WHILE -> . WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
+    (110) ESTRUCTURA_FOR -> . FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
+    (111) ESTRUCTURA_WHILE -> . WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
     (47) grupo_datos -> . tipos_datos
     (48) grupo_datos -> . tipos_datos COMA grupo_datos
-    (93) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-    (94) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    (103) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
+    (104) FUNCTIONS -> . FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
     (54) declarar_variable -> . tipo_variable VARIABLE PUNTOCOMA
     (55) declarar_variable -> . tipo_variable VARIABLE
     (18) EXPRESSION_MAT -> . EXPRESSION_MAT_OPTIONS
     (35) EXPRESSION_CONDICION_BOOLEANA -> . COMPARACION OPERATOR_COMP_MAT COMPARACION
-    (56) metodos_estructuras -> . VARIABLE metodos_array
+    (56) metodos_estructuras -> . metodos_array
     (57) metodos_estructuras -> . VARIABLE metodos_set
     (58) metodos_estructuras -> . VARIABLE metodos_map
-    (99) PRINT -> . ALERT LPAREN CADENA RPAREN
-    (66) tipos_datos -> . booleano_tipo
-    (67) tipos_datos -> . NUMERO
-    (68) tipos_datos -> . CADENA
-    (69) tipos_datos -> . FLOTANTE
-    (70) tipos_datos -> . NULL
-    (71) tipo_variable -> . VAR
-    (72) tipo_variable -> . LET
-    (73) tipo_variable -> . CONST
+    (109) PRINT -> . ALERT LPAREN CADENA RPAREN
+    (76) tipos_datos -> . booleano_tipo
+    (77) tipos_datos -> . NUMERO
+    (78) tipos_datos -> . CADENA
+    (79) tipos_datos -> . FLOTANTE
+    (80) tipos_datos -> . NULL
+    (81) tipo_variable -> . VAR
+    (82) tipo_variable -> . LET
+    (83) tipo_variable -> . CONST
     (19) EXPRESSION_MAT_OPTIONS -> . EXPRESSION_MAT_NUMERO
     (20) EXPRESSION_MAT_OPTIONS -> . EXPRESSION_MAT_FLOTANTE
     (36) COMPARACION -> . VARIABLE
     (37) COMPARACION -> . NUMERO
     (38) COMPARACION -> . BOOLEANO
-    (90) booleano_tipo -> . TRUE
-    (91) booleano_tipo -> . FALSE
+    (59) metodos_array -> . METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
+    (60) metodos_array -> . push_array
+    (100) booleano_tipo -> . TRUE
+    (101) booleano_tipo -> . FALSE
     (21) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT EXPRESSION_MAT_NUMERO
     (22) EXPRESSION_MAT_NUMERO -> . EXPRESSION_MAT_NUMERO OPERATOR_MAT NUMERO
     (23) EXPRESSION_MAT_NUMERO -> . LPAREN EXPRESSION_MAT_NUMERO RPAREN
@@ -2791,6 +2911,12 @@ state 196
     (32) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT VARIABLE
     (33) EXPRESSION_MAT_FLOTANTE -> . VARIABLE OPERATOR_MAT FLOTANTE
     (34) EXPRESSION_MAT_FLOTANTE -> . FLOTANTE OPERATOR_MAT VARIABLE
+    (67) push_array -> . flotante_iguales_array
+    (68) push_array -> . numero_iguales_array
+    (69) push_array -> . bool_iguales_array
+    (71) flotante_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA
+    (72) numero_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA
+    (70) bool_iguales_array -> . VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA
 
     NUMERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
@@ -2798,20 +2924,21 @@ state 196
     FOR             shift and go to state 17
     WHILE           shift and go to state 19
     FUNCTION        shift and go to state 20
-    ALERT           shift and go to state 24
-    CADENA          shift and go to state 25
-    NULL            shift and go to state 27
-    VAR             shift and go to state 28
-    LET             shift and go to state 29
-    CONST           shift and go to state 30
-    BOOLEANO        shift and go to state 33
-    TRUE            shift and go to state 34
-    FALSE           shift and go to state 35
+    ALERT           shift and go to state 25
+    CADENA          shift and go to state 26
+    NULL            shift and go to state 28
+    VAR             shift and go to state 29
+    LET             shift and go to state 30
+    CONST           shift and go to state 31
+    BOOLEANO        shift and go to state 34
+    METODO_POP_ARRAY shift and go to state 35
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
     LPAREN          shift and go to state 18
 
     asignar_variable               shift and go to state 3
     EXPRESSION_CONDICION_BOOLEANA  shift and go to state 12
-    EXPRESSION                     shift and go to state 197
+    EXPRESSION                     shift and go to state 206
     ESTRUCTURA_FOR                 shift and go to state 4
     ESTRUCTURA_WHILE               shift and go to state 5
     grupo_datos                    shift and go to state 6
@@ -2824,35 +2951,32 @@ state 196
     tipo_variable                  shift and go to state 21
     EXPRESSION_MAT_OPTIONS         shift and go to state 22
     COMPARACION                    shift and go to state 23
-    booleano_tipo                  shift and go to state 26
-    EXPRESSION_MAT_NUMERO          shift and go to state 31
-    EXPRESSION_MAT_FLOTANTE        shift and go to state 32
+    metodos_array                  shift and go to state 24
+    booleano_tipo                  shift and go to state 27
+    EXPRESSION_MAT_NUMERO          shift and go to state 32
+    EXPRESSION_MAT_FLOTANTE        shift and go to state 33
+    push_array                     shift and go to state 36
+    flotante_iguales_array         shift and go to state 39
+    numero_iguales_array           shift and go to state 40
+    bool_iguales_array             shift and go to state 41
 
-state 197
+state 206
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION . DLLAVE
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION . DLLAVE
 
-    DLLAVE          shift and go to state 198
+    DLLAVE          shift and go to state 207
 
 
-state 198
+state 207
 
-    (100) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE .
+    (110) ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE .
 
-    $end            reduce using rule 100 (ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE .)
-    DLLAVE          reduce using rule 100 (ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE .)
+    $end            reduce using rule 110 (ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE .)
+    DLLAVE          reduce using rule 110 (ESTRUCTURA_FOR -> FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for MAS in state 111 resolved as shift
-WARNING: shift/reduce conflict for MENOS in state 111 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLICAR in state 111 resolved as shift
-WARNING: shift/reduce conflict for DIVIDIR in state 111 resolved as shift
-WARNING: shift/reduce conflict for MAS in state 112 resolved as shift
-WARNING: shift/reduce conflict for MENOS in state 112 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLICAR in state 112 resolved as shift
-WARNING: shift/reduce conflict for DIVIDIR in state 112 resolved as shift
 WARNING: shift/reduce conflict for MAS in state 115 resolved as shift
 WARNING: shift/reduce conflict for MENOS in state 115 resolved as shift
 WARNING: shift/reduce conflict for MULTIPLICAR in state 115 resolved as shift
@@ -2861,9 +2985,17 @@ WARNING: shift/reduce conflict for MAS in state 116 resolved as shift
 WARNING: shift/reduce conflict for MENOS in state 116 resolved as shift
 WARNING: shift/reduce conflict for MULTIPLICAR in state 116 resolved as shift
 WARNING: shift/reduce conflict for DIVIDIR in state 116 resolved as shift
+WARNING: shift/reduce conflict for MAS in state 119 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 119 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICAR in state 119 resolved as shift
+WARNING: shift/reduce conflict for DIVIDIR in state 119 resolved as shift
+WARNING: shift/reduce conflict for MAS in state 120 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 120 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICAR in state 120 resolved as shift
+WARNING: shift/reduce conflict for DIVIDIR in state 120 resolved as shift
 WARNING: reduce/reduce conflict in state 9 resolved using rule (EXPRESSION -> NUMERO)
 WARNING: rejected rule (tipos_datos -> NUMERO) in state 9
 WARNING: reduce/reduce conflict in state 10 resolved using rule (EXPRESSION -> FLOTANTE)
 WARNING: rejected rule (tipos_datos -> FLOTANTE) in state 10
-WARNING: reduce/reduce conflict in state 90 resolved using rule (EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT VARIABLE)
-WARNING: rejected rule (EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE) in state 90
+WARNING: reduce/reduce conflict in state 95 resolved using rule (EXPRESSION_MAT_NUMERO -> VARIABLE OPERATOR_MAT VARIABLE)
+WARNING: rejected rule (EXPRESSION_MAT_FLOTANTE -> VARIABLE OPERATOR_MAT VARIABLE) in state 95

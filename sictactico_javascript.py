@@ -113,13 +113,13 @@ def p_declarar_variable(p):
 #Estructuras hace uso de metodos
 #OJO por revisar
 def p_metodos_estructuras(p):
-    '''metodos_estructuras : VARIABLE  metodos_array
+    '''metodos_estructuras :  metodos_array
                             | VARIABLE metodos_set
                             | VARIABLE metodos_map'''
 
 def p_metodos_array(p):
     '''metodos_array : METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
-                    | METODO_PUSH_ARRAY LPAREN MASPARAMETROS RPAREN PUNTOCOMA'''
+                    | push_array'''
 
 def p_metodos_set(p):
     '''metodos_set : METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA
@@ -133,6 +133,37 @@ def p_metodos_map(p):
 def p_iniciar_estructuras(p):
     '''iniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA '''
 
+
+
+#Yonkani Cedeño
+def p_variable_metodo(p):
+    '''variable_metodo : tipo_variable VARIABLE ASIGNAR iniciar_numero PUNTOCOMA numero_iguales_array'''
+
+def p_push_array(p):
+    '''push_array : flotante_iguales_array
+                    | numero_iguales_array
+                    | bool_iguales_array'''
+
+def p_bool_iguales_array(p):
+    '''bool_iguales_array : VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA'''
+
+def p_flotante_iguales_array(p):
+    '''flotante_iguales_array : VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA'''
+
+def p_numero_iguales_array(p):
+    '''numero_iguales_array : VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA '''
+
+def p_iniciar_numero(p):
+    '''iniciar_numero : ICORCHETE repeticion_numero DCORCHETE '''
+
+def p_iniciar_flotante(p):
+    '''iniciar_flotante : ICORCHETE repeticion_flotante DCORCHETE '''
+
+def p_iniciar_bool(p):
+    '''iniciar_bool : ICORCHETE repeticion_bool DCORCHETE '''
+
+
+#Fin
 
 # Aqui se declarar los tipos de datos
 def p_tipos_datos(p):
@@ -153,12 +184,12 @@ def p_tipo_variable(p):
 
 #Declarar un array
 def p_iniciar_array(p):
-    '''iniciar_array : ICORCHETE DCORCHETE
+   '''iniciar_array : ICORCHETE DCORCHETE
                     | ICORCHETE repeticion_bool DCORCHETE
                     | ICORCHETE repeticion_flotante DCORCHETE
                     | ICORCHETE repeticion_null DCORCHETE
                     | ICORCHETE repeticion_cadena DCORCHETE
-                    | ICORCHETE repeticion_numero DCORCHETE'''
+                    | ICORCHETE repeticion_numero DCORCHETE '''
 
 def p_repeticion_flotante(p):
     '''repeticion_flotante : FLOTANTE
@@ -199,7 +230,7 @@ def p_FUNCTIONS(p):
     '''
     p[0] = ('FUNCTION')
 def p_MASPARAMETROS(p):
-    '''MASPARAMETROS : PARAMETROS VAR
+    '''MASPARAMETROS : PARAMETROS
                     | PARAMETROS COMA MASPARAMETROS
     '''
     p[0] = 'MASPARAMETROS'

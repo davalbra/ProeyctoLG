@@ -111,12 +111,9 @@ t_METODO_POP_ARRAY=r'\.pop'
 t_METODO_PUSH_ARRAY=r'\.push'
 t_METODO_ADD_SET= r'\.add'
 t_METODO_SIZE_SET= r'\.size'
+t_NUMERO = r'\d+'
 
 
-def t_NUMERO(t):
-    r'\d+'
-    t.value =int(t.value)
-    return t
 
 # Define a rule so we can track line numbers
 def t_newline(t):
@@ -159,7 +156,7 @@ lexer = lex.lex()
 
 #Yonkani, Genesis
 # Test it out
-data = '''let var1 = "HOla Mundo"; 
+data = '''3.4 let var1 = "HOla Mundo"; 
 //estoesun comentario de 30 cara
 const _Mi_variable = 14.2;
 let mapa1 = new Map();
