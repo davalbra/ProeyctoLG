@@ -1,1 +1,1 @@
-var entrada = required(12)
+true < true

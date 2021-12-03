@@ -65,23 +65,35 @@ def p_EXPRESSION_MAT(p):
 
 def p_EXPRESSION_CONDICION_BOOLEANA(p):
     ''' EXPRESSION_CONDICION_BOOLEANA : COMPARACION OPERATOR_COMP_MAT COMPARACION
+                                        | COMPARACION_LOGICA OPERATOR_COMP_MAT_LOGICO COMPARACION_LOGICA
+
+
     '''
     p[0] = "EXPRESSION_COMP_BOOLEAN"
 def p_COMPARACION(p):
     '''COMPARACION : VARIABLE
-                    | NUMERO
                     | BOOLEANO
     '''
     p[0] = ('OPERADOR_COMPARACION', p[1])
 
+def p_COMPARACION_LOGICA(p):
+    '''COMPARACION_LOGICA : VARIABLE
+                            | NUMERO
+    '''
 
-#se usa para la funcion p_EXPRESSION_CONDICION_BOOLEANA lo usa para comparar
-def p_OPERATOR_COMP_MAT(p):
-    '''OPERATOR_COMP_MAT : IGUALDADESTRICTA
+    p[0] = ('COMPARACIO_LOGICA', p[1])
+
+def p_OPERATOR_COMP_MAT_LOGICO(p):
+    '''OPERATOR_COMP_MAT_LOGICO : IGUALDADESTRICTA
                     | MAYORIGUAL
                     | MENORIGUAL
                     | MENOR_QUE
                     | MAYOR_QUE
+                    | NOESIGUAL'''
+
+#se usa para la funcion p_EXPRESSION_CONDICION_BOOLEANA lo usa para comparar
+def p_OPERATOR_COMP_MAT(p):
+    '''OPERATOR_COMP_MAT : IGUALDADESTRICTA
                     | AND
                     | OR
                     | NOESIGUAL
