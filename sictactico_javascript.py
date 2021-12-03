@@ -7,7 +7,7 @@ import ply.yacc as yacc
 def p_STATEMENT(p):
     ''' STATEMENT : EXPRESSION
     '''
-    p[0] = p[1]
+    p[0] = ('P_STATEMENT', p[1])
 
 def p_OPERATOR_MAT(p):
     '''OPERATOR_MAT : MAS
@@ -65,7 +65,7 @@ def p_EXPRESSION_MAT(p):
 
 def p_EXPRESSION_CONDICION_BOOLEANA(p):
     ''' EXPRESSION_CONDICION_BOOLEANA : COMPARACION OPERATOR_COMP_MAT COMPARACION
-                                        | COMPARACION_LOGICA OPERATOR_COMP_MAT_LOGICO COMPARACION_LOGICA
+                                        | COMPARACION_LOGICA OPERATOR_COMP_LOGICO COMPARACION_LOGICA
 
 
     '''
@@ -83,13 +83,14 @@ def p_COMPARACION_LOGICA(p):
 
     p[0] = ('COMPARACIO_LOGICA', p[1])
 
-def p_OPERATOR_COMP_MAT_LOGICO(p):
-    '''OPERATOR_COMP_MAT_LOGICO : IGUALDADESTRICTA
+def p_OPERATOR_COMP_LOGICO(p):
+    '''OPERATOR_COMP_LOGICO : IGUALDADESTRICTA
                     | MAYORIGUAL
                     | MENORIGUAL
                     | MENOR_QUE
                     | MAYOR_QUE
                     | NOESIGUAL'''
+    p[0] = ('OPERATOR_COMP_LOGICO', p[1])
 
 #se usa para la funcion p_EXPRESSION_CONDICION_BOOLEANA lo usa para comparar
 def p_OPERATOR_COMP_MAT(p):
@@ -104,6 +105,7 @@ def p_OPERATOR_COMP_MAT(p):
 def p_grupo_datos(p):
     '''grupo_datos : tipos_datos
                     | tipos_datos COMA grupo_datos'''
+    p[0] = ('grupo_datos', p[1])
 
 
 
@@ -120,12 +122,13 @@ def p_asignar_variable(p):
                         | declarar_variable ASIGNAR iniciar_array
                         | declarar_variable ASIGNAR LEER
                         '''
-
+    p[0] = ('p_asignar_variable', p[1])
 #Funcion para inicializar variables
 def p_declarar_variable(p):
     '''declarar_variable : tipo_variable VARIABLE PUNTOCOMA
                         | tipo_variable VARIABLE
                         '''
+    p[0] = ('p_asignar_variable', p[1])
 
 #Estructuras hace uso de metodos
 #OJO por revisar
@@ -133,51 +136,64 @@ def p_metodos_estructuras(p):
     '''metodos_estructuras :  metodos_array
                             | VARIABLE metodos_set
                             | VARIABLE metodos_map'''
+    p[0] = ('p_asignar_variable', p[1])
 
 def p_metodos_array(p):
     '''metodos_array : METODO_POP_ARRAY LPAREN RPAREN PUNTOCOMA
                     | push_array'''
+    p[0] = ('p_metodos_array', p[1])
 
 def p_metodos_set(p):
     '''metodos_set : METODO_ADD_SET LPAREN MASPARAMETROS RPAREN PUNTOCOMA
                     | METODO_SIZE_SET PUNTOCOMA'''
+    p[0] = ('p_metodos_set', p[1])
 
 def p_metodos_map(p):
     '''metodos_map : METODO_SET LPAREN tipos_datos COMA tipos_datos RPAREN PUNTOCOMA
                     | METODO_HAS LPAREN tipos_datos RPAREN PUNTOCOMA'''
+    p[0] = ('p_metodos_map', p[1])
 
 #Instanciar las estructuras de datos Map y Set
 def p_iniciar_estructuras(p):
     '''iniciar_estructuras : NEW VARIABLE LPAREN RPAREN PUNTOCOMA '''
+    p[0] = ('p_iniciar_estructuras', p[1])
 
 
 
 #Yonkani Cedeño
 def p_variable_metodo(p):
     '''variable_metodo : tipo_variable VARIABLE ASIGNAR iniciar_numero PUNTOCOMA numero_iguales_array'''
+    p[0] = ('p_variable_metodo', p[1])
 
 def p_push_array(p):
     '''push_array : flotante_iguales_array
                     | numero_iguales_array
                     | bool_iguales_array'''
+    p[0] = ('p_push_array', p[1])
 
 def p_bool_iguales_array(p):
     '''bool_iguales_array : VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_bool RPAREN PUNTOCOMA'''
+    p[0] = ('p_bool_iguales_array', p[1])
 
 def p_flotante_iguales_array(p):
     '''flotante_iguales_array : VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_flotante RPAREN PUNTOCOMA'''
+    p[0] = ('p_flotante_iguales_array', p[1])
 
 def p_numero_iguales_array(p):
     '''numero_iguales_array : VARIABLE METODO_PUSH_ARRAY LPAREN repeticion_numero RPAREN PUNTOCOMA '''
+    p[0] = ('p_numero_iguales_array', p[1])
 
 def p_iniciar_numero(p):
     '''iniciar_numero : ICORCHETE repeticion_numero DCORCHETE '''
+    p[0] = ('p_iniciar_numero', p[1])
 
 def p_iniciar_flotante(p):
     '''iniciar_flotante : ICORCHETE repeticion_flotante DCORCHETE '''
+    p[0] = ('p_iniciar_flotante', p[1])
 
 def p_iniciar_bool(p):
     '''iniciar_bool : ICORCHETE repeticion_bool DCORCHETE '''
+    p[0] = ('p_iniciar_bool', p[1])
 
 
 #Fin
@@ -189,6 +205,7 @@ def p_tipos_datos(p):
                     | CADENA
                     | FLOTANTE
                     | NULL'''
+    p[0] = ('p_tipos_datos', p[1])
 
 
 
@@ -198,6 +215,7 @@ def p_tipo_variable(p):
     '''tipo_variable : VAR
                     | LET
                     | CONST'''
+    p[0] = ('p_tipo_variable', p[1])
 
 #Declarar un array
 def p_iniciar_array(p):
@@ -206,7 +224,13 @@ def p_iniciar_array(p):
                     | ICORCHETE repeticion_flotante DCORCHETE
                     | ICORCHETE repeticion_null DCORCHETE
                     | ICORCHETE repeticion_cadena DCORCHETE
-                    | ICORCHETE repeticion_numero DCORCHETE '''
+                    | ICORCHETE repeticion_numero DCORCHETE
+
+                    '''
+
+
+   p[0] = ('p_iniciar_array', p[1])
+
 
 def p_repeticion_flotante(p):
     '''repeticion_flotante : FLOTANTE
@@ -237,6 +261,7 @@ def p_booleano_tipo(p):
 # HAcer uso de cadena de caracteres
 def p_cadenas_caracteres(p):
     '''cadenas_caracteres : CADENA'''
+    p[0] = ('p_cadenas_caracteres', p[1])
 
 #yonkani
 
@@ -246,29 +271,34 @@ def p_FUNCTIONS(p):
                   | FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE EXPRESSION RETURN MASPARAMETROS DLLAVE
                   | FUNCTION VARIABLE LPAREN RPAREN ILLAVE EXPRESSION DLLAVE
     '''
-    p[0] = ('FUNCTION')
+    p[0] = ('p_FUNCTIONS', p[1])
+
+
 def p_MASPARAMETROS(p):
     '''MASPARAMETROS : PARAMETROS
                     | PARAMETROS COMA MASPARAMETROS
     '''
-    p[0] = 'MASPARAMETROS'
+    p[0] = ('p_MASPARAMETROS', p[1])
+
 
 def p_PARAMETROS(p):
 
     '''PARAMETROS :  tipos_datos
                     | VARIABLE
     '''
-    p[0] = 'PARAMETROS'
+    p[0] = ('p_PARAMETROS', p[1])
+
 
 def p_PRINT(p):
     ''' PRINT : ALERT LPAREN CADENA RPAREN
 
     '''
-    p[0] = 'PRINT'
+    p[0] = ('p_PRINT', p[1])
+
 
 def p_READ(p):
     '''LEER : REQUIRED LPAREN CADENA RPAREN'''
-    p[0] = ('ENTRADA_DE_DATOS', p[1])
+    p[0] = ('p_READ', p[1])
 #Daniela
 
 #David
