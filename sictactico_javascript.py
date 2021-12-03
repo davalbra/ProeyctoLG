@@ -133,7 +133,7 @@ def p_declarar_variable(p):
 #Estructuras hace uso de metodos
 #OJO por revisar
 def p_metodos_estructuras(p):
-    '''metodos_estructuras :  metodos_array
+    '''metodos_estructuras :  VARIABLE metodos_array
                             | VARIABLE metodos_set
                             | VARIABLE metodos_map'''
     p[0] = ('p_asignar_variable', p[1])
