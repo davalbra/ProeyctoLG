@@ -4,25 +4,21 @@ import ply.lex as lex
 
 reserved = {
 
-
     'var' : 'VAR',
     'let' : 'LET',
     'while' : 'WHILE',
     'alert' : 'ALERT',
     'new' : 'NEW',
-    'void' : 'VOID',
     'for' : 'FOR',
     'function' : 'FUNCTION',
-    'else' : 'ELSE',
     'do' : 'DO',
-    'continue' : 'CONTINUE',
-    'in' : 'IN',
     'return' : 'RETURN',
     'const' : 'CONST',
     'false' : 'FALSE',
     'true' : 'TRUE',
     'if': 'IF',
-    'null' : 'NULL'
+    'null' : 'NULL',
+    'required' : 'REQUIRED'
 }
 #Fin Genesis Baquerizo
 

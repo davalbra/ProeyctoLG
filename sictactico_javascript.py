@@ -30,6 +30,10 @@ def p_EXPRESSION(p):
                 | EXPRESSION_CONDICION_BOOLEANA
                 | metodos_estructuras
                 | PRINT
+                | LEER
+                | ESTRUCTURA_DOWHILE
+                | EXPRESSION
+                | CONDICION_IF
 
     '''
     p[0] = ('EXPRESSION', p[1])
@@ -102,6 +106,7 @@ def p_asignar_variable(p):
                         | VARIABLE ASIGNAR tipos_datos PUNTOCOMA
                         | declarar_variable ASIGNAR iniciar_estructuras
                         | declarar_variable ASIGNAR iniciar_array
+                        | declarar_variable ASIGNAR LEER
                         '''
 
 #Funcion para inicializar variables
@@ -225,8 +230,9 @@ def p_cadenas_caracteres(p):
 
 #Daniela
 def p_FUNCTIONS(p):
-    ''' FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE DLLAVE
-                  | FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE RETURN MASPARAMETROS DLLAVE
+    ''' FUNCTIONS : FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE EXPRESSION DLLAVE
+                  | FUNCTION VARIABLE LPAREN MASPARAMETROS RPAREN ILLAVE EXPRESSION RETURN MASPARAMETROS DLLAVE
+                  | FUNCTION VARIABLE LPAREN RPAREN ILLAVE EXPRESSION DLLAVE
     '''
     p[0] = ('FUNCTION')
 def p_MASPARAMETROS(p):
@@ -248,7 +254,9 @@ def p_PRINT(p):
     '''
     p[0] = 'PRINT'
 
-
+def p_READ(p):
+    '''LEER : REQUIRED LPAREN CADENA RPAREN'''
+    p[0] = ('ENTRADA_DE_DATOS', p[1])
 #Daniela
 
 #David
@@ -257,7 +265,13 @@ def p_ESTRUCTURA_FOR(p):
     '''ESTRUCTURA_FOR : FOR LPAREN asignar_variable EXPRESSION_CONDICION_BOOLEANA PUNTOCOMA VARIABLE MAS MAS RPAREN ILLAVE EXPRESSION DLLAVE
     '''
     p[0] = ('ESTRUCTURA_FOR', p[1])
+def p_CONDICION_IF(p):
+    '''CONDICION_IF : IF LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE'''
+    p[0] = ('ESTRUCTURA_IF', p[1])
 
+def p_ESTRUCTURA_DOWHILE(p):
+    '''ESTRUCTURA_DOWHILE : DO ILLAVE EXPRESSION DLLAVE WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN PUNTOCOMA '''
+    p[0] = ('ESTRUCTURA_DOWHILE', p[1])
 def p_ESTRUCTURA_WHILE(p):
     '''ESTRUCTURA_WHILE : WHILE LPAREN EXPRESSION_CONDICION_BOOLEANA RPAREN ILLAVE EXPRESSION DLLAVE
 
